@@ -53,14 +53,14 @@ class User extends Authenticatable
 
     public function admin()
     {
-        $user = $this->where('role' , 'admin')->get();
-        return $user;
+        $admin = $this->where('role' , 'admin')->get();
+        return $admin;
     }
 
     public function memeber()
     {
-        $user = $this->where('role' , 'member')->get();
-        return $user;
+        $member = $this->where('role' , 'member')->get();
+        return $member;
     }
 
 
