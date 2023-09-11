@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SpaceController;
 use App\Http\Controllers\UserController;
@@ -55,8 +56,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 Route::middleware(['auth', 'role:member'])->group(function () {
     Route::get('member/dashboard', [UserController::class, 'memberDashboard'])->name('member.dashboard');
+});
 
-<<<<<<< HEAD
 Route::get('spaces', [SpaceController::class, 'index'])->name('space.index');
 Route::get('space/{space}/show', [SpaceController::class, 'show'])->name('space.show');
 
@@ -65,8 +66,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/space/new', [SpaceController::class, 'store'])->name('space.store');
     Route::put('space/{space}/update', [SpaceController::class, 'update'])->name('space.update');
     Route::delete('space/{space}', [SpaceController::class, 'destroy'])->name('space.destroy');
-=======
     Route::get('spaces', [SpaceController::class, 'index'])->name('space.index');
     Route::get('space/{space}/show', [SpaceController::class, 'show'])->name('space.show');
->>>>>>> 10847f627a9f0ac128557b5b0a6cc00c3d229156
+
+    Route::get('branch' , [BranchController::class , 'index'])->name('branch.index');
 });
