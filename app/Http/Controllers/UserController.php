@@ -36,7 +36,7 @@ class UserController extends Controller
             'last_name' => 'required'|'string',
             'email' => 'required'|'email',
             'phone' => 'required'|'string',
-            'role' => 'in:users,role',
+            'role' => 'in:admin,member',
         ]);
 
         $user->update($request->all());
