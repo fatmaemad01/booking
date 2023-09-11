@@ -37,7 +37,17 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'phone' => ['required' , 'string' , 'min:10'],
             'role' => ['required' , 'string' , 'in:admin,member'],
+            'personal_image' => 'image|nullable'
         ]);
+
+        if ($request->hasFile('personal_image')) {
+            $file = $request->file('personal_image');
+            $filename = $file->getClientOriginalName();
+            $path = $file->storeAs('images' , $filename);
+            $request->merge([
+                'personal_image' => $path,
+            ]);
+        }
 
         $user = User::create([
             'first_name' => $request->first_name,

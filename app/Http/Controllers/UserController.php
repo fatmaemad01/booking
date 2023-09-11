@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -37,7 +38,21 @@ class UserController extends Controller
             'email' => 'required'|'email',
             'phone' => 'required'|'string',
             'role' => 'in:admin,member',
+            'personal_image' => 'image|nullable'
         ]);
+
+        if ($request->hasFile('personal_image')) {
+            $oldImagePath = $user->personal_image;
+            if ($oldImagePath) {
+                Storage::disk('images')->delete($oldImagePath);
+            }
+
+            // Upload the new image
+            $file = $request->file('personal_image');
+            $filename = $file->getClientOriginalName();
+            $path = $file->storeAs('images' , $filename);
+            $user->personal_image = $path;
+        }
 
         $user->update($request->all());
 
@@ -47,6 +62,11 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+
+        if ($user->personal_image) {
+            Storage::disk('images')->delete($user->personal_image);
+        }
+
         return back();
     }
 
