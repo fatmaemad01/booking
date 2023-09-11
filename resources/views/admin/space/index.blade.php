@@ -5,7 +5,11 @@
         <h4>{{$space->branch->name}}</h4>
         <hr>
     @endforeach --}}
+    <div class="container">
+        <h2 class="text-muted">Spaces</h2>
+        <x-bg-modal btn="Open Modal" class="modal-dialog-scrollable" id="myModal">
+            <h3>Test Model</h3>
+        </x-bg-modal>
 
-    <h2>Spaces</h2>
-
+    </div>
 </x-main-layout>

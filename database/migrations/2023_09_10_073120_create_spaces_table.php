@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('name');
             $table->integer('capacity');
             $table->integer('price')->nullable();
-            $table->boolean('is_available')->default(false);
-            $table->json('assets');
+            $table->json('availablity')->nullable();
+            $table->text('assets')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
