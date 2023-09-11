@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('phone');
             $table->enum('role' , ['admin' , 'member'])->default('member');
             $table->string('personal_image')->nullable();
+            $table->char('locale' , 2)->default('en');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

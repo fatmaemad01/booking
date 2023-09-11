@@ -59,6 +59,17 @@
                     <li><a href="#services">Programs</a></li>
                     <li><a href="#team">Team</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link fs-6 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Language
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li> <a href="{{ route('change.language', ['locale' => 'en']) }}" class="nav-link">English</a>
+                        </li>
+                        <li> <a href="{{ route('change.language', ['locale' => 'ar']) }}" class="nav-link">Arabic</a>
+                        </li>
+                    </ul>
+                </li>
                 </ul>
             </nav><!-- .navbar -->
 

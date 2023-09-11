@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -38,7 +40,7 @@ class UserController extends Controller
             'email' => 'required'|'email',
             'phone' => 'required'|'string',
             'role' => 'in:admin,member',
-            'personal_image' => 'image|nullable'
+            'personal_image' => 'image|nullable',
         ]);
 
         if ($request->hasFile('personal_image')) {
@@ -69,5 +71,23 @@ class UserController extends Controller
 
         return back();
     }
+
+    public function changeLanguage($locale)
+    {
+        if (in_array($locale, ['en', 'ar'])) {
+            $user = Auth::user();
+
+            if ($user) {
+                $user->locale = $locale;
+            } else {
+                session(['locale' => $locale]);
+            }
+
+            App::setLocale($locale);
+        }
+
+        return redirect()->back();
+    }
+
 
 }
