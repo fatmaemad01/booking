@@ -35,14 +35,15 @@ require __DIR__ . '/auth.php';
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/change-language/{locale}', [UserController::class, 'changeLanguage'])->name('change.language');
-    
+    Route::get('/change-language/{locale}', [UserController::class, 'changeLanguage'])->name('change.language');    
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::get('admin/dashboard', [UserController::class, 'adminDashboard'])->name('admin.dashboard');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/users' , [UserController::class, 'store'])->name('users.store');
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::get('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
