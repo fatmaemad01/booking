@@ -18,7 +18,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'phone',
+        'role',
         'email',
         'password',
     ];
@@ -42,4 +45,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getRoleAttribute()
+    {
+        return $this->attributes['role'];
+    }
+
+    public function admin()
+    {
+        $admin = $this->where('role' , 'admin')->get();
+        return $admin;
+    }
+
+    public function member()
+    {
+        $member = $this->where('role' , 'member')->get();
+        return $member;
+    }
+
+
+
 }
