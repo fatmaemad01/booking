@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
 
 class BranchRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class BranchRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,9 @@ class BranchRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['require' , 'max:255'],
+            'Work_days' => ['require' , 'array'],
+            'location' => ['require' , 'max:255'],
         ];
     }
 }

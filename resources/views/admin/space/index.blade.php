@@ -1,12 +1,13 @@
 <x-main-layout title="Spaces">
-    <x-nav />
     <div class="container ">
         <div class="d-flex justify-content-between">
             <h2 class="text-muted">Spaces</h2>
             <x-bg-modal btn="New Space" class="modal-dialog-scrollable" id="create">
                 <div class="modal-body">
                     <form action="{{ route('space.store') }}" method="POST" enctype="multipart/form-data">
-                        @include('admin.space._form')
+                        @include('admin.space._form' , [
+                            'button_lable' => 'Create'
+                        ])
                     </form>
                 </div>
             </x-bg-modal>

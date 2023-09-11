@@ -36,38 +36,30 @@ require __DIR__ . '/auth.php';
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/change-language/{locale}', [UserController::class, 'changeLanguage'])->name('change.language');    
+    Route::get('/change-language/{locale}', [UserController::class, 'changeLanguage'])->name('change.language');
+    Route::get('spaces', [SpaceController::class, 'index'])->name('space.index');
+    Route::get('space/{space}/show', [SpaceController::class, 'show'])->name('space.show');
+
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::get('admin/dashboard', [UserController::class, 'adminDashboard'])->name('admin.dashboard');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-    Route::post('/users' , [UserController::class, 'store'])->name('users.store');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::get('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-    Route::post('/space/new', [SpaceController::class, 'store'])->name('space.store');
 
-    Route::put('space/{space}/edit', [SpaceController::class, 'update'])->name('space.update');
+
+    Route::post('/space/new', [SpaceController::class, 'store'])->name('space.store');
+    Route::put('space/{space}/update', [SpaceController::class, 'update'])->name('space.update');
     Route::delete('space/{space}', [SpaceController::class, 'destroy'])->name('space.destroy');
+
+    Route::get('branch' , [BranchController::class , 'index'])->name('branch.index');
+    Route::post('branch' , [BranchController::class , 'store'])->name('branch.store');
 });
 
 Route::middleware(['auth', 'role:member'])->group(function () {
     Route::get('member/dashboard', [UserController::class, 'memberDashboard'])->name('member.dashboard');
-});
-
-Route::get('spaces', [SpaceController::class, 'index'])->name('space.index');
-Route::get('space/{space}/show', [SpaceController::class, 'show'])->name('space.show');
-
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    // Route::get('/space/new', [SpaceController::class, 'create'])->name('space.create');
-    Route::post('/space/new', [SpaceController::class, 'store'])->name('space.store');
-    Route::put('space/{space}/update', [SpaceController::class, 'update'])->name('space.update');
-    Route::delete('space/{space}', [SpaceController::class, 'destroy'])->name('space.destroy');
-    Route::get('spaces', [SpaceController::class, 'index'])->name('space.index');
-    Route::get('space/{space}/show', [SpaceController::class, 'show'])->name('space.show');
-
-    Route::get('branch' , [BranchController::class , 'index'])->name('branch.index');
 });
