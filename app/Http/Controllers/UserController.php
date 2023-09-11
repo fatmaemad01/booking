@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -36,8 +39,22 @@ class UserController extends Controller
             'last_name' => 'required'|'string',
             'email' => 'required'|'email',
             'phone' => 'required'|'string',
-            'role' => 'in:users,role',
+            'role' => 'in:admin,member',
+            'personal_image' => 'image|nullable',
         ]);
+
+        if ($request->hasFile('personal_image')) {
+            $oldImagePath = $user->personal_image;
+            if ($oldImagePath) {
+                Storage::disk('images')->delete($oldImagePath);
+            }
+
+            // Upload the new image
+            $file = $request->file('personal_image');
+            $filename = $file->getClientOriginalName();
+            $path = $file->storeAs('images' , $filename);
+            $user->personal_image = $path;
+        }
 
         $user->update($request->all());
 
@@ -47,7 +64,30 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+
+        if ($user->personal_image) {
+            Storage::disk('images')->delete($user->personal_image);
+        }
+
         return back();
     }
+
+    public function changeLanguage($locale)
+    {
+        if (in_array($locale, ['en', 'ar'])) {
+            $user = Auth::user();
+
+            if ($user) {
+                $user->locale = $locale;
+            } else {
+                session(['locale' => $locale]);
+            }
+
+            App::setLocale($locale);
+        }
+
+        return redirect()->back();
+    }
+
 
 }
