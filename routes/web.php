@@ -52,7 +52,8 @@ Route::get('spaces', [SpaceController::class, 'index'])->name('space.index');
 Route::get('space/{space}/show', [SpaceController::class, 'show'])->name('space.show');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
+    // Route::get('/space/new', [SpaceController::class, 'create'])->name('space.create');
     Route::post('/space/new', [SpaceController::class, 'store'])->name('space.store');
-    Route::put('space/{space}/edit', [SpaceController::class, 'update'])->name('space.update');
+    Route::put('space/{space}/update', [SpaceController::class, 'update'])->name('space.update');
     Route::delete('space/{space}', [SpaceController::class, 'destroy'])->name('space.destroy');
 });
