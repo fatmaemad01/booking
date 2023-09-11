@@ -27,8 +27,9 @@ class SpaceRequest extends FormRequest
             'name' => 'required|string',
             'capacity' => 'required|integer|min:1',
             'price' => 'nullable|integer',
-            'is_available' => 'nullable|boolean',
-            'assets' => 'nullable|string'
+            // 'availablity' => 'nullable|string',
+            'assets' => 'nullable|string',
+            'image' => 'nullable|image'
         ];
     }
 }

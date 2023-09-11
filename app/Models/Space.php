@@ -10,11 +10,11 @@ class Space extends Model
     use HasFactory;
 
     protected $fillable = [
-        'branch_id', 'type', 'name', 'capacity', 'price', 'is_available', 'assets'
+        'branch_id', 'type', 'name', 'capacity', 'price', 'availablity', 'assets' , 'image'
     ];
 
     protected $casts = [
-        'assets' => 'array',
+        'availablity' => 'array',
     ];
 
     public function branch()

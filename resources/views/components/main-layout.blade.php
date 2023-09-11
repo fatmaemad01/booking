@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
     <title>{{ $title }}</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
@@ -30,27 +28,19 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
-
-
 </head>
-
 <body>
-
-    <x-nav />
-
+    <x-second-nav />
     <main id="main">
         {{ $slot }}
-    </main><!-- End #main -->
+    </main>
 
-    <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer">
-
+    <footer id="footer" class="footer mt-5">
         <div class="container">
             <div class="row gy-4">
-                <div class="col-lg-5  col-md-12 footer-info">
-                    <img src="{{ asset('assets/logo.png') }}" alt="" height="250px" width="250px"
-                        style="border-radius: 50%">
-
+                <div class="col-lg-4  col-md-12 footer-info" style="margin-top: 5px">
+                    <img src="{{ asset('assets/logo.png') }}" alt="" height="150px" width="150px"
+                        style="border-radius: 50%" class="ms-5">
                     <div class="social-links d-flex mt-4 ms-4">
                         <a href="https://www.youtube.com/user/GazaSkyGeeks" class="youtube"><i
                                 class="bi bi-youtube"></i></a>
@@ -62,42 +52,28 @@
                                 class="bi bi-linkedin"></i></a>
                     </div>
                 </div>
-
-                <div class="col-lg-2 col-6 footer-links">
-                    <h4>Useful Links</h4>
-                    <ul>
-                        <li><a href="#hero">Home</a></li>
-                        <li><a href="#about">About us</a></li>
-                        <li><a href="#services">Programs</a></li>
-                        <li><a href="#team">Team</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-
                 <div class="col-lg-2 col-6 footer-links">
                     <h4>Our Services</h4>
                     <ul>
                         <li><a href="#">Web Design</a></li>
                         <li><a href="#">Web Development</a></li>
-                        <li><a href="#">Product Management</a></li>
                         <li><a href="#">Marketing</a></li>
-                        <li><a href="#">Graphic Design</a></li>
                     </ul>
                 </div>
-
                 <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
                     <h4>Contact Us</h4>
                     <p>
-
                         <strong>Email:</strong> info@gazaskygeeks.com<br>
                         <strong>Email:</strong> press@gazaskygeeks.com<br>
-                        <strong>Location:</strong> UNWRA HQ Square <br> Almotaz 3 Building <br> Mezzanine level <br>
-                        Gaza city, Gaza Strip <br>
-
                     </p>
-
                 </div>
-
+                <div class="col-lg-2 col-6 footer-links">
+                    <h4>Location</h4>
+                    <p>
+                        UNWRA HQ Square <br> Almotaz 3 Building <br> Mezzanine level <br>
+                        Gaza city, Gaza Strip <br>
+                    </p>
+                </div>
             </div>
         </div>
 
@@ -107,9 +83,7 @@
                 <strong><span>GazaSkyGeeks</span></strong>
             </div>
         </div>
-
-    </footer><!-- End Footer -->
-    <!-- End Footer -->
+    </footer>
 
     <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
