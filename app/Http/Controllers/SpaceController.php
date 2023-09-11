@@ -10,30 +10,35 @@ class SpaceController extends Controller
 {
     public function index()
     {
+        $spaces = Space::all();
 
-        return view('admin.space.index');
-
+        return view('admin.space.index', compact('spaces'));
     }
 
     public function store(SpaceRequest $request)
     {
+        $validated = $request->validated();
+        Space::create($validated);
 
+        return redirect()->route('space.index')->with('success', 'Space Added Sucessfully.');
     }
 
     public function show(Space $space)
     {
-
-        return view('admin.space.show' , compact('space'));
-
+        return view('admin.space.show', compact('space'));
     }
 
-    public function update(SpaceRequest $request , Space $space)
+    public function update(SpaceRequest $request, Space $space)
     {
-
+        $validated = $request->validated();
+        $space->update($validated);
+        
+        return redirect()->route('space.index')->with('success', 'Space Updated Sucessfully.');
     }
 
     public function destroy(Space $space)
     {
-        
+        $space->delete();
+        return back();
     }
 }

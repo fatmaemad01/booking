@@ -10,8 +10,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="{{asset('assets/logo.png')}}" rel="icon">
-    <link href="{{asset('assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+    <link href="{{ asset('assets/logo.png') }}" rel="icon">
+    <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,14 +21,14 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/vendor/aos/aos.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="{{asset('assets/css/main.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 
     <!-- =======================================================
   * Template Name: Impact
@@ -49,35 +49,15 @@
             <a href="index.html" class="logo d-flex align-items-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="assets/img/logo.png" alt=""> -->
+                <img src="{{ asset('assets/logo.png') }}" alt="" style="border-radius: 30px">
                 <h1>Gaza Sky Geeks<span>.</span></h1>
             </a>
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a href="#hero">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#services">Programs</a></li>
                     <li><a href="#team">Team</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li class="dropdown"><a href="#"><span>Drop Down</span> <i
-                                class="bi bi-chevron-down dropdown-indicator"></i></a>
-                        <ul>
-                            <li><a href="#">Drop Down 1</a></li>
-                            <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i
-                                        class="bi bi-chevron-down dropdown-indicator"></i></a>
-                                <ul>
-                                    <li><a href="#">Deep Drop Down 1</a></li>
-                                    <li><a href="#">Deep Drop Down 2</a></li>
-                                    <li><a href="#">Deep Drop Down 3</a></li>
-                                    <li><a href="#">Deep Drop Down 4</a></li>
-                                    <li><a href="#">Deep Drop Down 5</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Drop Down 2</a></li>
-                            <li><a href="#">Drop Down 3</a></li>
-                            <li><a href="#">Drop Down 4</a></li>
-                        </ul>
-                    </li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav><!-- .navbar -->
@@ -95,58 +75,22 @@
             <div class="row gy-5" data-aos="fade-in">
                 <div
                     class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
-                    <h2>Welcome to <span>Impact</span></h2>
-                    <p>Sed autem laudantium dolores. Voluptatem itaque ea consequatur eveniet. Eum quas beatae cumque
-                        eum quaerat.</p>
+                    <h2 style="color: #6ca9be">GSG<span> Booking </span>System</h2>
+                    <p style="color: #5a91a3">Gaza Sky Geeks provide workspaces for members. If you need to take
+                        advantage of them, you can
+                        book here. </p>
                     <div class="d-flex justify-content-center justify-content-lg-start">
-                        <a href="#about" class="btn-get-started">Get Started</a>
-                        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ"
-                            class="glightbox btn-watch-video d-flex align-items-center"><i
-                                class="bi bi-play-circle"></i><span>Watch Video</span></a>
+                        <a href="#about" class="btn-get-started">Book Here</a>
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2">
-                    <img src="{{asset('assets/img/hero-img.svg')}}" class="img-fluid" alt="" data-aos="zoom-out"
-                        data-aos-delay="100">
+                    <img src="{{ asset('assets/img/hero-img.svg') }}" class="img-fluid" alt=""
+                        data-aos="zoom-out" data-aos-delay="100">
                 </div>
             </div>
         </div>
 
-        <div class="icon-boxes position-relative">
-            <div class="container position-relative">
-                <div class="row gy-4 mt-5">
 
-                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-easel"></i></div>
-                            <h4 class="title"><a href="" class="stretched-link">Lorem Ipsum</a></h4>
-                        </div>
-                    </div><!--End Icon Box -->
-
-                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-gem"></i></div>
-                            <h4 class="title"><a href="" class="stretched-link">Sed ut perspiciatis</a></h4>
-                        </div>
-                    </div><!--End Icon Box -->
-
-                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-geo-alt"></i></div>
-                            <h4 class="title"><a href="" class="stretched-link">Magni Dolores</a></h4>
-                        </div>
-                    </div><!--End Icon Box -->
-
-                    <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-command"></i></div>
-                            <h4 class="title"><a href="" class="stretched-link">Nemo Enim</a></h4>
-                        </div>
-                    </div><!--End Icon Box -->
-
-                </div>
-            </div>
-        </div>
 
         </div>
     </section>
@@ -160,48 +104,32 @@
 
                 <div class="section-header">
                     <h2>About Us</h2>
-                    <p>Aperiam dolorum et et wuia molestias qui eveniet numquam nihil porro incidunt dolores placeat
-                        sunt id nobis omnis tiledo stran delop</p>
                 </div>
 
                 <div class="row gy-4">
                     <div class="col-lg-6">
-                        <h3>Voluptatem dignissimos provident quasi corporis</h3>
-                        <img src="{{asset('assets/img/about.jpg')}}" class="img-fluid rounded-4 mb-4" alt="">
-                        <p>Ut fugiat ut sunt quia veniam. Voluptate perferendis perspiciatis quod nisi et. Placeat
-                            debitis quia recusandae odit et consequatur voluptatem. Dignissimos pariatur consectetur
-                            fugiat voluptas ea.</p>
-                        <p>Temporibus nihil enim deserunt sed ea. Provident sit expedita aut cupiditate nihil vitae quo
-                            officia vel. Blanditiis eligendi possimus et in cum. Quidem eos ut sint rem veniam qui. Ut
-                            ut repellendus nobis tempore doloribus debitis explicabo similique sit. Accusantium sed ut
-                            omnis beatae neque deleniti repellendus.</p>
+                        <h3>Our Purpose</h3>
+                        <br>
+                        <p class="">
+                            We want to build an internationally admired and competitive tech sector in Palestine that
+                            creates high-salary jobs and future leaders.
+                            <br><br>
+                            We want to build an internationally admired and competitive tech sector in Palestine that
+                            creates high-salary jobs and future leaders.
+
+                            To get there, we are connecting world-class technical, professional, financial, and
+                            community resources to any Palestinian who wants to work online or in tech.
+                            <br><br>
+                            Watch this short video to learn about our three major programs supporting coders,
+                            freelancers, and startups.
+                        </p>
                     </div>
                     <div class="col-lg-6">
                         <div class="content ps-0 ps-lg-5">
-                            <p class="fst-italic">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore
-                                magna aliqua.
-                            </p>
-                            <ul>
-                                <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea
-                                    commodo consequat.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Duis aute irure dolor in reprehenderit in
-                                    voluptate velit.</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Ullamco laboris nisi ut aliquip ex ea
-                                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta
-                                    storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-                            </ul>
-                            <p>
-                                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                                reprehenderit in voluptate
-                                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                proident
-                            </p>
-
-                            <div class="position-relative mt-4">
-                                <img src="{{asset('assets/img/about-2.jpg')}}" class="img-fluid rounded-4" alt="">
-                                <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>
+                            <div class="position-relative ">
+                                <img src="{{ asset('assets/img/gsg2.jpg') }}" class="img-fluid rounded-4"
+                                    width="100%" alt="">
+                                <a href="https://youtu.be/FvR7D2M6W38" class="glightbox play-btn"></a>
                             </div>
                         </div>
                     </div>
@@ -213,25 +141,29 @@
         <!-- ======= Clients Section ======= -->
         <section id="clients" class="clients">
             <div class="container" data-aos="zoom-out">
-
+                <h3 class="fw-bold">Our Partners</h3>
                 <div class="clients-slider swiper">
                     <div class="swiper-wrapper align-items-center">
-                        <div class="swiper-slide"><img src="{{asset('assets/img/clients/Google-e1598350715152.png')}}" class="img-fluid"
+                        <div class="swiper-slide"><img
+                                src="{{ asset('assets/img/clients/Google-e1598350715152.png') }}" class="img-fluid"
                                 alt=""></div>
-                        <div class="swiper-slide"><img src="{{asset('assets/img/clients/KoN-300.png')}}" class="img-fluid"
+                        <div class="swiper-slide"><img src="{{ asset('assets/img/clients/KoN-300.png') }}"
+                                class="img-fluid" alt=""></div>
+                        <div class="swiper-slide"><img src="{{ asset('assets/img/clients/logo-intersect-hub.png') }}"
+                                class="img-fluid" alt=""></div>
+                        <div class="swiper-slide"><img
+                                src="{{ asset('assets/img/clients/P-trademarked-fullcolor.png') }}" class="img-fluid"
                                 alt=""></div>
-                        <div class="swiper-slide"><img src="{{asset('assets/img/clients/logo-intersect-hub.png')}}" class="img-fluid"
-                                alt=""></div>
-                        <div class="swiper-slide"><img src="{{asset('assets/img/clients/P-trademarked-fullcolor.png')}}" class="img-fluid"
-                                alt=""></div>
-                        <div class="swiper-slide"><img src="{{asset('assets/img/clients/P-trademarked-fullcolor.png')}}" class="img-fluid"
-                                alt=""></div>
-                        <div class="swiper-slide"><img src="{{asset('assets/img/clients/Techstars_Logo_Primary_Black.jpg')}}" class="img-fluid"
-                                alt=""></div>
-                        <div class="swiper-slide"><img src="{{asset('assets/img/clients/regular.png')}}" class="img-fluid"
-                                alt=""></div>
-                        <div class="swiper-slide"><img src="{{asset('assets/img/clients/Sweden-EN-blue-e1613470916920.png')}}" class="img-fluid"
-                                alt=""></div>
+                        <div class="swiper-slide"><img src="{{ asset('assets/img/clients/logo.png') }}"
+                                class="img-fluid" alt=""></div>
+                        <div class="swiper-slide"><img
+                                src="{{ asset('assets/img/clients/Techstars_Logo_Primary_Black.jpg') }}"
+                                class="img-fluid" alt=""></div>
+                        <div class="swiper-slide"><img src="{{ asset('assets/img/clients/regular.png') }}"
+                                class="img-fluid" alt=""></div>
+                        <div class="swiper-slide"><img
+                                src="{{ asset('assets/img/clients/Sweden-EN-blue-e1613470916920.png') }}"
+                                class="img-fluid" alt=""></div>
                     </div>
                 </div>
 
@@ -241,31 +173,32 @@
         <!-- ======= Stats Counter Section ======= -->
         <section id="stats-counter" class="stats-counter">
             <div class="container" data-aos="fade-up">
-
                 <div class="row gy-4 align-items-center">
 
                     <div class="col-lg-6">
-                        <img src="{{asset('assets/img/stats-img.svg')}}" alt="" class="img-fluid">
+                        <img src="{{ asset('assets/img/stats-img.svg') }}" alt="" class="img-fluid">
                     </div>
 
                     <div class="col-lg-6">
 
                         <div class="stats-item d-flex align-items-center">
-                            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1"
+                            <span data-purecounter-start="0" data-purecounter-end="500" data-purecounter-duration="1"
                                 class="purecounter"></span>
-                            <p><strong>Happy Clients</strong> consequuntur quae diredo para mesta</p>
+                            <p>Cumulative earnings reported by coding & freelancing alumni 12 months
+                                post-graduation</p>
                         </div><!-- End Stats Item -->
 
                         <div class="stats-item d-flex align-items-center">
-                            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
+                            <span data-purecounter-start="0" data-purecounter-end="100" data-purecounter-duration="1"
                                 class="purecounter"></span>
-                            <p><strong>Projects</strong> adipisci atque cum quia aut</p>
+                            <p>Annual participants in meetups and community events</p>
                         </div><!-- End Stats Item -->
 
                         <div class="stats-item d-flex align-items-center">
-                            <span data-purecounter-start="0" data-purecounter-end="453" data-purecounter-duration="1"
+                            <span data-purecounter-start="0" data-purecounter-end="99" data-purecounter-duration="1"
                                 class="purecounter"></span>
-                            <p><strong>Hours Of Support</strong> aut commodi quaerat</p>
+                            <p>Proportion of freelancers we train who get at least one gsg online
+                            </p>
                         </div><!-- End Stats Item -->
 
                     </div>
@@ -277,24 +210,22 @@
 
         <!-- ======= Call To Action Section ======= -->
         <section id="call-to-action" class="call-to-action">
-            <div class="container text-center" data-aos="zoom-out">
-                <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>
-                <h3>Call To Action</h3>
-                <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                    anim id est laborum.</p>
-                <a class="cta-btn" href="#">Call To Action</a>
+            <div class="container" data-aos="fade-up">
+                <h3 class="fw-bold">Our Location</h3>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3401.4060685962318!2d34.44794492496933!3d31.51300534750692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14fd7f6b18708d27%3A0x1f26dc8d799cd45b!2sGaza%20Sky%20Geeks!5e0!3m2!1sar!2sus!4v1694379926015!5m2!1sar!2sus"
+                    width="1090" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </section><!-- End Call To Action Section -->
+
 
         <!-- ======= Our Services Section ======= -->
         <section id="services" class="services sections-bg">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-header">
-                    <h2>Our Services</h2>
-                    <p>Aperiam dolorum et et wuia molestias qui eveniet numquam nihil porro incidunt dolores placeat
-                        sunt id nobis omnis tiledo stran delop</p>
+                    <h2>Our Programs</h2>
                 </div>
 
                 <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
@@ -302,11 +233,11 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="service-item  position-relative">
                             <div class="icon">
-                                <i class="bi bi-activity"></i>
+                                <i class="bi bi-people-fill"></i>
                             </div>
-                            <h3>Nesciunt Mete</h3>
-                            <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores
-                                iure perferendis tempore et consequatur.</p>
+                            <h3>For Founders</h3>
+                            <p>Our incubation and acceleration programs help build successful startups and entrepreneurs
+                                that create sustainable value for customers and the community.</p>
                             <a href="#" class="readmore stretched-link">Read more <i
                                     class="bi bi-arrow-right"></i></a>
                         </div>
@@ -315,11 +246,11 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="service-item position-relative">
                             <div class="icon">
-                                <i class="bi bi-broadcast"></i>
+                                <i class="bi bi-pc-display-horizontal"></i>
                             </div>
-                            <h3>Eosle Commodi</h3>
-                            <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum
-                                hic non ut nesciunt dolorem.</p>
+                            <h3>For Freelancers</h3>
+                            <p>The Skylancer Academy upskills talented individuals across a variety of fields to succeed
+                                in entering the digital workforce, to start working as a freelancer immediately.</p>
                             <a href="#" class="readmore stretched-link">Read more <i
                                     class="bi bi-arrow-right"></i></a>
                         </div>
@@ -328,55 +259,16 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="service-item position-relative">
                             <div class="icon">
-                                <i class="bi bi-easel"></i>
+                                <i class="bi bi-code-slash"></i>
                             </div>
-                            <h3>Ledo Markt</h3>
-                            <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id
-                                voluptas adipisci eos earum corrupti.</p>
+                            <h3>For Coders</h3>
+                            <p>The Code Academy provides intensive tech-education training, professional skills and
+                                job-readiness support for those looking to become professional coders and developers.
+                            </p>
                             <a href="#" class="readmore stretched-link">Read more <i
                                     class="bi bi-arrow-right"></i></a>
                         </div>
                     </div><!-- End Service Item -->
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="service-item position-relative">
-                            <div class="icon">
-                                <i class="bi bi-bounding-box-circles"></i>
-                            </div>
-                            <h3>Asperiores Commodit</h3>
-                            <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga
-                                sit provident adipisci neque.</p>
-                            <a href="#" class="readmore stretched-link">Read more <i
-                                    class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div><!-- End Service Item -->
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="service-item position-relative">
-                            <div class="icon">
-                                <i class="bi bi-calendar4-week"></i>
-                            </div>
-                            <h3>Velit Doloremque</h3>
-                            <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed
-                                animi at autem alias eius labore.</p>
-                            <a href="#" class="readmore stretched-link">Read more <i
-                                    class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div><!-- End Service Item -->
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="service-item position-relative">
-                            <div class="icon">
-                                <i class="bi bi-chat-square-text"></i>
-                            </div>
-                            <h3>Dolori Architecto</h3>
-                            <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure.
-                                Corrupti recusandae ducimus enim.</p>
-                            <a href="#" class="readmore stretched-link">Read more <i
-                                    class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div><!-- End Service Item -->
-
                 </div>
 
             </div>
@@ -394,7 +286,7 @@
 
                     <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
                         <div class="member">
-                            <img src="{{asset('assets/img/team/baraka.png')}}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/team/baraka.png') }}" class="img-fluid" alt="">
                             <h4>Ahmed Baraka</h4>
                             <span>Technical training assistant </span>
 
@@ -403,7 +295,8 @@
 
                     <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
                         <div class="member">
-                            <img src="{{asset('assets/img/team/HaneeenBader.jpg')}}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/team/HaneeenBader.jpg') }}" class="img-fluid"
+                                alt="">
                             <h4>Haneen Bader</h4>
                             <span>WB Community Coordinator</span>
 
@@ -412,7 +305,8 @@
 
                     <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
                         <div class="member">
-                            <img src="{{asset('assets/img/team/NoorSaqqa-scaled.png')}}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/team/NoorSaqqa-scaled.png') }}" class="img-fluid"
+                                alt="">
                             <h4>Noor Saqqa</h4>
                             <span>Community Coordinator</span>
 
@@ -421,7 +315,8 @@
 
                     <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
                         <div class="member">
-                          <img src="{{asset('assets/img/team/Talaabunahla.jpg')}}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/team/Talaabunahla.jpg') }}" class="img-fluid"
+                                alt="">
                             <h4>Tala Abu Nahla</h4>
                             <span>Mentorship Assiatant</span>
 
@@ -439,8 +334,6 @@
 
                 <div class="section-header">
                     <h2>Pricing</h2>
-                    <p>Aperiam dolorum et et wuia molestias qui eveniet numquam nihil porro incidunt dolores placeat
-                        sunt id nobis omnis tiledo stran delop</p>
                 </div>
 
                 <div class="row g-4 py-lg-5" data-aos="zoom-out" data-aos-delay="100">
@@ -630,113 +523,13 @@
             </div>
         </section><!-- End Frequently Asked Questions Section -->
 
-        <!-- ======= Recent Blog Posts Section ======= -->
-        <section id="recent-posts" class="recent-posts sections-bg">
-            <div class="container" data-aos="fade-up">
-
-                <div class="section-header">
-                    <h2>Recent Blog Posts</h2>
-                    <p>Consequatur libero assumenda est voluptatem est quidem illum et officia imilique qui vel
-                        architecto accusamus fugit aut qui distinctio</p>
-                </div>
-
-                <div class="row gy-4">
-
-                    <div class="col-xl-4 col-md-6">
-                        <article>
-
-                            <div class="post-img">
-                                <img src="{{asset('assets/img/blog/blog-1.jpg')}}" alt="" class="img-fluid">
-                            </div>
-
-                            <p class="post-category">Politics</p>
-
-                            <h2 class="title">
-                                <a href="blog-details.html">Dolorum optio tempore voluptas dignissimos</a>
-                            </h2>
-
-                            <div class="d-flex align-items-center">
-                                <img src="{{asset('assets/img/blog/blog-author.jpg')}}" alt=""
-                                    class="img-fluid post-author-img flex-shrink-0">
-                                <div class="post-meta">
-                                    <p class="post-author">Maria Doe</p>
-                                    <p class="post-date">
-                                        <time datetime="2022-01-01">Jan 1, 2022</time>
-                                    </p>
-                                </div>
-                            </div>
-
-                        </article>
-                    </div><!-- End post list item -->
-
-                    <div class="col-xl-4 col-md-6">
-                        <article>
-
-                            <div class="post-img">
-                                <img src="{{asset('assets/img/blog/blog-2.jpg')}}" alt="" class="img-fluid">
-                            </div>
-
-                            <p class="post-category">Sports</p>
-
-                            <h2 class="title">
-                                <a href="blog-details.html">Nisi magni odit consequatur autem nulla dolorem</a>
-                            </h2>
-
-                            <div class="d-flex align-items-center">
-                                <img src="{{asset('assets/img/blog/blog-author-2.jpg')}}" alt=""
-                                    class="img-fluid post-author-img flex-shrink-0">
-                                <div class="post-meta">
-                                    <p class="post-author">Allisa Mayer</p>
-                                    <p class="post-date">
-                                        <time datetime="2022-01-01">Jun 5, 2022</time>
-                                    </p>
-                                </div>
-                            </div>
-
-                        </article>
-                    </div><!-- End post list item -->
-
-                    <div class="col-xl-4 col-md-6">
-                        <article>
-
-                            <div class="post-img">
-                                <img src="{{asset('assets/img/blog/blog-3.jpg')}}" alt="" class="img-fluid">
-                            </div>
-
-                            <p class="post-category">Entertainment</p>
-
-                            <h2 class="title">
-                                <a href="blog-details.html">Possimus soluta ut id suscipit ea ut in quo quia et
-                                    soluta</a>
-                            </h2>
-
-                            <div class="d-flex align-items-center">
-                                <img src="{{asset('assets/img/blog/blog-author-3.jpg')}}" alt=""
-                                    class="img-fluid post-author-img flex-shrink-0">
-                                <div class="post-meta">
-                                    <p class="post-author">Mark Dower</p>
-                                    <p class="post-date">
-                                        <time datetime="2022-01-01">Jun 22, 2022</time>
-                                    </p>
-                                </div>
-                            </div>
-
-                        </article>
-                    </div><!-- End post list item -->
-
-                </div><!-- End recent posts list -->
-
-            </div>
-        </section><!-- End Recent Blog Posts Section -->
-
         <!-- ======= Contact Section ======= -->
         <section id="contact" class="contact">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-header">
                     <h2>Contact</h2>
-                    <p>Nulla dolorum nulla nesciunt rerum facere sed ut inventore quam porro nihil id ratione ea sunt
-                        quis dolorem dolore earum</p>
+
                 </div>
 
                 <div class="row gx-lg-0 gy-4">
@@ -748,7 +541,7 @@
                                 <i class="bi bi-geo-alt flex-shrink-0"></i>
                                 <div>
                                     <h4>Location:</h4>
-                                    <p>A108 Adam Street, New York, NY 535022</p>
+                                    <p>UNWRA HQ Square, Almotaz 3 Building, Mezzanine level, Gaza city, Gaza Strip</p>
                                 </div>
                             </div><!-- End Info Item -->
 
@@ -756,15 +549,7 @@
                                 <i class="bi bi-envelope flex-shrink-0"></i>
                                 <div>
                                     <h4>Email:</h4>
-                                    <p>info@example.com</p>
-                                </div>
-                            </div><!-- End Info Item -->
-
-                            <div class="info-item d-flex">
-                                <i class="bi bi-phone flex-shrink-0"></i>
-                                <div>
-                                    <h4>Call:</h4>
-                                    <p>+1 5589 55488 55</p>
+                                    <p>info@gazaskygeeks.com</p>
                                 </div>
                             </div><!-- End Info Item -->
 
@@ -772,7 +557,7 @@
                                 <i class="bi bi-clock flex-shrink-0"></i>
                                 <div>
                                     <h4>Open Hours:</h4>
-                                    <p>Mon-Sat: 11AM - 23PM</p>
+                                    <p>Sat-Wen: 8AM - 5PM</p>
                                 </div>
                             </div><!-- End Info Item -->
                         </div>
@@ -819,25 +604,30 @@
 
         <div class="container">
             <div class="row gy-4">
-                <div class="col-lg-5  col-md-12 footer-info" >
-                    <img src="{{asset('assets/logo.png')}}" alt="" height="250px" width="250px" style="border-radius: 50%">
+                <div class="col-lg-5  col-md-12 footer-info">
+                    <img src="{{ asset('assets/logo.png') }}" alt="" height="250px" width="250px"
+                        style="border-radius: 50%">
 
                     <div class="social-links d-flex mt-4 ms-4">
-                        <a href="https://www.youtube.com/user/GazaSkyGeeks" class="youtube"><i class="bi bi-youtube"></i></a>
-                        <a href="https://www.facebook.com/GazaSkyGeeks/" class="facebook"><i class="bi bi-facebook"></i></a>
-                        <a href="https://www.instagram.com/gazaskygeeks/" class="instagram"><i class="bi bi-instagram"></i></a>
-                        <a href="https://www.linkedin.com/company/gaza-sky-geeks/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://www.youtube.com/user/GazaSkyGeeks" class="youtube"><i
+                                class="bi bi-youtube"></i></a>
+                        <a href="https://www.facebook.com/GazaSkyGeeks/" class="facebook"><i
+                                class="bi bi-facebook"></i></a>
+                        <a href="https://www.instagram.com/gazaskygeeks/" class="instagram"><i
+                                class="bi bi-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/gaza-sky-geeks/" class="linkedin"><i
+                                class="bi bi-linkedin"></i></a>
                     </div>
                 </div>
 
                 <div class="col-lg-2 col-6 footer-links">
                     <h4>Useful Links</h4>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Terms of service</a></li>
-                        <li><a href="#">Privacy policy</a></li>
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#about">About us</a></li>
+                        <li><a href="#services">Programs</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
 
@@ -855,11 +645,12 @@
                 <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
                     <h4>Contact Us</h4>
                     <p>
-                        A108 Adam Street <br>
-                        New York, NY 535022<br>
-                        United States <br><br>
-                        <strong>Phone:</strong> +1 5589 55488 55<br>
-                        <strong>Email:</strong> info@example.com<br>
+
+                        <strong>Email:</strong> info@gazaskygeeks.com<br>
+                        <strong>Email:</strong> press@gazaskygeeks.com<br>
+                        <strong>Location:</strong> UNWRA HQ Square <br> Almotaz 3 Building <br> Mezzanine level <br>
+                        Gaza city, Gaza Strip <br>
+
                     </p>
 
                 </div>
@@ -869,7 +660,8 @@
 
         <div class="container mt-4">
             <div class="copyright">
-                &copy; {{now()->year}} Copyright <strong><span>MercyCorps</span></strong> & <strong><span>GazaSkyGeeks</span></strong>
+                &copy; {{ now()->year }} Copyright <strong><span>MercyCorps</span></strong> &
+                <strong><span>GazaSkyGeeks</span></strong>
             </div>
         </div>
 
@@ -882,16 +674,16 @@
     <div id="preloader"></div>
 
     <!-- Vendor JS Files -->
-    <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('assets/vendor/aos/aos.js')}}"></script>
-    <script src="{{asset('assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
-    <script src="{{asset('assets/vendor/purecounter/purecounter_vanilla.js')}}"></script>
-    <script src="{{asset('assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
-    <script src="{{asset('assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
-    <script src="{{asset('assets/vendor/php-email-form/validate.js')}}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
+    <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+    <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
 
     <!-- Template Main JS File -->
-    <script src="{{asset('assets/js/main.js')}}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 
 </body>
 

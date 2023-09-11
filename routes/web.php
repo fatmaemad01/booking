@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SpaceController;
 use App\Http\Controllers\UserController;
 use App\Models\BookingRequest;
 use Illuminate\Support\Facades\Route;
@@ -30,13 +31,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
-Route::get('member/dashboard' , [UserController::class , 'memberDashboard'])->name('member.dashboard');
+Route::get('member/dashboard', [UserController::class, 'memberDashboard'])->name('member.dashboard');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
-    Route::get('admin/dashboard' , [UserController::class , 'adminDashboard'])->name('admin.dashboard');
+    Route::get('admin/dashboard', [UserController::class, 'adminDashboard'])->name('admin.dashboard');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::get('/users/{user}', [UserController::class, 'update'])->name('users.update');
@@ -44,6 +45,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:member'])->group(function () {
+    Route::get('member/dashboard', [UserController::class, 'memberDashboard'])->name('member.dashboard');
+});
 
-    Route::get('member/dashboard' , [UserController::class , 'memberDashboard'])->name('member.dashboard');
+Route::get('spaces', [SpaceController::class, 'index'])->name('space.index');
+Route::get('space/{space}/show', [SpaceController::class, 'show'])->name('space.show');
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::post('/space/new', [SpaceController::class, 'store'])->name('space.store');
+    Route::put('space/{space}/edit', [SpaceController::class, 'update'])->name('space.update');
+    Route::delete('space/{space}', [SpaceController::class, 'destroy'])->name('space.destroy');
 });
