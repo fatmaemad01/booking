@@ -42,9 +42,6 @@ require __DIR__ . '/auth.php';
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/change-language/{locale}', [UserController::class, 'changeLanguage'])->name('change.language');
-    Route::get('spaces', [SpaceController::class, 'index'])->name('space.index');
-    Route::get('space/{space}/show', [SpaceController::class, 'show'])->name('space.show');
-
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -57,17 +54,26 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
 
-    Route::post('/space/new', [SpaceController::class, 'store'])->name('space.store');
-    Route::put('space/{space}/update', [SpaceController::class, 'update'])->name('space.update');
-    Route::delete('space/{space}', [SpaceController::class, 'destroy'])->name('space.destroy');
 
     Route::get('branch' , [BranchController::class , 'index'])->name('branch.index');
     Route::post('branch' , [BranchController::class , 'store'])->name('branch.store');
-    Route::get('branch/{branch}' , [BranchController::class , 'show'])->name('branch.show');
-    Route::put('/branch/{branch}' , [BranchController::class , 'update'])->name('branch.update');
-    Route::delete('/branch/{branch}' , [BranchController::class , 'destroy'])->name('branch.destroy');
 });
 
 Route::middleware(['auth', 'role:member'])->group(function () {
     Route::get('member/dashboard', [UserController::class, 'memberDashboard'])->name('member.dashboard');
 });
+
+
+Route::group([
+    'as'=> 'space.',
+    'prefix'=> 'space/',
+    'controller' => SpaceController::class,
+    'middleware' => ['auth', 'role:admin']
+], function(){
+    Route::get('' , 'index')->name('index');
+    Route::post('new', 'store')->name('store');
+    Route::put('{space}/update', 'update')->name('update');
+    Route::delete('{space}', 'destroy')->name('destroy');
+
+});
+

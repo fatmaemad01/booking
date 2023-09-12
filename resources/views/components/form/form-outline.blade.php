@@ -1,3 +1,3 @@
-<div class="form-outline {{ $attributes->get('class') }}">
+<div class="form-outline mb-3 {{ $attributes->get('class') }}">
     {{ $slot}}
 </div>

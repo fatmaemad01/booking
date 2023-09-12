@@ -11,26 +11,21 @@ class BookingRequestController extends Controller
 {
     public function index()
     {
-
     }
 
     public function store(CustomBookingRequest $request)
     {
-
     }
 
     public function show(BookingRequest $bookRequest)
     {
-
     }
 
-    public function update(CustomBookingRequest $request , BookingRequest $bookRequest)
+    public function update(CustomBookingRequest $request, BookingRequest $bookRequest)
     {
-
     }
 
     public function destroy(BookingRequest $bookRequest)
     {
-        
     }
 }

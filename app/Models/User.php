@@ -76,4 +76,10 @@ class User extends Authenticatable
     {
         return Storage::disk(User::$disk)->delete($path);
     }
+    
+    public function books()
+    {
+        return $this->hasMany(BookingRequest::class);
+    }
+
 }

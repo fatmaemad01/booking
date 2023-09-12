@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SpaceRequest;
 use App\Models\Space;
+use App\Models\Branch;
+use App\Events\CreateSpace;
 use Illuminate\Http\Request;
+use App\Models\BookingRequest;
+use App\Http\Requests\SpaceRequest;
 use Illuminate\Support\Facades\Auth;
 
 class SpaceController extends Controller
@@ -12,21 +15,20 @@ class SpaceController extends Controller
     public function index()
     {
         $spaces = Space::all();
+        $branches = Branch::all();
+        $books = BookingRequest::all();
 
-        return view('admin.space.index', ['spaces' => $spaces , 'space' => new Space()]);
+        return view('admin.space.index', [
+            'spaces' => $spaces,
+            'space' => new Space(),
+            'branches' => $branches,
+            'books' => $books,
+        ]);
     }
-
-    // public function create()
-    // {
-    //     return view('admin.space.index' , [
-    //         'space' => new Space()
-    //     ]);
-    // }
 
     public function store(SpaceRequest $request)
     {
         $validated = $request->validated();
-        // $validated['availabiltiy'] = '';
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
@@ -34,9 +36,8 @@ class SpaceController extends Controller
             $validated['image'] = $path;
         }
 
-        Space::create($validated);
-        return new Space();
-
+        $space = Space::create($validated);
+        event(new CreateSpace($space));
         return redirect()->route('space.index')->with('success', 'Space Added Sucessfully.');
     }
 

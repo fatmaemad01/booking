@@ -29,12 +29,14 @@
     scroll-behavior: smooth;
 }
 
-.bg-primary-color{
+.bg-primary-color {
     background-color: #6ca9be;
 }
-.bg-secondary-color{
+
+.bg-secondary-color {
     background-color: #f85a40;
 }
+
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
@@ -1633,7 +1635,7 @@ section {
 .contact .php-email-form button[type=submit] {
     background: var(--color-secondary);
     border: 0;
-    padding: 14px 45px;
+    padding: 10px 30px;
     color: #fff;
     transition: 0.4s;
     border-radius: 50px;
@@ -1689,18 +1691,42 @@ section {
     font-size: 15px;
     letter-spacing: 1px;
     display: inline-block;
-    padding: 14px 40px;
+    padding: 10px 30px;
     border-radius: 50px;
     transition: 0.3s;
     color: #fff;
     background: var(--color-secondary);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    border: none;
 }
 
 .btn-get-started:hover {
-    /* border-color: #f85940d0; */
-    background-color: #f85940d0;
+    color: #fff;
+    font-weight: bold;
+    background-color: #f85940e3;
+    border: none;
+}
+
+.btn-primary {
+    font-family: var(--font-primary);
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 50px;
+    transition: 0.3s;
+    color: #fff;
+    background: var(--color-primary);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+    border: none;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    font-weight: bold;
+    background-color: #5aafccf1;
+    border: none;
 }
 
 /* .btn-logout {

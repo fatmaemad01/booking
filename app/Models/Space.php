@@ -20,14 +20,24 @@ class Space extends Model
         'availablity' => 'array',
     ];
 
+    // Relations
+
     public function branch()
     {
         return $this->belongsTo(Branch::class);
     }
 
+    
+    public function availabilities()
+    {
+        return $this->hasMany(Availability::class);
+    }
+
+
+    // Image Upload
     public static function uploadImage($file)
     {
-        $path = $file->store('/images', [
+        $path = $file->store('/spaces', [
             'disk' =>  static::$disk,
         ]);
         return $path;
