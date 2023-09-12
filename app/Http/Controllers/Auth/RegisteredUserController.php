@@ -41,13 +41,13 @@ class RegisteredUserController extends Controller
             'locale' => 'nullable',
         ]);
 
+
         if ($request->hasFile('personal_image')) {
             $file = $request->file('personal_image');
-            $filename = $file->getClientOriginalName();
-            $path = $file->storeAs('userimages' , $filename);
+            $path = User::uploadImage($file);
             $request->merge([
                 'personal_image' => $path,
-            ]);
+        ]);
         }
 
         $user = User::create([

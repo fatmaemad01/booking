@@ -1,13 +1,18 @@
 <x-main-layout title="Members">
-    <x-nav />
+<<<<<<< HEAD
+=======
+  
+>>>>>>> dc2ced1398ba7b4c5fbeb6ae786c1998b6712623
     <div class="container pt-5">
         <div class="d-flex justify-content-between">
             <h2 class="text-muted">Members</h2>
             <x-bg-modal btn="New Member" class="modal-dialog-scrollable" id="create">
                 <div class="modal-body">
+                <h4>{{__('Add Member Info')}}</h4>
                     <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                         @include('admin.member._form' ,[
-                        'button' => 'Add Member'
+                        'button_lable' => 'Add Member'
                         ]
                         )
                     </form>
@@ -49,9 +54,10 @@
                                 <div class="modal-body p-4">
                                     <h4>Update Member Info</h4>
                                     <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
                                         @method('put')
                                         @include('admin.member._form' , [
-                                        'button' => 'Update Member'
+                                        'button_lable' => 'Update Member'
                                         ])
                                     </form>
                                 </div>
@@ -59,6 +65,7 @@
                             <x-bg-modal btn="Delete" class="modal-dialog-centered" id="delete{{$user->id}}">
                                 <div class="modal-body p-4">
                                     <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+                                    @csrf
                                         @method('delete')
                                         @csrf
                                         <h4>Delete Member forever.</h4>

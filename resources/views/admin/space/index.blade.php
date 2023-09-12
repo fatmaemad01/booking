@@ -1,7 +1,6 @@
 <x-main-layout title="Spaces">
-    <x-nav />
     <div class="container">
-        <div class="d-flex justify-content-between mb-3">
+        <div class="d-flex justify-content-between align-items-center">
             <h2 class="text-muted">Spaces</h2>
             <x-bg-modal btn="New Space" class="modal-dialog modal-xl" id="create">
                 <div class="modal-body p-5">

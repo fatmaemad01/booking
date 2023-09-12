@@ -55,6 +55,11 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a href="#hero">Home</a></li>
+                @if(Auth::user()->role === 'admin')
+                    <li><a href="{{ route('admin.dashboard')}}">Dashboard</a></li>
+                @elseif(Auth::user()->role === 'member')    
+                    <li><a href="{{ route('member.dashboard')}}">Dashboard</a></li>
+                @endif    
                     <li><a href="#about">About</a></li>
                     <li><a href="#services">Programs</a></li>
                     <li><a href="#team">Team</a></li>

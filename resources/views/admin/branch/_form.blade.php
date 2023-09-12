@@ -12,17 +12,26 @@
 
 <x-form.form-outline>
     <label class="form-label" for="work_days">Work Days</label>
-    @foreach ($days as $day)
-        <label class="dropdown-item">
-            <input type="checkbox" name="work_days[]" value="{{ $day->id }}"
-                @if($branch->workDays->contains($day->id)) checked @endif>
-            {{ $day->name }}
-            @if($branch->workDays->contains($day->id))
-                <i class="fas fa-check"></i>
-            @endif
-        </label>
-    @endforeach
+    <div class="dropdown">
+        <button class="btn btn-outline-secondary dropdown-toggle w-full" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+            {{__('Select Work Days')}}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+            @foreach($days as $day)
+            <li class="dropdown-item">
+                <div class="form-check">
+                    <input class="form-check-input" name="work_days[]" type="checkbox" value="{{$day->id}}" id="day-{{$day->id}}" @if($branch->workDays->contains($day->id)) checked @endif>
+                    <label class="form-check-label" for="day-{{$day->id}}">
+                        {{$day->name}}
+                    </label>
+                </div>
+            </li>
+            @endforeach
+        </ul>
+    </div>
+    
 </x-form.form-outline>
+
 
 
 

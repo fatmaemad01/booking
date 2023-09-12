@@ -18,18 +18,16 @@ class BranchController extends Controller
 
         $success = session('success');
 
-        return view('admin.branch.index' , [
-            'branches' => $branches ,
-            'days' => $days ,
+        return view('admin.branch.index', [
+            'branches' => $branches,
+            'days' => $days,
             'success' => $success,
             'branch' => new Branch(),
-            ]);
-
+        ]);
     }
 
     public function store(BranchRequest $request)
     {
-
         $validatedData = $request->validated();
 
         $validatedData['user_id'] = Auth::user()->id;
@@ -38,13 +36,11 @@ class BranchController extends Controller
 
         // Attach workdays to the newly created branch
         if ($request->has('work_days')) {
-
             $branch->workDays()->attach($request->input('work_days'));
-
         }
 
-        return redirect()->route('branch.index')->with('success' , __('Branch Created Successfully!'));
-
+        return back();
+        // return redirect()->route('branch.index')->with('success', __('Branch Created Successfully!'));
     }
 
     public function show(Branch $branch)
@@ -52,11 +48,10 @@ class BranchController extends Controller
 
         $days = $branch->workDays;
 
-        return view('admin.branch.show' , compact('branch' , 'days'));
-
+        return view('admin.branch.show', compact('branch', 'days'));
     }
 
-    public function update(BranchRequest $request , Branch $branch)
+    public function update(BranchRequest $request, Branch $branch)
     {
 
         $validatedData = $request->validated();
@@ -73,7 +68,6 @@ class BranchController extends Controller
         }
 
         return redirect()->route('branch.index')->with('success', __('Branch Updated Successfully!'));
-
     }
 
     public function destroy(Branch $branch)
@@ -84,6 +78,6 @@ class BranchController extends Controller
         $branch->delete();
 
 
-        return redirect()->route('branch.index')->with('success' , __('Branch Deleted Successfully!'));
+        return redirect()->route('branch.index')->with('success', __('Branch Deleted Successfully!'));
     }
 }

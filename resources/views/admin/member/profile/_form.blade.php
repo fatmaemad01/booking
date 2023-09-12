@@ -26,13 +26,19 @@
 
 
     <x-form.form-outline>
-        <label class="form-label" for="role">Role</label>
-        <select name="role" id="role">
-            <option value="">Select A role</option>
-            <option value="admin">Admin</option>
-            <option value="member">Member</option>
+        <label class="form-label" for="locale">Change Your Language</label>
+        <select name="locale" id="locale">
+            <option value="">Select A Language</option>
+            <option value="en">En</option>
+            <option value="ar">Ar</option>
         </select>    
     </x-form.form-outline>
+
+    <x-form.form-outline>
+        <label class="form-label" for="personal_image">Perosanl Image</label>
+        <x-form.input name="personal_image" id="personal_image" type="file"/>
+    </x-form.form-outline>
+
 
 
 
