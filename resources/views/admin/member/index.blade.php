@@ -1,5 +1,5 @@
 <x-main-layout title="Members">
-<x-nav />
+
     <div class="container pt-5">
         <div class="d-flex justify-content-between">
             <h2 class="text-muted">Members</h2>

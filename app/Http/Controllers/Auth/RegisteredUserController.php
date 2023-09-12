@@ -37,18 +37,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'phone' => ['required' , 'string' , 'min:10'],
             'role' => ['required' , 'string' , 'in:admin,member'],
-            'personal_image' => 'image|nullable',
-            'locale' => 'nullable',
         ]);
-
-        
-        if ($request->hasFile('personal_image')) {
-            $file = $request->file('personal_image');
-            $path = User::uploadImage($file);
-            $request->merge([
-                'personal_image' => $path,
-        ]);
-        }
 
         $user = User::create([
             'first_name' => $request->first_name,
@@ -57,7 +46,6 @@ class RegisteredUserController extends Controller
             'role' => $request->role,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'locale' => $request->locale,
         ]);
 
         event(new Registered($user));
