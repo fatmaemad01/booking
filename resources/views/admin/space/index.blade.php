@@ -5,6 +5,7 @@
             <x-bg-modal btn="New Space" class="modal-dialog-scrollable" id="create">
                 <div class="modal-body">
                     <form action="{{ route('space.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         @include('admin.space._form' , [
                             'button_lable' => 'Create'
                         ])

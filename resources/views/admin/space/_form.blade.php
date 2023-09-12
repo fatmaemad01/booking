@@ -42,7 +42,7 @@
 
 
 
-<button type="submit" class="btn bg-color-primary text-white">{{__("$button_lable")}}</button>
+<button type="submit" class="btn bg-primary-color">{{__("$button_lable")}}</button>
 
     {{-- <div class="form-group">
         <label for="branch_id">Branch ID:</label>

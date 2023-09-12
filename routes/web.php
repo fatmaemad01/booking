@@ -58,6 +58,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::get('branch' , [BranchController::class , 'index'])->name('branch.index');
     Route::post('branch' , [BranchController::class , 'store'])->name('branch.store');
+    Route::get('branch/{branch}' , [BranchController::class , 'show'])->name('branch.show');
+    Route::put('/branch/{branch}' , [BranchController::class , 'update'])->name('branch.update');
+    Route::delete('/branch/{branch}' , [BranchController::class , 'destroy'])->name('branch.destroy');
 });
 
 Route::middleware(['auth', 'role:member'])->group(function () {
