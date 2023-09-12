@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\BookingRequestController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SpaceController;
@@ -67,12 +66,24 @@ Route::group([
     'controller' => SpaceController::class,
     'middleware' => ['auth', 'role:admin']
 ], function(){
-    Route::get('', 'index')->name('index');
-    Route::post('', 'store')->name('store');
-    Route::get('{space}', 'show')->name('show');
-    Route::put('{space}', 'update')->name('update');
+    Route::get('' , 'index')->name('index');
+    Route::post('new', 'store')->name('store');
+    Route::put('{space}/update', 'update')->name('update');
     Route::delete('{space}', 'destroy')->name('destroy');
 
+});
+
+Route::group([
+    'as'=> 'branch.',
+    'prefix'=> 'branch/',
+    'controller' => BranchController::class,
+    'middleware' => ['auth', 'role:admin']
+], function(){
+    Route::get('', 'index')->name('index');
+    Route::post('', 'store')->name('store');
+    Route::get('{branch}', 'show')->name('show');
+    Route::put('{branch}', 'update')->name('update');
+    Route::delete('{branch}', 'destroy')->name('destroy');
 });
 
 Route::group([

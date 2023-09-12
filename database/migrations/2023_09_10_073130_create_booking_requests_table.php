@@ -19,9 +19,8 @@ return new class extends Migration
             $table->date('end_date');
             $table->time('start_time');
             $table->time('end_time');
-            $table->json('days');
-            $table->enum('status' , ['pending' , 'accepted' , 'denied']);
-            $table->text('messgae');
+            $table->enum('status' , ['pending' , 'accepted' , 'denied'])->default('pending');
+            $table->text('messgae')->nullable();
             $table->timestamps();
         });
     }
