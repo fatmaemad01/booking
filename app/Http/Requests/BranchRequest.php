@@ -24,9 +24,10 @@ class BranchRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['require' , 'max:255'],
-            'Work_days' => ['require' , 'array'],
-            'location' => ['require' , 'max:255'],
+            'name' => ['required' , 'max:255'],
+            'work_days' => ['required', 'array'],
+            'work_days.*' => ['string'],
+            'location' => ['required' , 'max:255'],
         ];
     }
 }

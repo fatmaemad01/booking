@@ -48,11 +48,6 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function getRoleAttribute()
-    {
-        return $this->attributes['role'];
-    }
-
     public function admin()
     {
         $admin = $this->where('role' , 'admin')->get();
