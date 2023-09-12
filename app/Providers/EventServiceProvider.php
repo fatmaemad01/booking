@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\CreateSpace;
+use App\Events\UpdateSpace;
 use App\Listeners\CreateAvailability;
+use App\Listeners\UpdateAvailabilty;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -23,6 +25,9 @@ class EventServiceProvider extends ServiceProvider
         CreateSpace::class => [
             CreateAvailability::class
         ],
+        UpdateSpace::class => [
+            UpdateAvailabilty::class
+        ]
     ];
 
     /**

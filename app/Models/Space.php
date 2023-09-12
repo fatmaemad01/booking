@@ -27,7 +27,7 @@ class Space extends Model
         return $this->belongsTo(Branch::class);
     }
 
-    
+
     public function availabilities()
     {
         return $this->hasMany(Availability::class);
@@ -48,5 +48,11 @@ class Space extends Model
         return Storage::disk(Space::$disk)->delete($path);
     }
 
-    // public function users
+    // Accessors
+
+    public function getNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
 }

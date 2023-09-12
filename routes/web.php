@@ -48,10 +48,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
-
-
-    Route::get('branch' , [BranchController::class , 'index'])->name('branch.index');
-    Route::post('branch' , [BranchController::class , 'store'])->name('branch.store');
 });
 
 Route::middleware(['auth', 'role:member'])->group(function () {
@@ -70,5 +66,18 @@ Route::group([
     Route::put('{space}/update', 'update')->name('update');
     Route::delete('{space}', 'destroy')->name('destroy');
 
+});
+
+Route::group([
+    'as'=> 'branch.',
+    'prefix'=> 'branch/',
+    'controller' => BranchController::class,
+    'middleware' => ['auth', 'role:admin']
+], function(){
+    Route::get('', 'index')->name('index');
+    Route::post('', 'store')->name('store');
+    Route::get('{branch}', 'show')->name('show');
+    Route::put('{branch}', 'update')->name('update');
+    Route::delete('{branch}', 'destroy')->name('destroy');
 });
 

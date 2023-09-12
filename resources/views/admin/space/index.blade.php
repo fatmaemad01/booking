@@ -1,29 +1,29 @@
 <x-main-layout title="Spaces">
     <x-nav />
     <div class="container">
-        <div class="d-flex justify-content-between mt-4">
+        <div class="d-flex justify-content-between mb-3">
             <h2 class="text-muted">Spaces</h2>
             <x-bg-modal btn="New Space" class="modal-dialog modal-xl" id="create">
-                <div class="modal-body p-4">
-                    <h2>Create New Space</h2>
+                <div class="modal-body p-5">
+                    <h2 class="text-center my-2 fw-bold">Create New Space</h2>
                     <form action="{{ route('space.store') }}" method="POST" enctype="multipart/form-data">
                         @include('admin.space._form', [
-                            'btn' => 'Create',
+                            'btn' => 'Create Space',
                         ])
                     </form>
                 </div>
             </x-bg-modal>
         </div>
 
-        <div class="">
+        {{-- <div class="">
             <h2>Booking Request</h2>
             @foreach ($books as $book)
-                <h4>Request By: {{ $book->user->first_name }} {{ $book->user->last_name }}</h4>
+                <h4 >Request By: {{ $book->user->first_name }} {{ $book->user->last_name }}</h4>
                 start time : {{ $book->start_time }}
                 end time : {{ $book->end_time }}
                 date : {{ $book->start_date }}
             @endforeach
-        </div>
+        </div> --}}
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -45,8 +45,8 @@
                             <div class="">
                                 <x-bg-modal btn="Edit " class="modal-dialog-centered modal-xl"
                                     id="edit{{ $space->id }}">
-                                    <div class="modal-body p-4">
-                                        <h4 class="text-center my-2 fw-bold">Update {{ $space->type }} Info</h4>
+                                    <div class="modal-body p-5">
+                                        <h4 class="text-center my-2 fw-bold">Update Space Info</h4>
                                         <form action="{{ route('space.update', $space->id) }}" method="POST"
                                             enctype="multipart/form-data">
                                             @method('put')
@@ -58,7 +58,7 @@
                                 </x-bg-modal>
                                 <x-bg-modal btn="Delete" class="modal-dialog-centered "
                                     id="delete{{ $space->id }}">
-                                    <div class="modal-body p-4 text-center">
+                                    <div class="modal-body p-5 text-center">
                                         <form action="{{ route('space.destroy', $space->id) }}" method="POST">
                                             @method('delete')
                                             @csrf
@@ -67,10 +67,10 @@
                                                 {{ $space->type }} Forever.</h5>
 
                                             <div class="d-flex justify-content-center">
-                                                <button type="button" class="btn btn-secondary mx-3"
-                                                    data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </div>
+                                                <button type="button" class="btn btn-get-started mx-3" data-dismiss="modal">Cancel</button>
+                                                <button type="submit" class="btn btn-primary" >
+                                                    Delete
+                                                </button>
                                         </form>
                                     </div>
                                 </x-bg-modal>
