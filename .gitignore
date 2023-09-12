@@ -2,12 +2,12 @@
 /node_modules
 # /public/build
 # /public/hot
-# /public/storage
+/public/storage
 # /storage/*.key
 /vendor
 .env
-# .env.backup
-# .env.production
+.env.backup
+.env.production
 # .phpunit.result.cache
 # Homestead.json
 # Homestead.yaml
@@ -17,3 +17,5 @@
 # /.fleet
 # /.idea
 # /.vscode
+/routes/web.php
+.gitignore
