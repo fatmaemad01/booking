@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookingRequestController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SpaceController;
@@ -27,11 +28,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-
-    Route::get('/profile' , [UserController::class , 'show'])->name('profile.show');
-    Route::put('/profile/{user}' , [UserController::class , 'useredit'])->name('profile.useredit');
-
-
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -41,6 +37,8 @@ require __DIR__ . '/auth.php';
 
 Route::middleware(['auth'])->group(function () {
 
+    Route::get('/profile' , [UserController::class , 'show'])->name('profile.show');
+    Route::put('/profile/{user}' , [UserController::class , 'useredit'])->name('profile.useredit');
     Route::get('/change-language/{locale}', [UserController::class, 'changeLanguage'])->name('change.language');
 });
 
@@ -49,18 +47,17 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/dashboard', [UserController::class, 'adminDashboard'])->name('admin.dashboard');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
-    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
-
-
-    Route::get('branch' , [BranchController::class , 'index'])->name('branch.index');
-    Route::post('branch' , [BranchController::class , 'store'])->name('branch.store');
 });
 
 Route::middleware(['auth', 'role:member'])->group(function () {
     Route::get('member/dashboard', [UserController::class, 'memberDashboard'])->name('member.dashboard');
+    Route::post('/request' , [BookingRequestController::class , 'store'])->name('request.store');
+    Route::post('/{request}' , [BookingRequestController::class , 'show'])->name('request.show');
+    Route::put('/{request}' , [BookingRequestController::class , 'update'])->name('request.update');
+    Route::delete('/{request}' , [BookingRequestController::class , 'destroy'])->name('request.destroy');
 });
 
 
@@ -70,10 +67,23 @@ Route::group([
     'controller' => SpaceController::class,
     'middleware' => ['auth', 'role:admin']
 ], function(){
-    Route::get('' , 'index')->name('index');
-    Route::post('new', 'store')->name('store');
-    Route::put('{space}/update', 'update')->name('update');
+    Route::get('', 'index')->name('index');
+    Route::post('', 'store')->name('store');
+    Route::get('{space}', 'show')->name('show');
+    Route::put('{space}', 'update')->name('update');
     Route::delete('{space}', 'destroy')->name('destroy');
 
 });
 
+Route::group([
+    'as'=> 'branch.',
+    'prefix'=> 'branch/',
+    'controller' => BranchController::class,
+    'middleware' => ['auth', 'role:admin']
+], function(){
+    Route::get('', 'index')->name('index');
+    Route::post('', 'store')->name('store');
+    Route::get('{branch}', 'show')->name('show');
+    Route::put('{branch}', 'update')->name('update');
+    Route::delete('{branch}', 'destroy')->name('destroy');
+});
