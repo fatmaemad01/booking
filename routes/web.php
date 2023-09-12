@@ -49,9 +49,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
 
-    Route::post('/space/new', [SpaceController::class, 'store'])->name('space.store');
-    Route::put('space/{space}/update', [SpaceController::class, 'update'])->name('space.update');
-    Route::delete('space/{space}', [SpaceController::class, 'destroy'])->name('space.destroy');
 
     Route::get('branch' , [BranchController::class , 'index'])->name('branch.index');
     Route::post('branch' , [BranchController::class , 'store'])->name('branch.store');
@@ -60,3 +57,17 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:member'])->group(function () {
     Route::get('member/dashboard', [UserController::class, 'memberDashboard'])->name('member.dashboard');
 });
+
+
+Route::group([
+    'as'=> 'space.',
+    'prefix'=> 'space/',
+    'controller' => SpaceController::class,
+    'middleware' => 'auth, role:member'
+], function(){
+    Route::post('new', 'store')->name('store');
+    Route::put('{space}/update', 'update')->name('update');
+    Route::delete('{space}', 'destroy')->name('destroy');
+
+});
+
