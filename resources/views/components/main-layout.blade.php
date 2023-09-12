@@ -35,6 +35,7 @@
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 </head>
 <body>
+    <x-nav />
     <div class="container">
         <main id="main">
             {{ $slot }}

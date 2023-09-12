@@ -27,6 +27,11 @@ class Space extends Model
         return $this->belongsTo(Branch::class);
     }
 
+    public function bookingRequests()
+    {
+        return $this->hasMany(BookingRequest::class);
+    }
+
     
     public function availabilities()
     {

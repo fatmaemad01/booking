@@ -8,11 +8,16 @@
         </a>
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a href="{{ route('space.index')}}">Spaces</a></li>
-                <li><a href="{{ route('branch.index')}}">Branches</a></li>
-                <li><a href="#services">Requests</a></li>
-                <li><a href="#team">Members</a></li>
-                <li><a href="#contact" class="btn btn-logout">Logout</a></li>
+                @if(Auth::user()->role === 'admin')
+                    <li><a href="{{ route('admin.dashboard')}}">Home</a></li>
+                    <li><a href="{{ route('space.index')}}">Spaces</a></li>
+                    <li><a href="{{ route('branch.index')}}">Branches</a></li>
+                    <li><a href="{{ route('users.index')}}">Members</a></li>
+                    <li><a href="#contact" class="btn btn-logout">Logout</a></li>
+                @elseif(Auth::user()->role === 'member')
+                    <li><a href="{{ route('member.dashboard')}}">Home</a></li>
+                    <li><a href="#contact" class="btn btn-logout">Logout</a></li>
+                @endif  
             </ul>
         </nav><!-- .navbar -->
 

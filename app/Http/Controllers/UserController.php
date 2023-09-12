@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BookingRequest;
+use App\Models\Day;
+use App\Models\Space;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -15,12 +18,27 @@ class UserController extends Controller
     
     public function adminDashboard()
     {
-        return view('admin.dashboard');
+
+        $requests = BookingRequest::all();
+
+        return view('admin.dashboard' , compact('requests'));
+
     }
 
     public function memberDashboard()
     {
-        return view('member.dashboard');
+        $requests = BookingRequest::where('id' , '=' , Auth::id())->get();
+
+        $spaces = Space::all();
+        
+        $days = Day::all();
+
+        return view('member.dashboard' , [
+            'requests' => $requests,
+            'request' => new BookingRequest(),
+            'spaces' => $spaces,
+            'days' => $days
+            ]);
     }
 
     public function index()
