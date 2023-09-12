@@ -63,8 +63,9 @@ Route::group([
     'as'=> 'space.',
     'prefix'=> 'space/',
     'controller' => SpaceController::class,
-    'middleware' => 'auth, role:member'
+    'middleware' => ['auth', 'role:admin']
 ], function(){
+    Route::get('' , 'index')->name('index');
     Route::post('new', 'store')->name('store');
     Route::put('{space}/update', 'update')->name('update');
     Route::delete('{space}', 'destroy')->name('destroy');
