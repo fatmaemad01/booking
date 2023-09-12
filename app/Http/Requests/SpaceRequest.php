@@ -27,7 +27,6 @@ class SpaceRequest extends FormRequest
             'name' => 'required|string',
             'capacity' => 'required|integer|min:1',
             'price' => 'nullable|integer',
-            'availablity' => 'nullable|string',
             'assets' => 'nullable|string',
             'image' => 'nullable|image'
         ];

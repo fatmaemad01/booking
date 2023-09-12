@@ -1,17 +1,29 @@
 <x-main-layout title="Spaces">
     <x-nav />
-    <div class="container ">
-        <div class="d-flex justify-content-between">
+    <div class="container">
+        <div class="d-flex justify-content-between mt-4">
             <h2 class="text-muted">Spaces</h2>
             <x-bg-modal btn="New Space" class="modal-dialog-scrollable" id="create">
                 <div class="modal-body">
                     <form action="{{ route('space.store') }}" method="POST" enctype="multipart/form-data">
-                        @include('admin.space._form')
+                        @include('admin.space._form', [
+                            'btn' => 'Create Space'
+                        ])
                     </form>
                 </div>
             </x-bg-modal>
         </div>
 
+        <div class="">
+            <h2>Booking Request</h2>
+            @foreach ( $books as $book )
+
+                <h4>Request By: {{$book->user->first_name}} {{$book->user->last_name}}</h4>
+                start time : {{$book->start_time}}
+                end time : {{$book->end_time}}
+                date : {{$book->start_date}}
+            @endforeach
+        </div>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -49,7 +61,9 @@
                                         <form action="{{ route('space.update', $space->id) }}" method="POST"
                                             enctype="multipart/form-data">
                                             @method('put')
-                                            @include('admin.space._form')
+                                            @include('admin.space._form' , [
+                                                'btn' => 'Update Space'
+                                            ])
                                         </form>
                                     </div>
                                 </x-bg-modal>

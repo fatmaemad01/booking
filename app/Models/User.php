@@ -65,6 +65,9 @@ class User extends Authenticatable
         return $member;
     }
 
-
+    public function books()
+    {
+        return $this->hasMany(BookingRequest::class);
+    }
 
 }
