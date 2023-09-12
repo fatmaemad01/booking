@@ -12,7 +12,43 @@ use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
-    
+    public function show()
+    {
+        $user = Auth::user();
+        return view('admin.member.profile.show', compact('user'));
+    }
+
+    public function useredit(Request $request, User $user)
+    {
+        $old_image = $user->personal_image;
+
+        $request->validate([
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['required', Password::defaults()],
+            'phone' => ['required', 'string', 'min:10'],
+            'personal_image' => 'image',
+            'locale' => 'nullable'
+        ]);
+
+        $inputData = $request->except('personal_image');
+
+        if ($request->hasFile('personal_image')) {
+            $file = $request->file('personal_image');
+            $path = User::uploadImage($file);
+            $inputData['personal_image'] = $path;
+        }
+
+        $user->update($inputData);
+
+        if ($old_image && $old_image != $user->personal_image) {
+            User::deleteImage($old_image);
+        }
+
+        return redirect()->route('profile.show');
+    }
+
     public function adminDashboard()
     {
         return view('admin.dashboard');
@@ -25,14 +61,12 @@ class UserController extends Controller
 
     public function index()
     {
-
         $users = User::all();
-        return view('admin.member.index' , [
+        return view('admin.member.index', [
             'users' => $users,
             'user' => new User()
         ]);
     }
-
 
 
     public function store(Request $request)
@@ -40,10 +74,10 @@ class UserController extends Controller
         $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', Password::defaults()],
-            'phone' => ['required' , 'string' , 'min:10'],
-            'role' => ['required' , 'string' , 'in:admin,member'],
+            'phone' => ['required', 'string', 'min:10'],
+            'role' => ['required', 'string', 'in:admin,member'],
         ]);
 
         $user = User::create([
@@ -56,42 +90,23 @@ class UserController extends Controller
         ]);
 
         return redirect()->back();
-        
     }
 
-    // public function edit(User $user)
-    // {
-    //     return view('admin.member.index');
-    // }
 
-
-    public function update(Request $request , User $user)
+    public function update(Request $request, User $user)
     {
+
         $request->validate([
-            'first_name' => 'required'|'string',
-            'last_name' => 'required'|'string',
-            'email' => 'required'|'email',
-            'phone' => 'required'|'string',
+            'first_name' => 'required' | 'string',
+            'last_name' => 'required' | 'string',
+            'email' => 'required' | 'email',
+            'phone' => 'required' | 'string',
             'role' => 'in:admin,member',
-            'personal_image' => 'image|nullable',
         ]);
-
-        if ($request->hasFile('personal_image')) {
-            $oldImagePath = $user->personal_image;
-            if ($oldImagePath) {
-                Storage::disk('userimages')->delete($oldImagePath);
-            }
-
-            // Upload the new image
-            $file = $request->file('personal_image');
-            $filename = $file->getClientOriginalName();
-            $path = $file->storeAs('userimages' , $filename);
-            $user->personal_image = $path;
-        }
 
         $user->update($request->all());
 
-        return redirect()->route('users.index' , $user->id);
+        return redirect()->route('users.index', $user->id);
     }
 
     public function destroy(User $user)
@@ -108,10 +123,11 @@ class UserController extends Controller
     public function changeLanguage($locale)
     {
         if (in_array($locale, ['en', 'ar'])) {
-            $user = Auth::user();
+
+            $user = User::where('id', Auth::id());
 
             if ($user) {
-                $user->locale = $locale;
+                $user->update(['locale' => $locale]);
             } else {
                 session(['locale' => $locale]);
             }
@@ -121,6 +137,4 @@ class UserController extends Controller
 
         return redirect()->back();
     }
-
-
 }

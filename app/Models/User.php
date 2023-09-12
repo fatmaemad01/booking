@@ -3,14 +3,17 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    public static string $disk = 'public';
 
     /**
      * The attributes that are mass assignable.
@@ -60,6 +63,17 @@ class User extends Authenticatable
         return $member;
     }
 
+    public static function uploadImage($file)
+    {
+        $filename = $file->getClientOriginalName();
+        $path = $file->storeAs('/userimages', $filename , [
+            'disk' =>  static::$disk,
+        ]);
+        return $path;
+    }
 
-
+    public static function deleteImage($path)
+    {
+        return Storage::disk(User::$disk)->delete($path);
+    }
 }
