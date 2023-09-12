@@ -23,16 +23,17 @@ class UserController extends Controller
         return view('member.dashboard');
     }
 
-    public function index(User $user)
+    public function index()
     {
+
         $users = User::all();
-        return view('users.index' , compact('users'));
+        return view('admin.member.index' , [
+            'users' => $users,
+            'user' => new User()
+        ]);
     }
 
-    public function create() 
-    {
-        return view('user.create');
-    }
+
 
     public function store(Request $request)
     {
@@ -40,7 +41,7 @@ class UserController extends Controller
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Password::defaults()],
+            'password' => ['required', Password::defaults()],
             'phone' => ['required' , 'string' , 'min:10'],
             'role' => ['required' , 'string' , 'in:admin,member'],
         ]);
@@ -58,10 +59,11 @@ class UserController extends Controller
         
     }
 
-    public function edit()
-    {
-        return view('users.edit');
-    }
+    // public function edit(User $user)
+    // {
+    //     return view('admin.member.index');
+    // }
+
 
     public function update(Request $request , User $user)
     {
@@ -77,19 +79,19 @@ class UserController extends Controller
         if ($request->hasFile('personal_image')) {
             $oldImagePath = $user->personal_image;
             if ($oldImagePath) {
-                Storage::disk('images')->delete($oldImagePath);
+                Storage::disk('userimages')->delete($oldImagePath);
             }
 
             // Upload the new image
             $file = $request->file('personal_image');
             $filename = $file->getClientOriginalName();
-            $path = $file->storeAs('images' , $filename);
+            $path = $file->storeAs('userimages' , $filename);
             $user->personal_image = $path;
         }
 
         $user->update($request->all());
 
-        return redirect()->route('users.update' , $user->id);
+        return redirect()->route('users.index' , $user->id);
     }
 
     public function destroy(User $user)
@@ -97,7 +99,7 @@ class UserController extends Controller
         $user->delete();
 
         if ($user->personal_image) {
-            Storage::disk('images')->delete($user->personal_image);
+            Storage::disk('userimages')->delete($user->personal_image);
         }
 
         return back();

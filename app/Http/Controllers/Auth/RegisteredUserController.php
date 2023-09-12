@@ -44,7 +44,7 @@ class RegisteredUserController extends Controller
         if ($request->hasFile('personal_image')) {
             $file = $request->file('personal_image');
             $filename = $file->getClientOriginalName();
-            $path = $file->storeAs('images' , $filename);
+            $path = $file->storeAs('userimages' , $filename);
             $request->merge([
                 'personal_image' => $path,
             ]);
