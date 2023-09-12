@@ -6,7 +6,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -25,6 +27,35 @@ class UserController extends Controller
     {
         $users = User::all();
         return view('users.index' , compact('users'));
+    }
+
+    public function create() 
+    {
+        return view('user.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Password::defaults()],
+            'phone' => ['required' , 'string' , 'min:10'],
+            'role' => ['required' , 'string' , 'in:admin,member'],
+        ]);
+
+        $user = User::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'phone' => $request->phone,
+            'role' => $request->role,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->back();
+        
     }
 
     public function edit()

@@ -9,6 +9,10 @@ class Branch extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+       'user_id' , 'name' , 'work_days' , 'location'
+    ];
+
     public function spaces()
     {
         return $this->hasMany(Space::class);

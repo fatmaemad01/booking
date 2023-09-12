@@ -4,19 +4,35 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BranchRequest;
 use App\Models\Branch;
+use App\Models\Day;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BranchController extends Controller
 {
     public function index()
     {
+        $branches = Branch::all();
 
-        return view('admin.branch.index');
+        $days = Day::all();
+
+        $success = session('success');
+
+        return view('admin.branch.index' , compact('branches' , 'days' ,'success'));
 
     }
 
     public function store(BranchRequest $request)
     {
+
+        $validatedData = $request->validated();
+
+        $validatedData['user_id'] = Auth::user()->id;
+
+        Branch::create($validatedData);
+
+        return redirect()->route('admin.branch.index')->with('success' , 'the branch created successfully');
+
 
     }
 

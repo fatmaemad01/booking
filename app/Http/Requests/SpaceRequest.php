@@ -23,7 +23,7 @@ class SpaceRequest extends FormRequest
     {
         return [
             'branch_id' => 'required|int|exists:branches,id',
-            'type' => 'string|in:room, free_space|nullable',
+            'type' => 'string|in:room,free_space|nullable',
             'name' => 'required|string',
             'capacity' => 'required|integer|min:1',
             'price' => 'nullable|integer',

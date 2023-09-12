@@ -8,8 +8,8 @@
         </a>
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a href="#hero">Spaces</a></li>
-                <li><a href="#about">Branches</a></li>
+                <li><a href="{{ route('space.index')}}">Spaces</a></li>
+                <li><a href="{{ route('branch.index')}}">Branches</a></li>
                 <li><a href="#services">Requests</a></li>
                 <li><a href="#team">Members</a></li>
                 <li><a href="#contact" class="btn btn-logout">Logout</a></li>
