@@ -35,9 +35,13 @@
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 </head>
 <body>
-    <main id="main">
-        {{ $slot }}
-    </main>
+    <x-nav />
+    <div class="container">
+        <main id="main">
+            {{ $slot }}
+        </main>
+    </div>
+ 
 
     <footer id="footer" class="footer mt-5">
         <div class="container">

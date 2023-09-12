@@ -9,8 +9,17 @@ class Branch extends Model
 {
     use HasFactory;
 
-    public function spaces()
-    {
-        return $this->hasMany(Space::class);
-    }
+    protected $fillable = [
+        'user_id', 'name', 'location'
+     ];
+ 
+     public function spaces()
+     {
+         return $this->hasMany(Space::class);
+     }
+ 
+     public function workDays()
+     {
+        return $this->belongsToMany(Day::class , 'branch_days');
+     }
 }

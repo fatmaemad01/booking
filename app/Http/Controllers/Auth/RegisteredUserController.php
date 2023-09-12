@@ -57,7 +57,7 @@ class RegisteredUserController extends Controller
             'role' => $request->role,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'locale' => $request->locale,
+            // 'locale' => $request->locale,
         ]);
 
         event(new Registered($user));
