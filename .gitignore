@@ -17,5 +17,3 @@
 # /.fleet
 # /.idea
 # /.vscode
-/routes/web.php
-.gitignore

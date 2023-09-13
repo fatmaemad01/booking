@@ -53,6 +53,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:member'])->group(function () {
     Route::get('member/dashboard', [UserController::class, 'memberDashboard'])->name('member.dashboard');
     Route::post('/request', [BookingRequestController::class, 'store'])->name('request.store');
+});
+Route::middleware(['auth', 'role:admin'])->group(function () {
+
     Route::get('/{request}', [BookingRequestController::class, 'show'])->name('request.show');
     Route::put('/accept/{bookingRequest}', [BookingRequestController::class, 'accept'])->name('request.accept');
     Route::put('/{bookingRequest}', [BookingRequestController::class, 'reject'])->name('request.reject');
@@ -64,9 +67,9 @@ Route::group([
     'as' => 'space.',
     'prefix' => 'space/',
     'controller' => SpaceController::class,
-    'middleware' => ['auth', 'role:admin']
+    // 'middleware' => ['auth', 'role:admin']
 ], function () {
-    Route::get('', 'index')->name('index');
+    Route::get('space', 'index')->name('index');
     Route::post('new', 'store')->name('store');
     Route::put('{space}/update', 'update')->name('update');
     Route::delete('{space}', 'destroy')->name('destroy');

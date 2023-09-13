@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CustomBookingRequest;
-use App\Listeners\CreateAvailability;
-use App\Models\BookingRequest;
+use App\Models\Availability;
 use Illuminate\Http\Request;
+use App\Models\BookingRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Listeners\CreateAvailability;
+use App\Listeners\NewSpaceAvailability;
+use App\Http\Requests\CustomBookingRequest;
 
 class BookingRequestController extends Controller
 {
+    
     // public function index()
     // {
     //     $requests = BookingRequest::where('id' ,'=' , Auth::id());
@@ -40,8 +43,15 @@ class BookingRequestController extends Controller
             'status' => 'accepted'
         ]);
 
-        event(new CreateAvailability($bookingRequest));
-dd($bookingRequest);
+        Availability::create([
+            'space_id' => $bookingRequest->space_id,
+            'start_date' => $bookingRequest->start_date,
+            'end_date' => $bookingRequest->end_date,
+            'start_time' => $bookingRequest->start_time,
+            'end_time' => $bookingRequest->end_time,
+            'available' => false
+        ]);
+                // dd($event);
         return back();
     }
 

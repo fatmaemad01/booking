@@ -6,6 +6,7 @@ use App\Events\AcceptedRequest;
 use App\Events\CreateSpace;
 use App\Events\UpdateSpace;
 use App\Listeners\CreateAvailability;
+use App\Listeners\NewSpaceAvailability;
 use App\Listeners\UpdateAvailabilty;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -30,7 +31,7 @@ class EventServiceProvider extends ServiceProvider
             UpdateAvailabilty::class
         ],
         AcceptedRequest::class => [
-            CreateAvailability::class
+            NewSpaceAvailability::class
         ],
     ];
 

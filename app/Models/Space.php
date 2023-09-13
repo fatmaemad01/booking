@@ -33,8 +33,6 @@ class Space extends Model
     }
 
 
-
-
     public function availabilities()
     {
         return $this->hasMany(Availability::class);
