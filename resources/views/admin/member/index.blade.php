@@ -5,8 +5,8 @@
             <h2 class="text-muted">Members</h2>
             <x-bg-modal btn="New Member" class="modal-dialog-scrollable" id="create">
                 <div class="modal-body">
-                <h4>{{__('Add Member Info')}}</h4>
-                    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
+                <h4 class="text-center mb-3 mt-3">{{__('Add Member Info')}}</h4>
+                    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data" class="w-75 m-auto">
                     @csrf
                         @include('admin.member._form' ,[
                         'button_lable' => 'Add Member'
@@ -49,8 +49,8 @@
                         <div class="">
                             <x-bg-modal btn="Edit" class="modal-dialog-centered modal-dialog-scrollable" id="update{{$user->id}}">
                                 <div class="modal-body p-4">
-                                    <h4>Update Member Info</h4>
-                                    <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+                                    <h4 class="text-center mb-3 mt-3">Update Member Info</h4>
+                                    <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data" class="w-75 m-auto">
                                     @csrf
                                         @method('put')
                                         @include('admin.member._form' , [

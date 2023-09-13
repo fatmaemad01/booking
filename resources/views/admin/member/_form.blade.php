@@ -26,7 +26,7 @@
 
 
     <x-form.form-outline>
-        <label class="form-label" for="role">Role</label>
+        <label class="form-label" for="role">Role : </label>
         <select name="role" id="role">
             <option value="">Select A role</option>
             <option value="admin">Admin</option>

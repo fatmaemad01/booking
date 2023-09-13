@@ -55,9 +55,9 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a href="#hero">Home</a></li>
-                @if(Auth::user()->role === 'admin')
+                @if(Auth::user()?->role === 'admin')
                     <li><a href="{{ route('admin.dashboard')}}">Dashboard</a></li>
-                @elseif(Auth::user()->role === 'member')    
+                @elseif(Auth::user()?->role === 'member')    
                     <li><a href="{{ route('member.dashboard')}}">Dashboard</a></li>
                 @endif    
                     <li><a href="#about">About</a></li>
@@ -96,7 +96,7 @@
                         advantage of them, you can
                         book here. </p>
                     <div class="d-flex justify-content-center justify-content-lg-start">
-                        <a href="#about" class="btn-get-started">Book Here</a>
+                        <a href="{{ route('login') }}" class="btn-get-started">Book Here</a>
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2">
