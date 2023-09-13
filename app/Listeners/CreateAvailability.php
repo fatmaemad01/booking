@@ -28,7 +28,7 @@ class CreateAvailability
         Availability::create([
             'space_id' => $space->id,
             'start_date' => now()->format('Y-m-d'),
-            'start_time' => request('available_from') ?? Carbon::parse('8:00 AM')->format('H:i:s') ,
+            'start_time' => request('available_from') ?? Carbon::parse('8:00 AM')->format('H:i:s'),
             'end_time' => request('available_to') ?? Carbon::parse('5:00 PM')->format('H:i:s'),
         ]);
     }

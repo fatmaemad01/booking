@@ -1,7 +1,7 @@
 <x-main-layout title="make a request">
     <div class="container">
 
-                
+
 
         @if($errors->any())
         <div class="alert alert-danger">
@@ -13,7 +13,7 @@
         </div>
         @endif
 
-    
+
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="my-3">{{ Auth::user()->first_name }} Requests</h1>
             <x-bg-modal btn="Create a request" class="modal-dialog-centered modal-dialog-scrollable modal-dialog modal-xl" id="create">
@@ -47,7 +47,7 @@
             <tbody>
                 @foreach ($requests as $request)
                     <tr>
-                        <td>{{ $request->user?->first_name }}</td>
+                        <td>{{ $request->user->first_name }}</td>
                         <td>{{ $request->space?->name }}</td>
                         <td>{{ $request->space?->type }}</td>
                         <td> {{ $request?->start_date->format('d-m-Y')  }}</td>

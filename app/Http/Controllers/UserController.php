@@ -32,7 +32,7 @@ class UserController extends Controller
             'password' => ['required', Password::defaults()],
             'phone' => ['required', 'string', 'min:10'],
             'personal_image' => 'image',
-            'locale' => 'nullable'
+            // 'locale' => 'nullable'
         ]);
 
         $inputData = $request->except('personal_image');
@@ -63,10 +63,10 @@ class UserController extends Controller
 
     public function memberDashboard()
     {
-        $requests = BookingRequest::where('id' , '=' , Auth::id())->get();
+        $requests = BookingRequest::where('user_id' , '=' , Auth::id())->get();
 
         $spaces = Space::all();
-        
+
         $days = Day::all();
 
         return view('member.dashboard' , [

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Space;
 use App\Models\Branch;
 use App\Events\CreateSpace;
+use App\Events\UpdateSpace;
 use Illuminate\Http\Request;
 use App\Models\BookingRequest;
 use App\Http\Requests\SpaceRequest;
@@ -63,6 +64,8 @@ class SpaceController extends Controller
         }
 
         $space->update($validated);
+        
+        event(new UpdateSpace($space));
 
         if ($old_image && $old_image != $space->iamge) {
             Space::deleteImage($old_image);

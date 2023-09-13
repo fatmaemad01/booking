@@ -56,13 +56,13 @@
             <div class="col-6">
                 <x-form.form-outline>
                     <label class="form-label" for="availablity">Available From:</label>
-                    <x-form.input name="available_from" id="available_from" type="time" />
+                    <x-form.input name="available_from" id="available_from" type="time"  value="{{ old('available_from', $space->availabilities->first()?->start_time) }}"  />
                 </x-form.form-outline>
             </div>
             <div class="col-6">
                 <x-form.form-outline>
                     <label class="form-label" for="availablity">To: </label>
-                    <x-form.input name="available_to" id="available_to" type="time" />
+                    <x-form.input name="available_to" id="available_to" type="time"  value="{{ old('available_to ', $space->availabilities->first()?->end_time ) }}"  />
                 </x-form.form-outline>
             </div>
         </div>
@@ -74,8 +74,10 @@
 
     </div>
     <div class="d-flex justify-content-center my-3">
-        <button type="submit" class="btn btn-primary" style="width: 40%">
+        <button type="submit" class="btn btn-primary" style="width: 20%">
             {{ $btn }}
         </button>
+        <button type="button" class="btn btn-get-started  mx-3" data-dismiss="modal">Cancel</button>
+
     </div>
 </div>

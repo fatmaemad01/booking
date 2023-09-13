@@ -39,6 +39,18 @@ class RegisteredUserController extends Controller
             'role' => ['required' , 'string' , 'in:admin,member'],
         ]);
 
+<<<<<<< HEAD
+
+        if ($request->hasFile('personal_image')) {
+            $file = $request->file('personal_image');
+            $path = User::uploadImage($file);
+            $request->merge([
+                'personal_image' => $path,
+        ]);
+        }
+
+=======
+>>>>>>> 09676a778bf54100eb9350687e6e96afadc168c1
         $user = User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
@@ -46,6 +58,10 @@ class RegisteredUserController extends Controller
             'role' => $request->role,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+<<<<<<< HEAD
+            // 'locale' => $request->locale,
+=======
+>>>>>>> 09676a778bf54100eb9350687e6e96afadc168c1
         ]);
 
         event(new Registered($user));
