@@ -43,7 +43,7 @@
                         <td>
                             <x-bg-modal btn="accept" class="modal-dialog-centered " id="accept{{$request->id}}">
                                 <div class="modal-body p-4">
-                                    <form action="{{--{{ route('request.accept' , $request->id)}}--}}" method="post">
+                                    <form action="{{ route('request.accept' , $request->id)}}" method="post">
                                         @csrf
                                         @method('put')
                                         <h4 class="mb-4 text-center">Accept a request</h4>
@@ -55,16 +55,16 @@
                                         <div class="d-flex justify-content-center">
                                             <button type="button" class="btn btn-secondary mx-3" data-dismiss="modal">Close</button>
                                             <button type="submit" class="btn btn-danger">accept</button>
-                                        </div>   
+                                        </div>
                                     </form>
                                 </div>
                             </x-bg-modal>
                         </td>
                         <td>
-                            
+
                             <x-bg-modal btn="deny" class="modal-dialog-centered " id="dent{{$request->id}}">
                                 <div class="modal-body p-4">
-                                    <form action="{{--{{ route('request.deny' , $request->id)}}--}}" method="post">
+                                    <form action="{{ route('request.reject' , $request->id)}}" method="post">
                                         @csrf
                                         @method('put')
                                         <h4 class="mb-4 text-center">Deny a request</h4>
@@ -76,7 +76,7 @@
                                         <div class="d-flex justify-content-center">
                                             <button type="button" class="btn btn-secondary mx-3" data-dismiss="modal">Close</button>
                                             <button type="submit" class="btn btn-danger">deny</button>
-                                        </div>   
+                                        </div>
                                     </form>
                                 </div>
                             </x-bg-modal>

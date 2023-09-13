@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\AcceptedRequest;
 use App\Events\CreateSpace;
 use App\Events\UpdateSpace;
 use App\Listeners\CreateAvailability;
@@ -27,7 +28,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         UpdateSpace::class => [
             UpdateAvailabilty::class
-        ]
+        ],
+        AcceptedRequest::class => [
+            CreateAvailability::class
+        ],
     ];
 
     /**

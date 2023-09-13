@@ -37,4 +37,4 @@
 
 
 
-    <button type="submit" class="btn bg-secondary-color text-white my-3">{{__("$button_lable")}}</button>
+    <button type="submit" class="btn-get-started my-3">{{__("$button_lable")}}</button>

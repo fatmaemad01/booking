@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ValidSpace;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CustomBookingRequest extends FormRequest
@@ -27,6 +28,7 @@ class CustomBookingRequest extends FormRequest
             'end_date' => 'required|date|after_or_equal:start_date',
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i|after:start_time',
+            'start_time' => new ValidSpace(),
             'days' => 'required|array',
             'status' => 'nullable|in:pending,accepted,denied',
             'message' => 'nullable|string',

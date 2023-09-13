@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomBookingRequest;
+use App\Listeners\CreateAvailability;
 use App\Models\BookingRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,10 +28,9 @@ class BookingRequestController extends Controller
         if ($request->has('days')) {
 
             $bookingRequest->days()->attach($request->input('days'));
-
         }
 
-        return redirect()->route('member.dashboard')->with('success' , __('Request Created Successfully!'));
+        return redirect()->route('member.dashboard')->with('success', __('Request Created Successfully!'));
     }
 
 
@@ -39,6 +39,10 @@ class BookingRequestController extends Controller
         $bookingRequest->update([
             'status' => 'accepted'
         ]);
+
+        event(new CreateAvailability($bookingRequest));
+dd($bookingRequest);
+        return back();
     }
 
     public function reject(BookingRequest $bookingRequest)
@@ -46,6 +50,8 @@ class BookingRequestController extends Controller
         $bookingRequest->update([
             'status' => 'denied'
         ]);
+
+        return back();
     }
 
     public function show(BookingRequest $bookRequest)
