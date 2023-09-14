@@ -27,6 +27,8 @@ class BranchRequest extends FormRequest
             'name' => ['required' , 'max:255'],
             'work_days' => ['required', 'array'],
             'work_days.*' => ['string'],
+            'start_time' => ['required'],
+            'end_time' => ['required'],
             'location' => ['required' , 'max:255'],
         ];
     }

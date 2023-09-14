@@ -36,15 +36,15 @@
 
 <body>
     <div class="container">
-        <main id="main" class="w-50 m-auto mt-5 shadow-lg p-5">
+        <main id="main" class="m-auto mt-5 shadow-lg py-5" style="width:500px;">
             <x-auth-session-status class="mb-4" :status="session('status')" />
 
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
                 <div class="text-center rounded-circle mb-2">
-                <img src="{{ asset('assets/logo.png') }}" alt="" width="200" height="200">
-                <h1>Gaza Sky Geeks</h1>
+                <img src="{{ asset('assets/logo.png') }}" alt="" width="150" height="150">
+                <h3>Gaza Sky Geeks</h3>
                 </div>
 
                 <!-- Email Address -->

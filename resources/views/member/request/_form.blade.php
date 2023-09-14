@@ -12,18 +12,7 @@
             <x-error-message name="space_id" />
         </x-form.form-outline>
     </div>
-    {{-- <div class="col-12">
-        <x-form.form-outline>
-            <label class="form-label" for="type">Type</label>
-            <select name="type" id="type" class="form-select  {{ $errors->has('type') ? 'is-invalid' : '' }}">
-                <option value="{{ old('type', $space->type) }}">{{ $space->type ?? 'Select Type' }}</option>
-                <option value="room">Room</option>
-                <option value="free_space">Free Space</option>
-            </select>
-            <x-error-message name="type" />
-        </x-form.form-outline>
-        
-    </div> --}}
+
     <div class="col">
         <div class="row">
             <div class="col-6">

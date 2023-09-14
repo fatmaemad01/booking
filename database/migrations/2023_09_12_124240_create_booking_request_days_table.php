@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('booking_request_id')->constrained()->cascadeOnDelete();
             $table->foreignId('day_id')->constrained()->cascadeOnDelete();
+            $table->time('start_time');
+            $table->time('end_time');  
             $table->timestamps();
         });
     }

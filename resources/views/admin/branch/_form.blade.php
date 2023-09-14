@@ -10,6 +10,21 @@
     <x-form.input name="location" id="location" :value="$branch->location"  />
 </x-form.form-outline>
 
+<div class="row">
+    <div class="col-6">
+        <x-form.form-outline>
+            <label class="form-label" for="start_time">start_time</label>
+            <x-form.input type="time" name="start_time" id="start_time" :value="$branch->start_time"  />
+        </x-form.form-outline>
+    </div>
+    <div class="col-6">
+        <x-form.form-outline>
+            <label class="form-label" for="end_time">end_time</label>
+            <x-form.input type="time" name="end_time" id="end_time" :value="$branch->end_time"  />
+        </x-form.form-outline>
+    </div>
+</div>
+
 <x-form.form-outline>
     <label class="form-label" for="work_days">Work Days</label>
     <div class="dropdown">

@@ -35,19 +35,20 @@
 </head>
 
 <body>
-    <div class="container">
-        <main id="main" class="w-100 m-auto mt-5 shadow-lg p-4">
+    <div class="container pt-5">
+        <main id="main" class="w-100 m-auto mt-5 shadow-lg p-3">
 
             <form method="POST" action="{{ route('register') }}">
                 @csrf
-                <div class="row">
 
-                    <div class="col-lg-3 text-center rounded-circle mb-2">
-                        <img src="{{ asset('assets/logo.png') }}" alt="" width="200" height="200">
-                        <h2>Gaza Sky Geeks</h2>
+                <div class="col-lg-3 text-center rounded-circle mb-3 m-auto">
+                        <img src="{{ asset('assets/logo.png') }}" alt="" width="150" height="150">
+                        <h3>Gaza Sky Geeks</h3>
                     </div>
 
-                    <div class="col-lg-4">
+                <div class="row">
+
+                    <div class="col-lg-6">
                         <x-form.form-outline class="w-75 m-auto">
                             <label class="form-label" for="first_name">First Name</label>
                             <x-form.input name="first_name" id="first_name" type="text" :value="old('first_name')" required autofocus autocomplete="first_name" />
@@ -74,7 +75,7 @@
                     </div>
 
 
-                    <div class="col-lg-5">
+                    <div class="col-lg-6">
                         <x-form.form-outline class="w-75 m-auto">
                             <label class="form-label" for="email">Email</label>
                             <x-form.input name="email" id="email" type="email" :value="old('email')" required autofocus autocomplete="username" />
@@ -107,9 +108,6 @@
                         </div>
 
                    </div>
-
-
-
                 </div>
             </form>
         </main>
