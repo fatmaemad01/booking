@@ -26,19 +26,7 @@ class BookingRequestController extends Controller
     {
         $validatedData = $request->validated();
 
-        // Add custom validation rule
         $validatedData['user_id'] = Auth::id();
-        // $request->validate([
-        //     'space_id' => [
-        //         'required',
-        //         'exists:spaces,id',
-        //         new ValidSpace($validatedData),
-        //         new CheckRequestConflicts($validatedData)
-        //     ],
-        // ]);
-        // $validatedData = $request->validated();
-
-        // $validatedData['user_id'] = Auth::user()->id;
 
         $bookingRequest = BookingRequest::create($validatedData);
 
