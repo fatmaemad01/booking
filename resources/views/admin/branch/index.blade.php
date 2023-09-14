@@ -6,7 +6,7 @@
 
     <div class="d-flex justify-content-between align-items-center">
         <h1 class="my-5">Branches Of Company</h1>
-        <x-bg-modal btn="New Branch" class="modal-dialog-scrollable" id="create">
+        <x-bg-modal btn="New Branch" class="modal-dialog modal-xl" id="create">
             <div class="modal-body">
                 <form action="{{ route('branch.store')}}" method="POST">
                     @csrf
@@ -24,6 +24,9 @@
                 <th scope="col">Name</th>
                 <th scope="col">Location</th>
                 <th scope="col">Work Days</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">End Time</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -39,6 +42,9 @@
                             @endif
                          @endforeach
                     </td>
+                    <td>{{ $branch->start_time }}</td>
+                    <td>{{ $branch->end_time }}</td>
+
                     <td>
                         <a href="{{ route('branch.show' , $branch->id)}}">show</a>
                     </td>

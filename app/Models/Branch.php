@@ -10,7 +10,7 @@ class Branch extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'name', 'location'
+        'user_id', 'name', 'location' , 'start_time' ,'end_time'
      ];
  
      public function spaces()

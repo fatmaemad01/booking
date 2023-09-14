@@ -26,23 +26,30 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
 require __DIR__ . '/auth.php';
 
-Route::middleware(['auth'])->group(function () {
+Route::group([
+    'as'=> 'branch.',
+    'prefix'=> 'branch/',
+    'controller' => BranchController::class,
+    'middleware' => ['auth', 'role:admin']
+], function(){
+    Route::get('', 'index')->name('index');
+    Route::post('', 'store')->name('store');
+    Route::get('{branch}', 'show')->name('show');
+    Route::put('{branch}', 'update')->name('update');
+    Route::delete('{branch}', 'destroy')->name('destroy');
+});
 
+
+Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [UserController::class, 'show'])->name('profile.show');
     Route::put('/profile/{user}', [UserController::class, 'useredit'])->name('profile.useredit');
     Route::get('/change-language/{locale}', [UserController::class, 'changeLanguage'])->name('change.language');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-
     Route::get('admin/dashboard', [UserController::class, 'adminDashboard'])->name('admin.dashboard');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
@@ -54,13 +61,15 @@ Route::middleware(['auth', 'role:member'])->group(function () {
     Route::get('member/dashboard', [UserController::class, 'memberDashboard'])->name('member.dashboard');
     Route::post('/request', [BookingRequestController::class, 'store'])->name('request.store');
 });
-Route::middleware(['auth', 'role:admin'])->group(function () {
 
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/{request}', [BookingRequestController::class, 'show'])->name('request.show');
     Route::put('/accept/{bookingRequest}', [BookingRequestController::class, 'accept'])->name('request.accept');
     Route::put('/{bookingRequest}', [BookingRequestController::class, 'reject'])->name('request.reject');
     Route::delete('/{bookingRequest}', [BookingRequestController::class, 'destroy'])->name('request.delete');
 });
+
+
 
 
 Route::group([
@@ -75,28 +84,5 @@ Route::group([
     Route::delete('{space}', 'destroy')->name('destroy');
 });
 
-Route::group([
-    'as' => 'branch.',
-    'prefix' => 'branch/',
-    'controller' => BranchController::class,
-    'middleware' => ['auth', 'role:admin']
-], function () {
-    Route::get('', 'index')->name('index');
-    Route::post('', 'store')->name('store');
-    Route::get('{branch}', 'show')->name('show');
-    Route::put('{branch}', 'update')->name('update');
-    Route::delete('{branch}', 'destroy')->name('destroy');
-});
 
-// Route::group([
-//     'as'=> 'branch.',
-//     'prefix'=> 'branch/',
-//     'controller' => BranchController::class,
-//     'middleware' => ['auth', 'role:admin']
-// ], function(){
-//     Route::get('', 'index')->name('index');
-//     Route::post('', 'store')->name('store');
-//     Route::get('{branch}', 'show')->name('show');
-//     Route::put('{branch}', 'update')->name('update');
-//     Route::delete('{branch}', 'destroy')->name('destroy');
-// });
+
