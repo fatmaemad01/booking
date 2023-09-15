@@ -20,7 +20,7 @@ use App\Http\Controllers\BookingRequestController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

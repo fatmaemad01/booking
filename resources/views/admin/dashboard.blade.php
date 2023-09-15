@@ -5,6 +5,17 @@
         {{-- <x-bg-modal btn="Open Modal" class="modal-dialog-scrollable" id="myModal">
             <h3>Test Model</h3>
         </x-bg-modal> --}}
+<x-alert class="alert alert-danger" name="error" />
+<x-alert class="alert alert-success" name="success" />
+        @if($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+        @endforeach
+        </ul>
+        </div>
+        @endif
 
         <table class="table table-hover">
             <thead>
@@ -39,7 +50,6 @@
                                 @endif
                              @endforeach
                         </td>
-
                         <td>
                             <x-bg-modal btn="accept" class="modal-dialog-centered " id="accept{{$request->id}}">
                                 <div class="modal-body p-4">
@@ -47,6 +57,11 @@
                                         @csrf
                                         @method('put')
                                         <h4 class="mb-4 text-center">Accept a request</h4>
+                                        {{-- <input type="hidden" name="start_time" value="{{$request->start_time}}">
+                                        <input type="hidden" name="start_date" value="{{$request->start_date}}">
+                                        <input type="hidden" name="end_time" value="{{$request->end_time}}">
+                                        <input type="hidden" name="end_date" value="{{$request->end_date}}"> --}}
+                                        <input type="hidden" name="space_id" value="{{$request->space_id}}">
                                         <x-form.form-outline>
                                             <label class="form-label" for="message">Message</label>
                                             <textarea rows="5" name="message" id="message" class="form-control">{{ old('message', $request->message) }}</textarea>
