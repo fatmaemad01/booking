@@ -42,13 +42,17 @@ class SpaceController extends Controller
         return redirect()->route('space.index')->with('success', 'Space Added Sucessfully.');
     }
 
-    public function show(Space $space)
+    public function show(Branch $branch ,Space $space)
     {
-        if (Auth::user()->role == 'admin') {
-            return view('admin.space.show', compact('space'));
-        } elseif (Auth::user()->role == 'member') {
-            return view('member.dashboard', compact('space'));
-        }
+        // if (Auth::user()->role == 'admin') {
+        //     return view('admin.space.show', compact('space'));
+        // } elseif (Auth::user()->role == 'member') {
+        //     return view('member.dashboard', compact('space'));
+        // }
+
+        
+        
+        return view('admin.space.show' , compact('branch' , 'space'));
     }
 
     public function update(SpaceRequest $request, Space $space)

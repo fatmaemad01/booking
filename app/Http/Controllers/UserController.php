@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BookingRequest;
+use App\Models\Branch;
 use App\Models\Day;
 use App\Models\Space;
 use App\Models\User;
@@ -67,13 +68,19 @@ class UserController extends Controller
 
         $spaces = Space::all();
 
+        $branches = Branch::all();
+
         $days = Day::all();
 
-        return view('member.dashboard' , [
+        return view('admin.branch.index' , [
             'requests' => $requests,
             'request' => new BookingRequest(),
             'spaces' => $spaces,
-            'days' => $days
+            'space' => new Space(),
+            'branches' => $branches,
+            'branch' => new Branch(),
+            'days' => $days,
+
             ]);
     }
 

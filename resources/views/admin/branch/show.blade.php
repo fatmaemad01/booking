@@ -1,15 +1,7 @@
 <x-main-layout title="Branch">
-    <h1>{{ $branch->name }}</h1>
-    <h1>{{ $branch->location }}</h1>
-    <h1>
-        @foreach ($branch->workDays as $day)
-        {{ $day->name }}
-        @if (!$loop->last)
-            ,
-        @endif
-     @endforeach
-    </h1>
+ 
 
+    @if(Auth::user()->role == "admin")
     <div class="">
         <x-bg-modal btn="Edit" class="modal-dialog-centered modal-dialog-scrollable"
             id="edit{{ $branch->id }}">
@@ -42,5 +34,6 @@
             </div>
         </x-bg-modal>
     </div>
+    @endif
 
 </x-main-layout>
