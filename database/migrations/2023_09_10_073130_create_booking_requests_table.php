@@ -20,7 +20,7 @@ return new class extends Migration
             $table->time('start_time');
             $table->time('end_time');
             $table->enum('status' , ['pending' , 'accepted' , 'denied'])->default('pending');
-            $table->text('messgae')->nullable();
+            $table->text('message')->nullable();
             $table->timestamps();
         });
     }

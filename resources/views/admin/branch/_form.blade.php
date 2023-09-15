@@ -35,7 +35,7 @@
             @foreach($days as $day)
             <li class="dropdown-item">
                 <div class="form-check">
-                    <input class="form-check-input" name="work_days[]" type="checkbox" value="{{$day->id}}" id="day-{{$day->id}}" @if($branch->workDays->contains($day->id)) checked @endif>
+                    <input class="form-check-input" name="work_days[]" type="checkbox" value="{{$day->id}}" id="day-{{$day->id}}" @if(in_array($day->id, old('work_days', $branch->workDays->pluck('id')->toArray()))) checked @endif>
                     <label class="form-check-label" for="day-{{$day->id}}">
                         {{$day->name}}
                     </label>
@@ -44,10 +44,6 @@
             @endforeach
         </ul>
     </div>
-    
 </x-form.form-outline>
-
-
-
 
 <button type="submit" class="btn bg-secondary-color text-white my-3">{{__("$button_lable")}}</button>

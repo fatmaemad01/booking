@@ -6,6 +6,7 @@ use App\Http\Controllers\SpaceController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookingRequestController;
+use App\Models\Branch;
 use App\Http\Controllers\BookingRequestResponseController;
 
 /*
@@ -30,18 +31,13 @@ Route::get('/dashboard', function () {
 
 require __DIR__ . '/auth.php';
 
-Route::group([
-    'as'=> 'branch.',
-    'prefix'=> 'branch/',
-    'controller' => BranchController::class,
-    'middleware' => ['auth', 'role:admin']
-], function(){
-    Route::get('', 'index')->name('index');
-    Route::post('', 'store')->name('store');
-    Route::get('{branch}', 'show')->name('show');
-    Route::put('{branch}', 'update')->name('update');
-    Route::delete('{branch}', 'destroy')->name('destroy');
-});
+Route::get('/space', [SpaceController::class ,'index'])->name('space.index');
+// Route::get('branch/{branch}/spaces', [BranchController::class ,'showSpaces'])->name('branch.showSpaces');
+Route::get('/branch/{branch}/space/{space}', [SpaceController::class ,'show'])->name('space.show');
+
+Route::get('/branch', [ BranchController::class,'index'])->name('branch.index');
+Route::get('/branch/{branch}',[BranchController::class, 'show'])->name('branch.show');
+Route::get('branch/{branch}/spaces',[BranchController::class, 'showSpaces'])->name('branch.showSpaces');
 
 
 Route::middleware(['auth'])->group(function () {
@@ -60,6 +56,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 Route::middleware(['auth', 'role:member'])->group(function () {
     Route::get('member/dashboard', [UserController::class, 'memberDashboard'])->name('member.dashboard');
+    Route::get('/request', [BookingRequestController::class, 'index'])->name('request.index');
     Route::post('/request', [BookingRequestController::class, 'store'])->name('request.store');
 });
 
@@ -70,19 +67,34 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('/{bookingRequest}', [BookingRequestController::class, 'destroy'])->name('request.delete');
 });
 
+// Route::middleware(['auth'])->group(function () {
+
+   
 
 
+
+// });
 
 Route::group([
     'as' => 'space.',
     'prefix' => 'space/',
     'controller' => SpaceController::class,
-    // 'middleware' => ['auth', 'role:admin']
+    'middleware' => ['auth', 'role:admin']
 ], function () {
-    Route::get('space', 'index')->name('index');
     Route::post('new', 'store')->name('store');
     Route::put('{space}/update', 'update')->name('update');
     Route::delete('{space}', 'destroy')->name('destroy');
+});
+
+Route::group([
+    'as'=> 'branch.',
+    'prefix'=> 'branch/',
+    'controller' => BranchController::class,
+    'middleware' => ['auth', 'role:admin']
+], function(){
+    Route::post('', 'store')->name('store');
+    Route::put('{branch}', 'update')->name('update');
+    Route::delete('{branch}', 'destroy')->name('destroy');
 });
 
 

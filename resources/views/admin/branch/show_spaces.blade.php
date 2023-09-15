@@ -1,19 +1,7 @@
 <x-main-layout title="Spaces">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
-            <h2 class="text-muted">Spaces</h2>
-            @if(Auth::user()->role == 'admin')
-            <x-bg-modal btn="New Space" class="modal-dialog modal-xl" id="create">
-                <div class="modal-body p-5">
-                    <h2 class="text-center my-2 fw-bold">Create New Space</h2>
-                    <form action="{{ route('space.store') }}" method="POST" enctype="multipart/form-data">
-                        @include('admin.space._form', [
-                            'btn' => 'Create Space',
-                        ])
-                    </form>
-                </div>
-            </x-bg-modal>
-            @endif
+            <h2 class="text-muted my-5">Spaces</h2>
         </div>
         <table class="table table-hover">
             <thead>
@@ -68,7 +56,7 @@
                                 </x-bg-modal>
                             </div>
                             @elseif(Auth::user()->role == 'member')
-                                <a href="{{ route('space.show' , $space->id )}}">Show details</a>
+                                <a href="{{ route('space.show' ,[$branch->id , $space->id ])}}">Show details</a>
                             @endif
                         </td>
                     </tr>

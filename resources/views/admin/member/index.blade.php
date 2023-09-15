@@ -82,4 +82,7 @@
             </tbody>
         </table>
     </div>
+
 </x-main-layout>
+
+

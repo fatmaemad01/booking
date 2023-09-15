@@ -16,8 +16,8 @@
                         <li><a href="{{ route('users.index') }}">Members</a></li>
                     @elseif(Auth::user()->role === 'member')
                         <li><a href="{{ route('member.dashboard') }}">Dashboard</a></li>
-                        <li><a href="{{ route('member.dashboard') }}">Spaces</a></li>
-                        <li><a href="{{ route('member.dashboard') }}">Branches</a></li>
+                        {{-- <li><a href="{{ route('member.dashboard') }}">Spaces</a></li> --}}
+                        <li><a href="{{ route('request.index') }}">Your Requests</a></li>
                     @endif
 
                     <li class="nav-item dropdown">

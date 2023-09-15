@@ -33,17 +33,19 @@ class BookingRequestResponseController extends Controller
 
         // No conflicts, accept the booking
         $bookingRequest->update([
-            'status' => 'accepted'
+            'status' => 'accepted',
+            'message' => $request->input('message'),
         ]);
 
         return back()->with('success', 'Booking accepted.');
     }
 
 
-    public function reject(BookingRequest $bookingRequest)
+    public function reject(Request $request , BookingRequest $bookingRequest)
     {
         $bookingRequest->update([
-            'status' => 'denied'
+            'status' => 'denied',
+            'message' => $request->input('message'),
         ]);
 
         return back()->with('success' , 'Booking Denied');
