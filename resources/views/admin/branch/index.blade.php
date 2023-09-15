@@ -30,7 +30,7 @@
                             <p class="card-text"><span  style="font-weight: bold">Location : </span>{{ $branch->location}}</p>
                             <p class="card-text"><span  style="font-weight: bold">Work days  : </span>@foreach($branch->workDays as $day) {{ $day->name}} - @endforeach</p>
                             <p class="card-text"><span  style="font-weight: bold">Work time : </span>{{ $branch->start_time}} - {{ $branch->end_time}}</p>
-                            <a href="{{ route('space.index')}}" class="btn btn-info text-center">Show Spaces</a>
+                            <a href="{{ route('branch.showSpaces' , $branch->id)}}" class="btn btn-info text-center">Show Spaces</a>
                         </div>
                     </div>
                 </div>  

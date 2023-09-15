@@ -28,7 +28,7 @@ class CustomBookingRequest extends FormRequest
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
             'start_time' => 'required|date_format:H:i',
-            'end_time' => 'required|date_format:H:i|after:start_time',
+            'end_time' => 'nullable|date_format:H:i|after:start_time',
             'start_time' =>[ new ValidSpace() , new CheckRequestConflicts()],
             'days' => 'required|array',
             'status' => 'nullable|in:pending,accepted,denied',

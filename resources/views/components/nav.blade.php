@@ -22,6 +22,7 @@
                 @elseif(Auth::user()->role === 'member')
                 <li><a href="{{ route('member.dashboard')}}">Home</a></li>
                 <li><a href="{{ route('branch.index')}}">Branches</a></li>
+                <li><a href="{{ route('request.index')}}">Your Requests</a></li>
                 <li>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf

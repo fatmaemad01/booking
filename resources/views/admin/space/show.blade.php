@@ -1,5 +1,17 @@
 <x-main-layout title="Space">
 
+    <x-alert name="success" class="alert alert-success" />
+    @if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $error)
+            <li>{{$error}}</li>
+    @endforeach
+    </ul>
+    </div>
+    @endif
+
+
     <h2 style="margin-top: 100px;" class="mb-5 text-center">{{$space->name }} {{ $space->type }}</h2>
 
     <div class="row align-items-center">
@@ -72,6 +84,8 @@
                                             @endforeach
                                         </ul>
                                     </div>
+
+                                    <button type="submit" class="btn bg-secondary-color my-3 text-secondary">create</button>
                                     
                                 </x-form.form-outline>
                                 

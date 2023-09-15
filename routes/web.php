@@ -35,6 +35,7 @@ Route::get('/space/{space}', [SpaceController::class ,'show'])->name('space.show
 
 Route::get('/branch', [ BranchController::class,'index'])->name('branch.index');
 Route::get('/branch/{branch}',[BranchController::class, 'show'])->name('branch.show');
+Route::get('/{branch}/spaces',[BranchController::class, 'showSpaces'])->name('branch.showSpaces');
 
 
 
@@ -56,6 +57,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 Route::middleware(['auth', 'role:member'])->group(function () {
     Route::get('member/dashboard', [UserController::class, 'memberDashboard'])->name('member.dashboard');
+    Route::get('/request', [BookingRequestController::class, 'index'])->name('request.index');
     Route::post('/request', [BookingRequestController::class, 'store'])->name('request.store');
 });
 

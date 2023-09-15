@@ -49,6 +49,8 @@ class SpaceController extends Controller
         // } elseif (Auth::user()->role == 'member') {
         //     return view('member.dashboard', compact('space'));
         // }
+
+        
         
         return view('admin.space.show' , compact('space'));
     }
