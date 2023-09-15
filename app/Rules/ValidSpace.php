@@ -30,6 +30,6 @@ class ValidSpace implements Rule
     }
     public function message()
     {
-        return 'The selected time slot is not available.';
+        return ' Space Closed At This Time.';
     }
 }

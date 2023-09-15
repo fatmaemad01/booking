@@ -27,6 +27,8 @@ class SpaceController extends Controller
         ]);
     }
 
+    
+
     public function store(SpaceRequest $request)
     {
         $validated = $request->validated();
@@ -41,6 +43,8 @@ class SpaceController extends Controller
         event(new CreateSpace($space));
         return redirect()->route('space.index')->with('success', 'Space Added Sucessfully.');
     }
+
+
 
     public function show(Space $space)
     {
@@ -64,7 +68,7 @@ class SpaceController extends Controller
         }
 
         $space->update($validated);
-        
+
         event(new UpdateSpace($space));
 
         if ($old_image && $old_image != $space->iamge) {

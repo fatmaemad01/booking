@@ -42,23 +42,6 @@ class BookingRequestController extends Controller
     }
 
 
-    // public function accept(AcceptRequest $request, BookingRequest $bookingRequest)
-    // {
-    //     // dd('test');
-    //           $validatedData = $request->validated();
-
-    //           $validatedData['space_id']  = request('space_id');
-
-
-    //     $validatedData['status'] = 'accepted';
-    //     // dd($validatedData);
-    //     $bookingRequest->update($validatedData);
-
-    //     return back();
-    // }
-
-
-
     public function show(BookingRequest $bookRequest)
     {
     }
