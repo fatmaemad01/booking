@@ -30,9 +30,6 @@ class EventServiceProvider extends ServiceProvider
         UpdateSpace::class => [
             UpdateAvailabilty::class
         ],
-        AcceptedRequest::class => [
-            NewSpaceAvailability::class
-        ],
     ];
 
     /**

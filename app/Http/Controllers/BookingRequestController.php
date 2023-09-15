@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\ValidSpace;
 use App\Models\Availability;
 use Illuminate\Http\Request;
 use App\Models\BookingRequest;
+use App\Rules\CheckRequestConflicts;
 use Illuminate\Support\Facades\Auth;
 use App\Listeners\CreateAvailability;
 use App\Listeners\NewSpaceAvailability;
@@ -12,7 +14,7 @@ use App\Http\Requests\CustomBookingRequest;
 
 class BookingRequestController extends Controller
 {
-    
+
     // public function index()
     // {
     //     return view('member.request.index');
@@ -24,7 +26,7 @@ class BookingRequestController extends Controller
     {
         $validatedData = $request->validated();
 
-        $validatedData['user_id'] = Auth::user()->id;
+        $validatedData['user_id'] = Auth::id();
 
         $bookingRequest = BookingRequest::create($validatedData);
 
@@ -44,15 +46,6 @@ class BookingRequestController extends Controller
             'status' => 'accepted'
         ]);
 
-        Availability::create([
-            'space_id' => $bookingRequest->space_id,
-            'start_date' => $bookingRequest->start_date,
-            'end_date' => $bookingRequest->end_date,
-            'start_time' => $bookingRequest->start_time,
-            'end_time' => $bookingRequest->end_time,
-            'available' => false
-        ]);
-                // dd($event);
         return back();
     }
 
