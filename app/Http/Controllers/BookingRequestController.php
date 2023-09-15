@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Rules\ValidSpace;
 use App\Models\Availability;
+use App\Rules\AcceptRequest;
 use Illuminate\Http\Request;
 use App\Models\BookingRequest;
 use App\Rules\CheckRequestConflicts;
@@ -13,6 +14,8 @@ use App\Listeners\NewSpaceAvailability;
 use App\Http\Requests\CustomBookingRequest;
 use App\Models\Day;
 use App\Models\Space;
+use Illuminate\Validation\ValidationException;
+use App\Rules\AcceptRequest as RulesAcceptRequest;
 
 class BookingRequestController extends Controller
 {
@@ -38,6 +41,9 @@ class BookingRequestController extends Controller
     
         // Set the user_id to the authenticated user's ID
         $validatedData['user_id'] = Auth::id();
+
+        $validatedData['space_id'] = $request->input('space_id');
+        $validatedData['branch_id'] = $request->input('branch_id');
     
         // Create a new BookingRequest instance and save it
         $bookingRequest = new BookingRequest($validatedData);
@@ -50,36 +56,29 @@ class BookingRequestController extends Controller
                 // Retrieve start_time and end_time from the request for each day
                 $startTime = $request->input('start_time_' . $dayId);
                 $endTime = $request->input('end_time_' . $dayId);
-    
-                // Attach each day with start and end times to the booking request
-                $bookingRequest->days()->attach($bookingRequest->id, [
-                    'day_id' => $dayId,
-                    'start_time' => $startTime,
-                    'end_time' => $endTime,
-                ]);
             }
         }
     
         return back()->with('success', __('Request Created Successfully!'));
     }
 
-    public function accept(BookingRequest $bookingRequest)
-    {
-        $bookingRequest->update([
-            'status' => 'accepted'
-        ]);
 
-        return back();
-    }
+    // public function accept(AcceptRequest $request, BookingRequest $bookingRequest)
+    // {
+    //     // dd('test');
+    //           $validatedData = $request->validated();
 
-    public function reject(BookingRequest $bookingRequest)
-    {
-        $bookingRequest->update([
-            'status' => 'denied'
-        ]);
+    //           $validatedData['space_id']  = request('space_id');
 
-        return back();
-    }
+
+    //     $validatedData['status'] = 'accepted';
+    //     // dd($validatedData);
+    //     $bookingRequest->update($validatedData);
+
+    //     return back();
+    // }
+
+
 
     public function show(BookingRequest $bookRequest)
     {

@@ -33,9 +33,11 @@
                     <form action="{{ route('request.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="space_id" value="{{ $space->id }}">
+                        <input type="hidden" name="branch_id" value="{{ $space->branch->id }}">
                         <div class="col">
                             <div class="row">
                                 <div class="col-6">
+                                    <input type="hidden" name="space_id" value="space_id">
                                     <x-form.form-outline>
                                         <label class="form-label" for="start_date">Start Date:</label>
                                         <x-form.input name="start_date" id="start_date" type="date" />

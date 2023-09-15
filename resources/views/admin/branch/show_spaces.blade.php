@@ -56,7 +56,7 @@
                                 </x-bg-modal>
                             </div>
                             @elseif(Auth::user()->role == 'member')
-                                <a href="{{ route('space.show' , $space->id )}}">Show details</a>
+                                <a href="{{ route('space.show' ,[$branch->id , $space->id ])}}">Show details</a>
                             @endif
                         </td>
                     </tr>

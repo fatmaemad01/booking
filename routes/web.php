@@ -7,6 +7,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookingRequestController;
 use App\Models\Branch;
+use App\Http\Controllers\BookingRequestResponseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ use App\Models\Branch;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -31,14 +32,12 @@ Route::get('/dashboard', function () {
 require __DIR__ . '/auth.php';
 
 Route::get('/space', [SpaceController::class ,'index'])->name('space.index');
-Route::get('/space/{space}', [SpaceController::class ,'show'])->name('space.show');
+// Route::get('branch/{branch}/spaces', [BranchController::class ,'showSpaces'])->name('branch.showSpaces');
+Route::get('/branch/{branch}/space/{space}', [SpaceController::class ,'show'])->name('space.show');
 
 Route::get('/branch', [ BranchController::class,'index'])->name('branch.index');
 Route::get('/branch/{branch}',[BranchController::class, 'show'])->name('branch.show');
-Route::get('/{branch}/spaces',[BranchController::class, 'showSpaces'])->name('branch.showSpaces');
-
-
-
+Route::get('branch/{branch}/spaces',[BranchController::class, 'showSpaces'])->name('branch.showSpaces');
 
 
 Route::middleware(['auth'])->group(function () {
@@ -63,8 +62,8 @@ Route::middleware(['auth', 'role:member'])->group(function () {
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/{request}', [BookingRequestController::class, 'show'])->name('request.show');
-    Route::put('/accept/{bookingRequest}', [BookingRequestController::class, 'accept'])->name('request.accept');
-    Route::put('/{bookingRequest}', [BookingRequestController::class, 'reject'])->name('request.reject');
+    Route::put('/accept/{bookingRequest}', [BookingRequestResponseController::class, 'accept'])->name('request.accept');
+    Route::put('/{bookingRequest}', [BookingRequestResponseController::class, 'reject'])->name('request.reject');
     Route::delete('/{bookingRequest}', [BookingRequestController::class, 'destroy'])->name('request.delete');
 });
 

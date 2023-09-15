@@ -6,6 +6,8 @@
 
     <div class="d-flex justify-content-between align-items-center">
         <h1 class="my-5">Branches Of Company</h1>
+
+        @if(Auth::user()->role == 'admin')
         <x-bg-modal btn="New Branch" class="modal-dialog modal-xl" id="create">
             <div class="modal-body">
                 <form action="{{ route('branch.store')}}" method="POST">
@@ -16,6 +18,7 @@
                 </form>
             </div>
         </x-bg-modal>
+        @endif
     </div>
 
     <section class="ftco-section bg-light" id="cards">

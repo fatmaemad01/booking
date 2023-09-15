@@ -1,10 +1,20 @@
 <x-main-layout title="Dashboard">
-{{-- <x-nav/> --}}
     <div class="container p-4">
         <h2 class="text-muted my-4">Incoming Requests</h2>
-        {{-- <x-bg-modal btn="Open Modal" class="modal-dialog-scrollable" id="myModal">
-            <h3>Test Model</h3>
-        </x-bg-modal> --}}
+
+
+        <x-alert class="alert alert-danger" name="error" />
+        <x-alert class="alert alert-success" name="success" />
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <table class="table table-hover">
             <thead>
@@ -27,7 +37,7 @@
                         <td>{{ $request->user?->first_name }}</td>
                         <td>{{ $request->space?->name }}</td>
                         <td>{{ $request->space?->type }}</td>
-                        <td> {{ $request?->start_date->format('d-m-Y')  }}</td>
+                        <td> {{ $request?->start_date->format('d-m-Y') }}</td>
                         <td>{{ $request?->end_date->format('d-m-Y') }}</td>
                         <td>{{ $request?->start_time }}</td>
                         <td>{{ $request?->end_time }}</td>
@@ -37,23 +47,24 @@
                                 @if (!$loop->last)
                                     ,
                                 @endif
-                             @endforeach
+                            @endforeach
                         </td>
-
                         <td>
-                            <x-bg-modal btn="accept" class="modal-dialog-centered " id="accept{{$request->id}}">
+                            <x-bg-modal btn="accept" class="modal-dialog-centered " id="accept{{ $request->id }}">
                                 <div class="modal-body p-4">
-                                    <form action="{{ route('request.accept' , $request->id)}}" method="post">
+                                    <form action="{{ route('request.accept', $request->id) }}" method="post">
                                         @csrf
                                         @method('put')
                                         <h4 class="mb-4 text-center">Accept a request</h4>
+                                        <input type="hidden" name="space_id" value="{{ $request->space_id }}">
                                         <x-form.form-outline>
                                             <label class="form-label" for="message">Message</label>
                                             <textarea rows="5" name="message" id="message" class="form-control">{{ old('message', $request->message) }}</textarea>
                                             <x-error-message name="message" />
                                         </x-form.form-outline>
                                         <div class="d-flex justify-content-center">
-                                            <button type="button" class="btn btn-secondary mx-3" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary mx-3"
+                                                data-dismiss="modal">Close</button>
                                             <button type="submit" class="btn btn-danger">accept</button>
                                         </div>
                                     </form>
@@ -61,10 +72,9 @@
                             </x-bg-modal>
                         </td>
                         <td>
-
-                            <x-bg-modal btn="deny" class="modal-dialog-centered " id="dent{{$request->id}}">
+                            <x-bg-modal btn="deny" class="modal-dialog-centered " id="deny{{ $request->id }}">
                                 <div class="modal-body p-4">
-                                    <form action="{{ route('request.reject' , $request->id)}}" method="post">
+                                    <form action="{{ route('request.reject', $request->id) }}" method="post">
                                         @csrf
                                         @method('put')
                                         <h4 class="mb-4 text-center">Deny a request</h4>
@@ -74,7 +84,8 @@
                                             <x-error-message name="message" />
                                         </x-form.form-outline>
                                         <div class="d-flex justify-content-center">
-                                            <button type="button" class="btn btn-secondary mx-3" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary mx-3"
+                                                data-dismiss="modal">Close</button>
                                             <button type="submit" class="btn btn-danger">deny</button>
                                         </div>
                                     </form>
