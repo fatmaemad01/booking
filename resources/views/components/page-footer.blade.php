@@ -1,4 +1,4 @@
-<footer id="footer" class="footer mt-5 p-3 position-absolute bottom-0 w-100">
+<footer id="footer" class="footer mt-5 p-3 position-fixed bottom-0 w-100">
     <div class="container d-flex justify-content-between align-items-center">
         <div class="copyright fs-6">
             &copy; {{ now()->year }} Copyright <span>MercyCorps</span> &

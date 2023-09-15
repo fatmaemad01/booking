@@ -5,7 +5,7 @@
 
 
     <div class="d-flex justify-content-between align-items-center">
-        <h1 class="my-5">Branches Of Company</h1>
+        <h1 class="my-4">Branches Of Company</h1>
 
         @if(Auth::user()->role == 'admin')
         <x-bg-modal btn="New Branch" class="modal-dialog modal-xl" id="create">
@@ -21,27 +21,26 @@
         @endif
     </div>
 
-    <section class="ftco-section bg-light" id="cards">
-        <div class="container card-styles">
+    <div class="container">
             <div class="row">
                 @foreach($branches as $branch)
                 <div class="col-md-4">
-                    <div class="card">
-                                <img class="card-img-top" src="{{ asset('assets/logo.png')}}" alt="">
-                        <div class="card-body pb-5 px-4">
-                            <h5 class="card-title text-center mb-4" style="font-weight: bold">{{ $branch->name }}</h5>
+                    <div class="card" style="max-width: 20rem;">
+                                <img class="card-img-top" src="{{ asset('assets/img/gsg2.jpg')}}" alt="" width="100" height="150">
+                        <div class="card-body py-4 px-4">
+                            <h4 class="card-title text-center mb-4" style="font-weight: bold">{{ $branch->name }}</h4>
                             <p class="card-text"><span  style="font-weight: bold">Location : </span>{{ $branch->location}}</p>
-                            <p class="card-text"><span  style="font-weight: bold">Work days  : </span>@foreach($branch->workDays as $day) {{ $day->name}} - @endforeach</p>
+                            <p class="card-text"><span  style="font-weight: bold">Work days  : </span>from {{$branch->workDays->first()->name}} to {{$branch->workDays->last()->name}}</p>
                             <p class="card-text"><span  style="font-weight: bold">Work time : </span>{{ $branch->start_time}} - {{ $branch->end_time}}</p>
-                            <a href="{{ route('branch.showSpaces' , $branch->id)}}" class="btn btn-info text-center">Show Spaces</a>
+                            <div class="text-center">
+                            <a href="{{ route('branch.showSpaces' , $branch->id)}}" class="btn btn-primary w-75">Show Spaces</a>
+                            </div>
                         </div>
                     </div>
                 </div>  
                 @endforeach
          </div>
         </div>
-</section>
-
 
 
     {{-- <table class="table table-hover">
