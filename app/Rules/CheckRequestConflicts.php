@@ -7,13 +7,13 @@ use Illuminate\Contracts\Validation\Rule;
 
 class CheckRequestConflicts implements Rule
 {
-    
+
     public function passes($attribute, $value)
     {
         $value = request()->all();
-
-        // Accepted Reques At Same Date
-        $acceptedRequests = BookingRequest::where('space_id', $value['space_id'])
+$spaceId = request('space_id');
+         // Accepted Reques At Same Date
+        $acceptedRequests = BookingRequest::where('space_id', $spaceId)
             ->where('status', 'accepted')
             ->get();
 
@@ -31,6 +31,7 @@ class CheckRequestConflicts implements Rule
                     });
                 })->first();
 
+                // dd($conflicts);
                 if($conflicts){
                     return false;   // Found conflicts
                 }

@@ -12,7 +12,7 @@ class ValidSpace implements Rule
     {
         $data = request()->all();
 
-        $spaceId = $data['space_id'];
+        $spaceId = request('space_id');
         $start_time = request('start_time');
         $end_time = request('end_time');
 
@@ -30,6 +30,6 @@ class ValidSpace implements Rule
     }
     public function message()
     {
-        return ' Space Closed At This Time.';
+        return 'The selected time slot is not available.';
     }
 }
