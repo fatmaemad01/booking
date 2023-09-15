@@ -44,11 +44,13 @@ class SpaceController extends Controller
 
     public function show(Space $space)
     {
-        if (Auth::user()->role == 'admin') {
-            return view('admin.space.show', compact('space'));
-        } elseif (Auth::user()->role == 'member') {
-            return view('member.dashboard', compact('space'));
-        }
+        // if (Auth::user()->role == 'admin') {
+        //     return view('admin.space.show', compact('space'));
+        // } elseif (Auth::user()->role == 'member') {
+        //     return view('member.dashboard', compact('space'));
+        // }
+        
+        return view('admin.space.show' , compact('space'));
     }
 
     public function update(SpaceRequest $request, Space $space)

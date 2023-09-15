@@ -46,7 +46,7 @@ class BranchController extends Controller
     public function show(Branch $branch)
     {
 
-        $days = $branch->workDays;
+        $days = Day::all();
 
         return view('admin.branch.show', compact('branch', 'days'));
     }
@@ -56,22 +56,16 @@ class BranchController extends Controller
 
         $validatedData = $request->validated();
 
-        // Update the branch with the validated data
         $branch->update($validatedData);
 
-        // Sync workdays for the branch based on the request data
-        if ($request->has('work_days')) {
-            $branch->workDays()->sync($request->input('work_days'));
-        } else {
-            // If no workdays are provided, detach all existing workdays
-            $branch->workDays()->detach();
-        }
+        $branch->workDays()->sync($request->input('work_days'));
 
         return redirect()->route('branch.index')->with('success', __('Branch Updated Successfully!'));
     }
 
     public function destroy(Branch $branch)
     {
+
         $branch->workDays()->detach();
 
         // Delete the branch

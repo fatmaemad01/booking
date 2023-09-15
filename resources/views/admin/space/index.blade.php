@@ -2,6 +2,7 @@
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
             <h2 class="text-muted">Spaces</h2>
+            @if(Auth::user()->role == 'admin')
             <x-bg-modal btn="New Space" class="modal-dialog modal-xl" id="create">
                 <div class="modal-body p-5">
                     <h2 class="text-center my-2 fw-bold">Create New Space</h2>
@@ -12,17 +13,8 @@
                     </form>
                 </div>
             </x-bg-modal>
+            @endif
         </div>
-
-        {{-- <div class="">
-            <h2>Booking Request</h2>
-            @foreach ($books as $book)
-                <h4 >Request By: {{ $book->user->first_name }} {{ $book->user->last_name }}</h4>
-                start time : {{ $book->start_time }}
-                end time : {{ $book->end_time }}
-                date : {{ $book->start_date }}
-            @endforeach
-        </div> --}}
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -41,6 +33,7 @@
                         <td> {{ $space->branch->name }}</td>
                         <td>{{ $space->capacity }}</td>
                         <td>
+                            @if(Auth::user()->role == 'admin')
                             <div class="">
                                 <x-bg-modal btn="Edit " class="modal-dialog-centered modal-xl"
                                     id="edit{{ $space->id }}">
@@ -74,6 +67,9 @@
                                     </div>
                                 </x-bg-modal>
                             </div>
+                            @elseif(Auth::user()->role == 'member')
+                                <a href="{{ route('space.show' , $space->id )}}">Show details</a>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

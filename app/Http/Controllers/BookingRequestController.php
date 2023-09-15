@@ -15,7 +15,7 @@ class BookingRequestController extends Controller
     
     // public function index()
     // {
-    //     $requests = BookingRequest::where('id' ,'=' , Auth::id());
+    //     return view('member.request.index');
 
 
     // }
@@ -31,9 +31,10 @@ class BookingRequestController extends Controller
         if ($request->has('days')) {
 
             $bookingRequest->days()->attach($request->input('days'));
+            
         }
 
-        return redirect()->route('member.dashboard')->with('success', __('Request Created Successfully!'));
+        return back()->with('success', __('Request Created Successfully!'));
     }
 
 

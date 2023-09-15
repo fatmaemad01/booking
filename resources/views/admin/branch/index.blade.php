@@ -18,7 +18,30 @@
         </x-bg-modal>
     </div>
 
-    <table class="table table-hover">
+    <section class="ftco-section bg-light" id="cards">
+        <div class="container card-styles">
+            <div class="row">
+                @foreach($branches as $branch)
+                <div class="col-md-4">
+                    <div class="card">
+                                <img class="card-img-top" src="{{ asset('assets/logo.png')}}" alt="">
+                        <div class="card-body pb-5 px-4">
+                            <h5 class="card-title text-center mb-4" style="font-weight: bold">{{ $branch->name }}</h5>
+                            <p class="card-text"><span  style="font-weight: bold">Location : </span>{{ $branch->location}}</p>
+                            <p class="card-text"><span  style="font-weight: bold">Work days  : </span>@foreach($branch->workDays as $day) {{ $day->name}} - @endforeach</p>
+                            <p class="card-text"><span  style="font-weight: bold">Work time : </span>{{ $branch->start_time}} - {{ $branch->end_time}}</p>
+                            <a href="{{ route('space.index')}}" class="btn btn-info text-center">Show Spaces</a>
+                        </div>
+                    </div>
+                </div>  
+                @endforeach
+         </div>
+        </div>
+</section>
+
+
+
+    {{-- <table class="table table-hover">
         <thead>
             <tr>
                 <th scope="col">Name</th>
@@ -51,6 +74,6 @@
                 </tr>
             @endforeach
         </tbody>
-    </table>
+    </table> --}}
     
 </x-main-layout>

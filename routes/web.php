@@ -6,6 +6,7 @@ use App\Http\Controllers\SpaceController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookingRequestController;
+use App\Models\Branch;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,18 +30,14 @@ Route::get('/dashboard', function () {
 
 require __DIR__ . '/auth.php';
 
-Route::group([
-    'as'=> 'branch.',
-    'prefix'=> 'branch/',
-    'controller' => BranchController::class,
-    'middleware' => ['auth', 'role:admin']
-], function(){
-    Route::get('', 'index')->name('index');
-    Route::post('', 'store')->name('store');
-    Route::get('{branch}', 'show')->name('show');
-    Route::put('{branch}', 'update')->name('update');
-    Route::delete('{branch}', 'destroy')->name('destroy');
-});
+Route::get('/space', [SpaceController::class ,'index'])->name('space.index');
+Route::get('/space/{space}', [SpaceController::class ,'show'])->name('space.show');
+
+Route::get('/branch', [ BranchController::class,'index'])->name('branch.index');
+Route::get('/branch/{branch}',[BranchController::class, 'show'])->name('branch.show');
+
+
+
 
 
 Route::middleware(['auth'])->group(function () {
@@ -69,19 +66,34 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('/{bookingRequest}', [BookingRequestController::class, 'destroy'])->name('request.delete');
 });
 
+// Route::middleware(['auth'])->group(function () {
+
+   
 
 
+
+// });
 
 Route::group([
     'as' => 'space.',
     'prefix' => 'space/',
     'controller' => SpaceController::class,
-    // 'middleware' => ['auth', 'role:admin']
+    'middleware' => ['auth', 'role:admin']
 ], function () {
-    Route::get('space', 'index')->name('index');
     Route::post('new', 'store')->name('store');
     Route::put('{space}/update', 'update')->name('update');
     Route::delete('{space}', 'destroy')->name('destroy');
+});
+
+Route::group([
+    'as'=> 'branch.',
+    'prefix'=> 'branch/',
+    'controller' => BranchController::class,
+    'middleware' => ['auth', 'role:admin']
+], function(){
+    Route::post('', 'store')->name('store');
+    Route::put('{branch}', 'update')->name('update');
+    Route::delete('{branch}', 'destroy')->name('destroy');
 });
 
 
