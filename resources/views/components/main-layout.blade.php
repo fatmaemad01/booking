@@ -43,7 +43,9 @@
     </div>
 
 
-    <footer id="footer" class="footer mt-5">
+    <x-page-footer />
+    
+    {{--<footer id="footer" class="footer mt-5">
         <div class="container">
             <div class="row gy-4">
                 <div class="col-lg-4  col-md-12 footer-info" style="margin-top: 5px">
@@ -91,7 +93,7 @@
                 <strong><span>GazaSkyGeeks</span></strong>
             </div>
         </div>
-    </footer>
+    </footer>--}}
 
     <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>

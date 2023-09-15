@@ -10,7 +10,7 @@ class BookingRequest extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id' , 'space_id' , 'start_date' ,'end_date' ,'start_time' ,'end_time' ,'status' ,'messgae'
+        'user_id' , 'space_id' , 'start_date' ,'end_date' ,'start_time' ,'end_time' ,'status' ,'message'
     ];
 
     protected $casts = [
