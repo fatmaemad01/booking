@@ -6,6 +6,7 @@ use App\Http\Controllers\SpaceController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookingRequestController;
+use App\Http\Controllers\BookingRequestResponseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,8 +65,8 @@ Route::middleware(['auth', 'role:member'])->group(function () {
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/{request}', [BookingRequestController::class, 'show'])->name('request.show');
-    Route::put('/accept/{bookingRequest}', [BookingRequestController::class, 'accept'])->name('request.accept');
-    Route::put('/{bookingRequest}', [BookingRequestController::class, 'reject'])->name('request.reject');
+    Route::put('/accept/{bookingRequest}', [BookingRequestResponseController::class, 'accept'])->name('request.accept');
+    Route::put('/{bookingRequest}', [BookingRequestResponseController::class, 'reject'])->name('request.reject');
     Route::delete('/{bookingRequest}', [BookingRequestController::class, 'destroy'])->name('request.delete');
 });
 

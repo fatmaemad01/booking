@@ -47,8 +47,8 @@
         <div class="container">
             <div class="row gy-4">
                 <div class="col-lg-4  col-md-12 footer-info" style="margin-top: 5px">
-                    <img src="{{ asset('assets/logo.png') }}" alt="" height="150px" width="150px"
-                        style="border-radius: 50%" class="ms-5">
+                    <img src="{{ asset('assets/logo.png') }}" alt="" height="100px" width="100px"
+                        style="border-radius: 50%" class="ms-5 mt-4">
                     <div class="social-links d-flex mt-4 ms-4">
                         <a href="https://www.youtube.com/user/GazaSkyGeeks" class="youtube"><i
                                 class="bi bi-youtube"></i></a>

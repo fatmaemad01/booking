@@ -204,6 +204,12 @@ section {
     bottom: 15px;
 }
 
+button .bi-box-arrow-right{
+    font-weight: bolder;
+    font-size: 18px;
+    padding: 10px;
+    /* border-radius: 50%; */
+}
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
@@ -442,7 +448,7 @@ section {
         font-size: 15px;
         text-transform: none;
         font-weight: 600;
-        color: #006a5d;
+        color: #6ca9be;
     }
 
     .navbar .dropdown ul a i {
@@ -513,7 +519,7 @@ section {
         inset: 0;
         padding: 50px 0 10px 0;
         margin: 0;
-        background: rgba(0, 131, 116, 0.9);
+        background: #6ca9be;
         overflow-y: auto;
         transition: 0.3s;
         z-index: 9998;
@@ -612,7 +618,7 @@ section {
         content: "";
         position: fixed;
         inset: 0;
-        background: rgba(0, 106, 93, 0.8);
+        background: #6ca9bebb;
         z-index: 9996;
     }
 }
