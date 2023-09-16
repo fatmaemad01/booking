@@ -10,7 +10,7 @@ class BookingRequest extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id' , 'space_id' , 'start_date' ,'end_date' ,'start_time' ,'end_time' , 'status' ,'message'
+        'user_id', 'space_id', 'start_date', 'end_date', 'start_time', 'end_time', 'status', 'message'
     ];
 
     protected $casts = [
@@ -29,8 +29,8 @@ class BookingRequest extends Model
     }
 
     public function days()
-{
-    return $this->belongsToMany(Day::class, 'booking_request_days' , 'day_id');
-}
+    {
+        return $this->belongsToMany(Day::class, 'booking_request_days', 'day_id');
+    }
 
 }

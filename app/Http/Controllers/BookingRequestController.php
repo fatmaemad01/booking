@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CreateSpace;
 use App\Rules\ValidSpace;
 use App\Models\Availability;
 use App\Rules\AcceptRequest;
@@ -26,14 +27,23 @@ class BookingRequestController extends Controller
     public function store(CustomBookingRequest $request)
     {
         $validatedData = $request->validated();
+
         $validatedData['space_id'] = $request->input('space_id');
 
         $validatedData['user_id'] = Auth::id();
 
         $bookingRequest = BookingRequest::create($validatedData);
 
-        if ($request->has('days')) {
+        Availability::create([
+            'space_id' => $bookingRequest->space_id,
+            'booking_request_id' => $bookingRequest->id,
+            'start_date' => $bookingRequest->start_date,
+            'end_date' => $bookingRequest->end_date,
+            'start_time' => $bookingRequest->start_time,
+            'end_time' => $bookingRequest->end_time,
+        ]);
 
+        if ($request->has('days')) {
             $bookingRequest->days()->attach($request->input('days'));
         }
 

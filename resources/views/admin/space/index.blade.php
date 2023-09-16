@@ -4,8 +4,8 @@
             <h2 class="text-muted">Spaces</h2>
             @if(Auth::user()->role == 'admin')
             <x-bg-modal btn="New Space" class="modal-dialog modal-xl" id="create">
-                <div class="modal-body p-5">
-                    <h2 class="text-center my-2 fw-bold">Create New Space</h2>
+                <div class="modal-body p-4">
+                    <h2 class="text-center my-3 fw-bold">Create New Space</h2>
                     <form action="{{ route('space.store') }}" method="POST" enctype="multipart/form-data">
                         @include('admin.space._form', [
                             'btn' => 'Create Space',
@@ -37,8 +37,8 @@
                             <div class="">
                                 <x-bg-modal btn="Edit " class="modal-dialog-centered modal-xl"
                                     id="edit{{ $space->id }}">
-                                    <div class="modal-body p-5">
-                                        <h4 class="text-center my-2 fw-bold">Update Space Info</h4>
+                                    <div class="modal-body p-4">
+                                        <h4 class="text-center my-3 fw-bold">Update Space Info</h4>
                                         <form action="{{ route('space.update', $space->id) }}" method="POST"
                                             enctype="multipart/form-data">
                                             @method('put')

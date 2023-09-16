@@ -10,7 +10,7 @@ class Availability extends Model
     use HasFactory;
 
     protected $fillable = [
-        'space_id' , 'start_date', 'end_date' , 'start_time', 'end_time' , 'available'
+        'space_id' ,'booking_request_id', 'start_date', 'end_date' , 'start_time', 'end_time' , 'available'
     ];
 
     public function room()

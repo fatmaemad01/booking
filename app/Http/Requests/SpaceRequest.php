@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ValidBranch;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SpaceRequest extends FormRequest
@@ -22,7 +23,7 @@ class SpaceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'branch_id' => 'required|int|exists:branches,id',
+            'branch_id' => ['required','int','exists:branches,id', new ValidBranch()],
             'type' => 'string|in:room,free_space|nullable',
             'name' => 'required|string',
             'capacity' => 'required|integer|min:1',

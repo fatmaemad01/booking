@@ -33,7 +33,6 @@ class UserController extends Controller
             'password' => ['required', Password::defaults()],
             'phone' => ['required', 'string', 'min:10'],
             'personal_image' => 'image',
-            // 'locale' => 'nullable'
         ]);
 
         $inputData = $request->except('personal_image');
@@ -55,16 +54,15 @@ class UserController extends Controller
 
     public function adminDashboard()
     {
-
         $requests = BookingRequest::all();
+        // $requests = BookingRequest::where('status','pending')->get();
 
-        return view('admin.dashboard' , compact('requests'));
-
+        return view('admin.dashboard', compact('requests'));
     }
 
     public function memberDashboard()
     {
-        $requests = BookingRequest::where('user_id' , '=' , Auth::id())->get();
+        $requests = BookingRequest::where('user_id', '=', Auth::id())->get();
 
         $spaces = Space::all();
 
@@ -72,7 +70,7 @@ class UserController extends Controller
 
         $days = Day::all();
 
-        return view('admin.branch.index' , [
+        return view('admin.branch.index', [
             'requests' => $requests,
             'request' => new BookingRequest(),
             'spaces' => $spaces,
@@ -81,7 +79,7 @@ class UserController extends Controller
             'branch' => new Branch(),
             'days' => $days,
 
-            ]);
+        ]);
     }
 
     public function index()

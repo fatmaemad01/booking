@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('availabilities', function (Blueprint $table) {
             $table->id();
             $table->foreignId('space_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('booking_request_id')->nullable()->constrained()->cascadeOnDelete();
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->time('start_time');

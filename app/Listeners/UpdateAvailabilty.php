@@ -24,10 +24,10 @@ class UpdateAvailabilty
     {
         $space = $event->space;
 
-        // $availabilty = Availability::where('space_id', $space->id)->first();
-        // $availabilty->update([
-        //     'start_time' => request('available_from') ,
-        //     'end_time' => request('available_to'),
-        // ]);
+        $availabilty = Availability::where('space_id', $space->id)->first();
+        $availabilty->update([
+            'start_time' => request('available_from') ,
+            'end_time' => request('available_to'),
+        ]);
     }
 }
