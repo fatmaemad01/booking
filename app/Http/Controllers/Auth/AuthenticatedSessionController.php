@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -36,12 +37,17 @@ class AuthenticatedSessionController extends Controller
 
         } elseif ($user->role === 'member') {
 
+            Session::put('showBookingModal', true);
+            // dd(Session::get('showBookingModal'));
+
             return redirect()->intended(RouteServiceProvider::MEMBER_DASHBOARD);
+            
+            
 
         } else {
 
             return redirect()->intended(RouteServiceProvider::HOME);
-            
+    
         }
 
     }

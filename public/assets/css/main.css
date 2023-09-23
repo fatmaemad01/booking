@@ -37,6 +37,16 @@
     background-color: #f85a40;
 }
 
+.btn-secondary-color{
+    background-color: #f85a40;
+    color: white;
+}
+
+.btn-secondary-color:hover{
+    border-color: #f85a40;
+    color: f85a40;
+}
+
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
@@ -315,7 +325,6 @@ button .bi-box-arrow-right{
 }
 
 .header.sticked {
-    position: fixed;
     top: 0;
     right: 0;
     left: 0;
@@ -2491,3 +2500,11 @@ section {
 .footer .credits a {
     color: #fff;
 }
+/* .card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+} */

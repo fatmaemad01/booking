@@ -12,6 +12,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     @endif
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-...">
     <meta content="" name="description">
     <meta content="" name="keywords">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -40,14 +41,15 @@
 
 <body>
     <x-nav />
-    <div class="container">
+    <div class="container my-5">
         <main id="main">
+            @include('booking-instructions')
             {{ $slot }}
         </main>
     </div>
 
 
-    <x-page-footer />
+    {{-- <x-page-footer /> --}}
     
     {{--<footer id="footer" class="footer mt-5">
         <div class="container">
@@ -119,6 +121,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     @stack('scripts')
+    
 </body>
 
 </html>

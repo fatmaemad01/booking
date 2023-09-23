@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\CreateSpace;
+use App\Events\RequestCreated;
 use App\Rules\ValidSpace;
 use App\Models\Availability;
 use App\Rules\AcceptRequest;
@@ -13,41 +14,74 @@ use Illuminate\Support\Facades\Auth;
 use App\Listeners\CreateAvailability;
 use App\Listeners\NewSpaceAvailability;
 use App\Http\Requests\CustomBookingRequest;
+use App\Models\BookingRequestDay;
+use App\Models\Day;
+use App\Models\Space;
 use Illuminate\Validation\ValidationException;
 use App\Rules\AcceptRequest as RulesAcceptRequest;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class BookingRequestController extends Controller
 {
 
-    // public function index()
-    // {
-    //     $requests = BookingRequest::where('id' ,'=' , Auth::id());
-    // }
+    public function index()
+    {
+        $requests = BookingRequest::where('user_id', '=', Auth::id())->get();
+        
+        $days = Day::all();
+
+        // dd($requests);
+        return view('member.request.index', [
+            'requests' => $requests,
+            'days' => $days,
+
+            'bookingRequest' => new BookingRequest(),
+
+        ]);
+    }
 
     public function store(CustomBookingRequest $request)
     {
-        $validatedData = $request->validated();
+        $this->authorize('create' , [BookingRequest::class]);
+        try {
+            DB::beginTransaction();
+            $validatedData = $request->validated();
 
-        $validatedData['space_id'] = $request->input('space_id');
 
-        $validatedData['user_id'] = Auth::id();
+            $validatedData['space_id'] = $request->input('space_id');
+            $validatedData['user_id'] = Auth::id();
 
-        $bookingRequest = BookingRequest::create($validatedData);
+            $validatedData['days'] = $request->input('days');
 
-        Availability::create([
-            'space_id' => $bookingRequest->space_id,
-            'booking_request_id' => $bookingRequest->id,
-            'start_date' => $bookingRequest->start_date,
-            'end_date' => $bookingRequest->end_date,
-            'start_time' => $bookingRequest->start_time,
-            'end_time' => $bookingRequest->end_time,
-        ]);
+            $bookingRequest = BookingRequest::create($validatedData);
 
-        if ($request->has('days')) {
-            $bookingRequest->days()->attach($request->input('days'));
+            $spaceId = $request->input('space_id');
+            $startDate = $request->input('start_date');
+            $endDate = $request->input('end_date');
+
+            $dateRange = \Carbon\CarbonPeriod::create($startDate, $endDate);
+            $daysToBook = request('days');
+
+            foreach ($dateRange as $date) {
+                if (in_array($date->format('l'), $daysToBook)) {
+                    BookingRequestDay::create([
+                        'booking_request_id' => $bookingRequest->id,
+                        'space_id' => $spaceId,
+                        'user_id' => Auth::id(),
+                        'booking_date' => $date,
+                        'status' => 'pending',
+                        'start_time' => $bookingRequest->start_time,
+                        'end_time' => $bookingRequest->end_time,
+                    ]);
+                }
+            }
+            DB::commit();
+             event(new RequestCreated($bookingRequest));
+            return back()->with('success', __('Request Created Successfully!'));
+        } catch (Exception $e) {
+            return $e->getMessage();
         }
-
-        return back()->with('success', __('Request Created Successfully!'));
     }
 
 
@@ -55,11 +89,5 @@ class BookingRequestController extends Controller
     {
     }
 
-    public function update(CustomBookingRequest $request, BookingRequest $bookRequest)
-    {
-    }
 
-    public function destroy(BookingRequest $bookRequest)
-    {
-    }
 }
