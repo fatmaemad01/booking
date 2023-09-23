@@ -30,8 +30,7 @@
     <div class="row">
         @foreach ($branches as $branch)
             <div class="col-md-4">
-            
-        <div class="card mb-4 border-0 shadow-lg" style="max-width: 23rem;">
+                <div class="card mb-4 border-0 shadow-lg" style="max-width: 23rem;">
                     <img class="card-img-top" src="{{ asset('assets/img/gsg2.jpg') }}" alt="" width="150"
                         height="200">
                     <div class="card-body py-4 px-4">
