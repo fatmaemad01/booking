@@ -1,97 +1,58 @@
 <x-main-layout title="make a request">
-    <div class="container">
 
+    <x-alert class="alert alsert-success" name="success" />
 
-
-        @if($errors->any())
+    @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
-                @foreach($errors->all() as $error)
-                <li>{{$error}}</li>
-        @endforeach
-        </ul>
-        </div>
-        @endif
-
-
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="my-3">{{ Auth::user()->first_name }} Requests</h1>
-
-        </div>
-
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">User Name</th>
-                    <th scope="col">Space Name</th>
-                    <th scope="col">Space Type</th>
-                    <th scope="col">start_date</th>
-                    <th scope="col">end_date</th>
-                    <th scope="col">start_time</th>
-                    <th scope="col">end_time</th>
-                    <th scope="col">days</th>
-                    <th scope="col">status</th>
-                    <th scope="col">message</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($requests as $request)
-                    <tr>
-                        <td>{{ $request->user->first_name }}</td>
-                        <td>{{ $request->space?->name }}</td>
-                        <td>{{ $request->space?->type }}</td>
-                        <td> {{ $request?->start_date->format('d-m-Y')  }}</td>
-                        <td>{{ $request?->end_date->format('d-m-Y') }}</td>
-                        <td>{{ $request?->start_time }}</td>
-                        <td>{{ $request?->end_time }}</td>
-                        <td>
-                            @foreach ($request->days as $day)
-                                {{ $day->name }}
-                                @if (!$loop->last)
-                                    ,
-                                @endif
-                             @endforeach
-                        </td>
-                        <td>{{ $request?->status }}</td>
-                        <td>{{ $request?->message }}</td>
-                        {{-- <td>
-                            <div class="">
-                                <x-bg-modal btn="Edit " class="modal-dialog-centered modal-xl"
-                                    id="edit{{ $request->id }}">
-                                    <div class="modal-body p-4">
-                                        <h4 class="text-center my-2 fw-bold">Update {{ $request->type }} Info</h4>
-                                        <form action="{{ route('request.update', $request->id) }}" method="POST"
-                                            enctype="multipart/form-data">
-                                            @method('put')
-                                            @include('admin.request._form', [
-                                                'btn' => 'Update request',
-                                            ])
-                                        </form>
-                                    </div>
-                                </x-bg-modal>
-                                <x-bg-modal btn="Delete" class="modal-dialog-centered "
-                                    id="delete{{ $request->id }}">
-                                    <div class="modal-body p-4 text-center">
-                                        <form action="{{ route('request.destroy', $request->id) }}" method="POST">
-                                            @method('delete')
-                                            @csrf
-                                            <h4 class="mb-2">Are You Sure ?</h4>
-                                            <h5 class="text-secondary mb-3">You Will Delete {{ $request->name }}
-                                                {{ $request->type }} Forever.</h5>
-
-                                            <div class="d-flex justify-content-center">
-                                                <button type="button" class="btn btn-secondary mx-3"
-                                                    data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </x-bg-modal>
-                            </div>
-                        </td> --}}
-                    </tr>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
                 @endforeach
-            </tbody>
-        </table>
+            </ul>
+        </div>
+    @endif
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="my-3">{{ Auth::user()->first_name }} Requests</h1>
     </div>
+
+    <table class="table table-borderless table-hover shadow-lg rounded">
+        <thead>
+            <tr class="border-bottom">
+                <th scope="col">#</th>
+                <th scope="col">Space Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">From</th>
+                <th scope="col">To</th>
+                <th scope="col">day</th>
+                <th scope="col">status</th>
+                <th scope="col">message</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($requests as $request)
+                <tr class="border-bottom">
+                    <td class="py-4">{{ $request->id }}</td>
+                    <td class="py-4">{{ $request->space->name }}</td>
+                    <td class="py-4"> {{ $request->start_date }}</td>
+                    <td class="py-4">{{ $request?->start_time }}</td>
+                    <td class="py-4">{{ $request?->end_time }}</td>
+                    <td class="py-4">
+                        @foreach ($request->days as $day)
+                            {{ $day }}
+                            @if (!$loop->last)
+                                ,
+                            @endif
+                        @endforeach
+                    </td>
+                    <td class="py-4">{{ $request?->status }}</td>
+                    <td class="py-4">{{ $request?->message }}</td>
+                    <td>
+
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 </x-main-layout>

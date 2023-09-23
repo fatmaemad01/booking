@@ -7,6 +7,7 @@ use App\Models\Branch;
 use App\Models\Day;
 use App\Models\Space;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -18,12 +19,16 @@ class UserController extends Controller
 {
     public function show()
     {
+        $this->authorize('view' , [User::class ,$model]);
+
         $user = Auth::user();
         return view('admin.member.profile.show', compact('user'));
     }
 
     public function useredit(Request $request, User $user)
     {
+        $this->authorize('update' , $user);
+
         $old_image = $user->personal_image;
 
         $request->validate([
@@ -52,38 +57,39 @@ class UserController extends Controller
         return redirect()->route('profile.show');
     }
 
-    public function adminDashboard()
-    {
-        $requests = BookingRequest::all();
-        // $requests = BookingRequest::where('status','pending')->get();
+    // public function adminDashboard()
+    // {
+    //     $requests = BookingRequest::all();
+    //     // $requests = BookingRequest::where('status','pending')->get();
 
-        return view('admin.dashboard', compact('requests'));
-    }
+    //     return view('admin.dashboard', compact('requests'));
+    // }
 
-    public function memberDashboard()
-    {
-        $requests = BookingRequest::where('user_id', '=', Auth::id())->get();
+    // public function memberDashboard()
+    // {
+    //     $requests = BookingRequest::where('user_id', '=', Auth::id())->get();
 
-        $spaces = Space::all();
+    //     $spaces = Space::all();
 
-        $branches = Branch::all();
+    //     $branches = Branch::all();
 
-        $days = Day::all();
+    //     $days = Day::all();
 
-        return view('admin.branch.index', [
-            'requests' => $requests,
-            'request' => new BookingRequest(),
-            'spaces' => $spaces,
-            'space' => new Space(),
-            'branches' => $branches,
-            'branch' => new Branch(),
-            'days' => $days,
+    //     return view('member.dashboard', [
+    //         'requests' => $requests,
+    //         'request' => new BookingRequest(),
+    //         'spaces' => $spaces,
+    //         'space' => new Space(),
+    //         'branches' => $branches,
+    //         'branch' => new Branch(),
+    //         'days' => $days,
 
-        ]);
-    }
+    //     ]);
+    // }
 
     public function index()
     {
+        $this->authorize('viewAny' , [User::class]);
         $users = User::all();
         return view('admin.member.index', [
             'users' => $users,
@@ -91,17 +97,17 @@ class UserController extends Controller
         ]);
     }
 
-
     public function store(Request $request)
     {
         $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', Password::defaults()],
+            // 'password' => ['required', Password::defaults()],
             'phone' => ['required', 'string', 'min:10'],
             'role' => ['required', 'string', 'in:admin,member'],
         ]);
+        // $random_password = Str::random(12);
 
         $user = User::create([
             'first_name' => $request->first_name,
@@ -111,13 +117,14 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
+        event(new Registered($user));
         return redirect()->back();
     }
 
 
     public function update(Request $request, User $user)
     {
+        $this->authorize('update' , $user);
 
         $request->validate([
             'first_name' => 'required' | 'string',
@@ -134,6 +141,9 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+
+        $this->authorize('delete' , $user);
+        
         $user->delete();
 
         if ($user->personal_image) {

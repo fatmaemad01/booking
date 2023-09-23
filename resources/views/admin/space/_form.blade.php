@@ -79,5 +79,5 @@
         </button>
         <button type="button" class="btn btn-get-started  mx-3" data-dismiss="modal">Cancel</button>
 
-    </div>
+    </div>
 </div>

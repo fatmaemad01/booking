@@ -33,7 +33,7 @@
                         <h4>Make A Request</h4>
                         <form action="{{ route('request.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            {{-- <input type="hidden" name="space_id" value="{{ $space->id }}"> --}}
+                            <input type="number" style="display:none" name="user_id" value="{{ Auth::id() }}">
                             {{-- <input type="hidden" name="branch_id" value="{{ $space->branch->id }}"> --}}
                             <div class="col">
                                 <div class="row">
@@ -80,8 +80,8 @@
                                                 <li class="dropdown-item">
                                                     <div class="form-check">
                                                         <input class="form-check-input" name="days[]" type="checkbox"
-                                                            value="{{ $day->id }}" id="day-{{ $day->id }}">
-                                                        <label class="form-check-label" for="day-{{ $day->id }}">
+                                                            value="{{ $day->name }}" id="day-{{ $day->name }}">
+                                                        <label class="form-check-label" for="day-{{ $day->name }}">
                                                             {{ $day->name }}
                                                         </label>
                                                     </div>
@@ -91,8 +91,7 @@
                                     </div>
                                 </x-form.form-outline>
                             </div>
-                            <button type="submit" class="btn bg-secondary-color my-3 text-secondary">create</button>
-
+                           <button type="submit" class="btn bg-secondary-color my-3 text-secondary">create</button>
                         </form>
                     </div>
                 </x-bg-modal>

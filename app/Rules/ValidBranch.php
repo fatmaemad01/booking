@@ -15,7 +15,7 @@ class ValidBranch implements Rule
         $branchId = request('branch_id');
         $start_time = request('available_from');
         $end_time = request('available_to');
-        
+
         $conflicting = Branch::where('id', $branchId)
             ->where(function ($query) use ($start_time, $end_time) {
                 $query->where(function ($query) use ($start_time, $end_time) {
@@ -30,6 +30,6 @@ class ValidBranch implements Rule
 
     public function message()
     {
-        return 'This Branch is not available at this time.';
+        return 'The Branch is not available at this time.';
     }
 }

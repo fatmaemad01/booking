@@ -29,6 +29,6 @@ class ValidSpace implements Rule
 
     public function message()
     {
-        return 'This space is not available at this time.';
+        return 'The space is not available at this time.';
     }
 }
