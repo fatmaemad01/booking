@@ -17,6 +17,8 @@ return new class extends Migration
             $table->enum('type' , ['room' , 'free_space'])->default('room');
             $table->string('name');
             $table->integer('capacity');
+            $table->time('start_time');
+            $table->time('end_time');
             $table->integer('price')->nullable();
             $table->text('assets')->nullable();
             $table->string('image')->nullable();

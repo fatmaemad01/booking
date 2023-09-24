@@ -27,7 +27,7 @@
     <div class="row">
         @foreach ($branches as $branch)
             <x-card :branch="$branch->name" :branchId="$branch->id">
-                <div class="icon-block">
+                <div class="d-flex justify-content-center">
                     <x-bg-modal icon="fa-pen" class="modal-dialog modal-dialog-centered modal-xl"
                         id="edit{{ $branch->id }}">
                         <div class="modal-body p-4">

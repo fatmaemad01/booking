@@ -14,7 +14,7 @@ class Space extends Model
     public static string $disk = 'public';
 
     protected $fillable = [
-        'branch_id', 'type', 'name', 'capacity', 'price', 'availablity', 'assets' , 'image'
+        'branch_id', 'type', 'name', 'capacity', 'price', 'availablity', 'assets' , 'image', 'start_time' , 'end_time'
     ];
 
     protected $casts = [
