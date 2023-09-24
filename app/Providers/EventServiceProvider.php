@@ -4,9 +4,16 @@ namespace App\Providers;
 
 use App\Events\AcceptedRequest;
 use App\Events\CreateSpace;
+use App\Events\DeleteAvailability;
+use App\Events\RequestCreated;
+use App\Events\RequestResponse;
 use App\Events\UpdateSpace;
 use App\Listeners\CreateAvailability;
+use App\Listeners\DeleteAvailabilityListener;
 use App\Listeners\NewSpaceAvailability;
+use App\Listeners\SendNotificationToAdmin;
+use App\Listeners\SendNotificationToMember;
+use App\Listeners\SendUserLoginDetails;
 use App\Listeners\UpdateAvailabilty;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -23,12 +30,19 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+            SendUserLoginDetails::class,
         ],
         CreateSpace::class => [
             CreateAvailability::class
         ],
         UpdateSpace::class => [
             UpdateAvailabilty::class
+        ],
+        RequestCreated::class => [
+            SendNotificationToAdmin::class
+        ],
+        RequestResponse::class => [
+            SendNotificationToMember::class
         ],
     ];
 

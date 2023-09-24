@@ -9,55 +9,71 @@ use App\Events\UpdateSpace;
 use Illuminate\Http\Request;
 use App\Models\BookingRequest;
 use App\Http\Requests\SpaceRequest;
+use App\Models\Availability;
+use App\Models\Day;
 use Illuminate\Support\Facades\Auth;
 
 class SpaceController extends Controller
 {
-    public function index()
-    {
-        $spaces = Space::all();
-        $branches = Branch::all();
-        $books = BookingRequest::all();
 
-        return view('admin.space.index', [
+    public function index(Request $request, Branch $branch)
+    {
+
+        // if(Auth::user()->role == 'member'){
+        //     $spaces = $branch->spaces->where('type' , 'free_space');
+        // }else{
+        //     $spaces = $branch->spaces;
+        // }
+
+        $this->authorize('viewAny', [Space::class]);
+
+        $spaces = $branch->spaces()->filter($request->query())->get();
+
+        // $spaces = Space::filter($request->query())->get();
+
+        $books = BookingRequest::all();
+        $days = Day::all();
+        // dd($days);
+        return view('admin.branch.spaces', [
+            'branch' => $branch,
             'spaces' => $spaces,
-            'space' => new Space(),
-            'branches' => $branches,
             'books' => $books,
+            'space' => new Space(),
+            'branches' => Branch::all(),
+            'days' => $days,
+            'request' => new BookingRequest()
         ]);
     }
 
-
-
-    public function store(SpaceRequest $request)
+    public function store(Branch $branch, SpaceRequest $request)
     {
+
+        $this->authorize('create', [Space::class]);
+
         $validated = $request->validated();
 
+
         if ($request->hasFile('image')) {
+
             $file = $request->file('image');
+
             $path = Space::uploadImage($file);
+
             $validated['image'] = $path;
         }
 
         $space = Space::create($validated);
+
         event(new CreateSpace($space));
-        return redirect()->route('space.index')->with('success', 'Space Added Sucessfully.');
+
+        return back()->with('success', __('Space Added Sucessfully.'));
     }
 
 
-
-    public function show(Branch $branch, Space $space)
+    public function update(SpaceRequest $request, Branch $branch, Space $space)
     {
-        // if (Auth::user()->role == 'admin') {
-        //     return view('admin.space.show', compact('space'));
-        // } elseif (Auth::user()->role == 'member') {
-        //     return view('member.dashboard', compact('space'));
-        // }
-        return view('admin.space.show', compact('branch','space'));
-    }
+        $this->authorize('update', $space);
 
-    public function update(SpaceRequest $request, Space $space)
-    {
         $old_image = $space->image;
 
         $validated = $request->validated();
@@ -76,17 +92,20 @@ class SpaceController extends Controller
             Space::deleteImage($old_image);
         }
 
-        return redirect()->route('space.index')->with('success', 'Space Updated Sucessfully.');
+        return back()->with('success', __('Space Updated Sucessfully.'));
     }
 
-    public function destroy(Space $space)
+    public function destroy(Branch $branch, Space $space)
     {
+
+        $this->authorize('delete', $space);
+
         $space->delete();
 
         if ($space->image) {
             Space::deleteImage($space->image);
         }
 
-        return back();
+        return back()->with('success', __('Space Updated Sucessfully.'));
     }
 }

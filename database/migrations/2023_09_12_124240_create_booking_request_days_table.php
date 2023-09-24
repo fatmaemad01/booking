@@ -14,7 +14,12 @@ return new class extends Migration
         Schema::create('booking_request_days', function (Blueprint $table) {
             $table->id();
             $table->foreignId('booking_request_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('day_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('space_id')->constrained()->cascadeOnDelete();
+            $table->date('booking_date');
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->enum('status' , ['pending' , 'accepted' , 'denied'])->default('pending');
             $table->timestamps();
         });
     }

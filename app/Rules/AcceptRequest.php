@@ -4,6 +4,7 @@ namespace App\Rules;
 
 use Closure;
 use App\Models\BookingRequest;
+use App\Models\BookingRequestDay;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Contracts\Validation\ValidationRule;
 
@@ -18,7 +19,7 @@ class AcceptRequest implements Rule
 
     public function passes($attribute, $value)
     {
-        $conflictingBooking = BookingRequest::where('space_id', $this->bookingRequest->space_id)
+        $conflictingBooking = BookingRequestDay::where('space_id', $this->bookingRequest->space_id)
             ->where('status', 'accepted')
             ->where(function ($query) {
                 $query->whereBetween('start_date', [$this->bookingRequest->start_date, $this->bookingRequest->end_date])

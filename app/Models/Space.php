@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -58,6 +59,13 @@ class Space extends Model
     public function getNameAttribute($value)
     {
         return ucfirst($value);
+    }
+
+    public function scopeFilter(Builder $builder, $filters)
+    {
+        $builder->when($filters['search'] ?? '', function ($builder, $value) {
+            $builder->where('name', 'LIKE', "%{$value}%");
+    });
     }
 
 }
