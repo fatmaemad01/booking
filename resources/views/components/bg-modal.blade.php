@@ -3,9 +3,10 @@
     'class' => '',
     'id' => $id,
     'icon' => '',
+    'btnClass' => ''
 ])
 <!-- Button trigger modal -->
-<button type="button" class="btn" data-toggle="modal" data-target="#{{ $id }}">
+<button type="button" class="btn {{$btnClass}}" data-toggle="modal" data-target="#{{ $id }}">
     @if ($icon)
         <i class="fas {{ $icon }}"></i> <!-- Use the Font Awesome icon -->
     @endif

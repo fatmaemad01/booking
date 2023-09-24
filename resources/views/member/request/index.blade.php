@@ -1,5 +1,7 @@
 <x-main-layout title="make a request">
 
+    <x-secondary-nav heading="{{ Auth::user()->first_name }} Requests" />
+
     <x-alert class="alert alsert-success" name="success" />
 
     @if ($errors->any())
@@ -13,25 +15,26 @@
     @endif
 
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="my-3">{{ Auth::user()->first_name }} Requests</h1>
+        <h1 class=""></h1>
     </div>
-
-    <table class="table table-borderless table-hover shadow-lg rounded">
-        <thead>
-            <tr class="border-bottom">
-                <th scope="col">#</th>
-                <th scope="col">Space Name</th>
-                <th scope="col">Date</th>
-                <th scope="col">From</th>
-                <th scope="col">To</th>
-                <th scope="col">day</th>
-                <th scope="col">status</th>
-                <th scope="col">message</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($requests as $request)
+    <div class="row mb-4 m-0"
+        style="border-radius: 20px; background: #fff; padding: 20px; box-shadow: 2px 3px 7px 0px #d2d2d2;">
+        <table class="table table-borderless">
+            <thead>
+                <tr class="border-bottom">
+                    <th scope="col">#</th>
+                    <th scope="col">Space Name</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">From</th>
+                    <th scope="col">To</th>
+                    <th scope="col">day</th>
+                    <th scope="col">status</th>
+                    <th scope="col">message</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($requests as $request)
                 <tr class="border-bottom">
                     <td class="py-4">{{ $request->id }}</td>
                     <td class="py-4">{{ $request->space->name }}</td>
@@ -53,6 +56,12 @@
                     </td>
                 </tr>
             @endforeach
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
+            {{ $requests->links() }}
+        </div>
+    </div>
+
+
 </x-main-layout>

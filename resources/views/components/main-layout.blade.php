@@ -41,15 +41,13 @@
 </head>
 
 <body>
-    <x-sidebar>
+     <x-sidebar>
     <div class="container my-3">
         <main id="main">
-
-            @include('booking-instructions')
             {{ $slot }}
         </main>
     </div>
-</x-sidebar>
+     </x-sidebar>
 
     {{-- <x-page-footer /> --}}
 

@@ -10,6 +10,7 @@ use App\Http\Controllers\BookingRequestController;
 use App\Models\Branch;
 use App\Http\Controllers\BookingRequestResponseController;
 use App\Http\Controllers\CalenderController;
+use App\Http\Controllers\MemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +42,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [UserController::class, 'show'])->name('profile.show');
     Route::put('/profile/{user}', [UserController::class, 'useredit'])->name('profile.useredit');
     Route::get('/change-language/{locale}', [UserController::class, 'changeLanguage'])->name('change.language');
-
+    Route::get('/calender' , [CalenderController::class , 'index'])->name('calender');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -57,7 +58,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:member'])->group(function () {
-    Route::get('member/dashboard', [CalenderController::class, 'index'])->name('member.dashboard');
+    Route::get('member/dashboard', [MemberController::class, 'index'])->name('member.dashboard');
     Route::get('/member/request', [BookingRequestController::class, 'index'])->name('request.index');
     Route::post('/request', [BookingRequestController::class, 'store'])->name('request.store');
 });

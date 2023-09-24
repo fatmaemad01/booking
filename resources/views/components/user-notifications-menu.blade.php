@@ -1,4 +1,4 @@
-    <a class="icon-text fs-6 text-white " role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="icon-text fs-6 " role="button" data-bs-toggle="dropdown" aria-expanded="false">
         @if ($unreadCount)
             <span class="badge bg-dark me-1">{{ $unreadCount }}</span>
         @endif

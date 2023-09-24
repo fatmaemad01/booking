@@ -1701,13 +1701,15 @@ section {
 }
 
 .btn-get-started {
+    height: 40px;
+    width: auto;
     font-family: var(--font-primary);
     font-weight: 500;
-    font-size: 15px;
+    font-size: 14px;
     letter-spacing: 1px;
     display: inline-block;
-    padding: 8px 15px;
-    border-radius: 18px;
+    /* padding: 8px 15px; */
+    border-radius: 15px;
     transition: 0.3s;
     color: #fff;
     background: var(--color-secondary);
@@ -1723,13 +1725,15 @@ section {
 }
 
 .btn-primary {
+    height: 40px;
+    width: auto;
     font-family: var(--font-primary);
     font-weight: 500;
-    font-size: 15px;
+    font-size: 14px;
     letter-spacing: 1px;
     display: inline-block;
-    padding: 8px 15px;
-    border-radius: 18px;
+    /* padding: ; */
+    border-radius: 15px;
     transition: 0.3s;
     color: #fff;
     background: var(--color-primary);

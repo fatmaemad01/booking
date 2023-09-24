@@ -30,6 +30,6 @@ class CalenderController extends Controller
             ];
         }
 
-        return view('member.dashboard', compact('events'));
+        return view('calender', compact('events'));
     }
 }

@@ -1,4 +1,7 @@
 <x-main-layout title="Spaces">
+
+<x-secondary-nav heading="Spaces" />
+
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
             <h2 class="text-muted">Spaces</h2>
