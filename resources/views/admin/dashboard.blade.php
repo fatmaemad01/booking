@@ -1,13 +1,29 @@
 <x-main-layout title="Dashboard">
     <x-secondary-nav heading="Incoming Request" />
 
-
     <x-alert class="alert alert-danger" name="error" />
     <x-alert class="alert alert-success" name="success" />
 
     <div class="row mb-4 m-0"
         style="border-radius: 20px; background: #fff; padding: 20px; box-shadow: 2px 3px 7px 0px #d2d2d2;">
-        <table class="table table-borderless">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h5 class="">Filter</h5>
+            <div class="d-flex">
+                <select class="form-control text-white" id="nameFilter" style="background-color:#6ca9be">
+                    <option value="">SpaceName</option>
+                    @foreach ($spaces as $space)
+                        <option value="{{ $space->name }}">{{ $space->name }}</option>
+                    @endforeach
+                </select>
+                <select class="form-control text-white ms-2" id="typeFilter" style="background-color: #6ca9be">
+                    <option value="">Type</option>
+                    @foreach ($uniqueTypes as $type)
+                        <option value="{{ $type }}">{{ $type }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <table class="table table-borderless" id="requestTable">
             <thead>
                 <tr class="border-bottom">
                     <th scope="col">User Name</th>
@@ -24,7 +40,9 @@
             </thead>
             <tbody>
                 @foreach ($requests as $request)
-                    <tr class="border-bottom">
+                    <tr class="border-bottom" 
+                        data-name="{{ $request->space?->name }}"
+                        data-type="{{ $request->space?->type }}">
                         <td class=" py-4">{{ $request->user?->first_name }}</td>
                         <td class=" py-4">{{ $request->space?->name }}</td>
                         <td class=" py-4">{{ $request->space?->type }}</td>
@@ -89,5 +107,35 @@
             {{ $requests->links() }}
         </div>
     </div>
-
 </x-main-layout>
+
+<script>
+    const nameFilter = document.getElementById('nameFilter');
+    const typeFilter = document.getElementById('typeFilter');
+    const requestTable = document.getElementById('requestTable');
+
+    // Add event listeners to the filters
+    nameFilter.addEventListener('change', filterTable);
+    typeFilter.addEventListener('change', filterTable);
+
+    function filterTable() {
+        const selectedName = nameFilter.value;
+        const selectedType = typeFilter.value;
+
+        const rows = requestTable.querySelectorAll('tbody tr');
+
+        rows.forEach(row => {
+            const rowName = row.getAttribute('data-name');
+            const rowType = row.getAttribute('data-type');
+
+            const nameMatch = !selectedName || rowName === selectedName;
+            const typeMatch = !selectedType || rowType === selectedType;
+
+            if (nameMatch && typeMatch) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+</script>

@@ -1,9 +1,9 @@
     <a class="icon-text fs-6 " role="button" data-bs-toggle="dropdown" aria-expanded="false">
         @if ($unreadCount)
-            <span class="badge bg-dark me-1">{{ $unreadCount }}</span>
+            {{-- <span class="badge bg-dark me-1">{{ $unreadCount }}</span> --}}
         @endif
         <div class="icon-text ms-3"><i class="fas fa-bell"></i></i><span
-            class="ms-4">Notifications</span></div>
+            class=""></span></div>
     </a>
     <ul class="dropdown-menu p-2">
         @foreach ($notifications as $notification)

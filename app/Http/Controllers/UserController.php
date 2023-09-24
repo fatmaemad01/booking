@@ -57,36 +57,7 @@ class UserController extends Controller
         return redirect()->route('profile.show');
     }
 
-    // public function adminDashboard()
-    // {
-    //     $requests = BookingRequest::all();
-    //     // $requests = BookingRequest::where('status','pending')->get();
-
-    //     return view('admin.dashboard', compact('requests'));
-    // }
-
-    // public function memberDashboard()
-    // {
-    //     $requests = BookingRequest::where('user_id', '=', Auth::id())->get();
-
-    //     $spaces = Space::all();
-
-    //     $branches = Branch::all();
-
-    //     $days = Day::all();
-
-    //     return view('member.dashboard', [
-    //         'requests' => $requests,
-    //         'request' => new BookingRequest(),
-    //         'spaces' => $spaces,
-    //         'space' => new Space(),
-    //         'branches' => $branches,
-    //         'branch' => new Branch(),
-    //         'days' => $days,
-
-    //     ]);
-    // }
-
+    
     public function index()
     {
         $this->authorize('viewAny' , [User::class]);

@@ -16,8 +16,6 @@ class BookingRequest extends Model
     ];
 
     protected $casts = [
-        // 'start_date' => 'date',
-        // 'end_date' => 'date',
         'days' => 'array',
     ];
 

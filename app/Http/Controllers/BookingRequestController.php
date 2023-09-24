@@ -27,15 +27,16 @@ class BookingRequestController extends Controller
 
     public function index()
     {
-        $requests = BookingRequest::where('user_id', '=', Auth::id())->simplePaginate(3);
+        $requests = BookingRequest::where('user_id', '=', Auth::id())->simplePaginate(10);
         
+        $status = BookingRequest::distinct()->pluck('status');
+
         $days = Day::all();
 
-        // dd($requests);
         return view('member.request.index', [
             'requests' => $requests,
             'days' => $days,
-
+            'status' => $status,
             'bookingRequest' => new BookingRequest(),
 
         ]);
