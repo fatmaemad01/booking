@@ -36,8 +36,7 @@
             .btn-book {
                 position: relative;
                 bottom: 40px;
-                left: 33px;
-
+                left: 45px;
             }
         </style>
     @endpush
@@ -47,7 +46,7 @@
                 <div class="card  border-0 shadow-lg" style="max-width: 25rem; border-radius:15px">
                     <img class="card" src="{{ asset('storage/' . $space->image) }}" alt="" height="150"
                         style="margin: 0px; border-radius:15px">
-                    <div class="card-body ">
+                    <div class="card-body">
                         <x-bg-modal btn="Booking Now" btnClass="btn-primary btn-book"
                             class="modal-dialog-centered modal-dialog-scrollable modal-dialog modal-xl"
                             id="create{{ $space->id }}">

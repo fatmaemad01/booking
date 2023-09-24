@@ -37,20 +37,24 @@ class RequestResponseNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line(__('check your request response'))
+                    ->line(__('your Request is :status' , [
+                        'status' => $notifiable->books->status
+                    ]))
                     ->action('check it', route('request.index'))
                     ->line('Thank you for using our application!');
     }
 
     public function toDatabase(object $notifiable): DatabaseMessage  //|array
     {
-        return new DatabaseMessage($this->createMessage());
+        return new DatabaseMessage($this->createMessage($notifiable));
     }
 
-    protected function createMessage(): array
+    protected function createMessage(object $notifiable): array
     {
         return [
-            'title' => __('check your request response'),
+            'title' => __('your Request is :status' , [
+                'status' => $notifiable->books->status
+            ]),
             'link' => route('request.index'),
         ];
     }
