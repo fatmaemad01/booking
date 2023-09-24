@@ -8,7 +8,7 @@
         </a>
         <nav id="navbar" class="navbar">
             <ul>
-                @if (Auth::user())
+                {{--@if (Auth::user())
                     @if (Auth::user()->role === 'admin')
                         <li class="{{ Route::currentRouteName() === 'admin.dashboard' ? 'active' : '' }}"><a  href="{{ route('admin.dashboard') }}">Dashborad</a></li>
                         <li class="{{ Route::currentRouteName() === 'users.index' ? 'active' : '' }}"><a href="{{ route('users.index') }}">Members</a></li>
@@ -42,14 +42,15 @@
                             @csrf
                             <button type="submit" class="btn btn-get-started">Logout</button>
                         </form>
-                    </li>
-                @elseif(!Auth::user())
+                    </li>--}}
+                {{--@elseif(!Auth::user())--}}
                     <li><a href="#hero">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#services">Programs</a></li>
                     <li><a href="#team">Team</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <a href="{{ route('login') }}"> <button class="btn btn-get-started">Login</button></a>
+                    @if(!Auth::user())
+                    <a href="{{ route('login') }}"> <button class="btn btn-get-started ms-2">Login</button></a>
                 @endif
             </ul>
         </nav><!-- .navbar -->

@@ -1,6 +1,4 @@
-@props([
-    'space' , 'spaceId' , 'spaceImg' , 'spaceStartTime' , 'spaceEndTime'
-    ])
+@props(['space', 'spaceId', 'spaceImg'])
 
 
 <!DOCTYPE html>
@@ -22,7 +20,7 @@
         @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
         @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700');
 
-        body {
+        /* body {
             font-family: 'Open Sans', sans-serif;
         }
 
@@ -44,7 +42,7 @@
             color: #232323;
             margin-bottom: 30px;
             font-size: 14px;
-        }
+        } */
 
         h1 span {
             font-family: 'Libre Baskerville', serif;
@@ -184,16 +182,19 @@
     <div class="col-md-4">
         <div class="card">
             <div class="background-block">
-                <img src="{{ asset('storage/app/public/'.$spaceImg) }}" alt="" class="background" />
+                <img src="{{ asset('storage/' . $spaceImg) }}" alt="" class="background" />
             </div>
-            <div class="btn">
+
+            {{ $slot }}
+            {{-- <div class="btn">
                 <a href="#" class="button">Book Now</a>
+
             </div>
             <div class="card-content">
                 <h2>{{$space}}</h2>
                 <small>{{$spaceStartTime}}</small> - <small>{{$spaceEndTime}}</small>
                 <div class="icon-block"><a href="#"><i class="fas fa-pen"></i></a><a href="#"> <i class="fa fa-trash"></i></a></div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </body>

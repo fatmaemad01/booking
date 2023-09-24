@@ -17,9 +17,9 @@ use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
-    public function show()
+    public function show(User $model)
     {
-        $this->authorize('view' , [User::class ,$model]);
+        $this->authorize('view' , [User::class , $model]);
 
         $user = Auth::user();
         return view('admin.member.profile.show', compact('user'));
@@ -35,7 +35,6 @@ class UserController extends Controller
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', Password::defaults()],
             'phone' => ['required', 'string', 'min:10'],
             'personal_image' => 'image',
         ]);
@@ -61,7 +60,7 @@ class UserController extends Controller
     public function index()
     {
         $this->authorize('viewAny' , [User::class]);
-        $users = User::all();
+        $users = User::where('role' , 'member')->get();
         return view('admin.member.index', [
             'users' => $users,
             'user' => new User()

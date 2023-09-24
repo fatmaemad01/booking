@@ -48,7 +48,13 @@
                         advantage of them, you can
                         book here. </p>
                     <div class="d-flex justify-content-center justify-content-lg-start">
-                        <a href="{{ route('login') }}" class="btn-get-started">Book Here</a>
+                        @if(!Auth::user())
+                        <a href="{{ route('login') }}" class="btn btn-get-started">Book Here</a>
+                        @elseif(Auth::user()->role === 'admin')
+                        <a href="{{ route('admin.dashboard') }}" class="btn btn-get-started">Book Here</a>
+                        @elseif(Auth::user()->role === 'member')
+                        <a href="{{ route('member.dashboard') }}" class="btn btn-get-started">Book Here</a>
+                        @endif
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2">

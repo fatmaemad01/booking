@@ -32,12 +32,6 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
             SendUserLoginDetails::class,
         ],
-        CreateSpace::class => [
-            CreateAvailability::class
-        ],
-        UpdateSpace::class => [
-            UpdateAvailabilty::class
-        ],
         RequestCreated::class => [
             SendNotificationToAdmin::class
         ],

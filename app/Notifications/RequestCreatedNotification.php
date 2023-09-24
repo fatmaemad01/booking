@@ -37,7 +37,7 @@ class RequestCreatedNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('A new request is created')
+                    ->line(__('A new request is created by :name') , ['name' => request('first_name')])
                     ->action('Check it', route('admin.dashboard'))
                     ->line('Thank you for using our application!');
     }
@@ -50,7 +50,7 @@ class RequestCreatedNotification extends Notification
     protected function createMessage(): array
     {
         return [
-            'title' => 'a new request is created',
+            'title' => __('a new request is created'),
             'link' => route('admin.dashboard'),
         ];
     }

@@ -49,7 +49,8 @@
 
         .sidebar a:hover {
             background-color: #c05934;
-            font-weight: bold
+            font-weight: bold;
+            color: #fff;
         }
 
         .sidebar-heading {
@@ -125,27 +126,20 @@
         <a href="{{ route('home') }}" class="icon-text ms-3"><i class="fas fa-home"></i><span
             class="ms-4">Home</span></a>
         @if (Auth::user()->role == 'admin')
-            <a href="{{ route('admin.dashboard') }}" class="icon-text ms-3"><i class="fas fa-eye"></i><span
-                    class="ms-4">Dashboard</span></a>
+        <a href="{{ route('admin.dashboard') }}" class="icon-text ms-3"><i class="fas fa-tachometer-alt"></i><span class="ms-4">Dashboard</span></a>
 
-            <a href="{{ route('users.index') }}" class="icon-text ms-3"><i class="fas fa-users"></i> <span
-                    class="ms-3">Members</span></a>
+        <a href="{{ route('users.index') }}" class="icon-text ms-3"><i class="fas fa-users"></i> <span class="ms-3">Members</span></a>
         @elseif (Auth::user()->role == 'member')
-        <a href="{{ route('member.dashboard') }}" class="icon-text ms-3"><i class="fas fa-eye"></i><span
-            class="ms-4">Dashboard</span></a>
-            <a href="{{ route('request.index') }}" class="icon-text ms-3"><i class="fas fa-eye"></i><span
-                    class="ms-4">Your Request</span></a>
+        <a href="{{ route('member.dashboard') }}" class="icon-text ms-3"><i class="fas fa-tachometer-alt"></i><span class="ms-4">Dashboard</span></a>
+        <a href="{{ route('request.index') }}" class="icon-text ms-3"><i class="fas fa-clipboard-list"></i><span class="ms-4">Your Request</span></a>
         @endif
-        
-        <a href="{{ route('calender') }}" class="icon-text ms-3"><i class="fas fa-calendar"></i></i><span
-                class="ms-4">Calendar</span></a>
-        <a href="{{ route('branch.index') }}" class="icon-text ms-3"><i class="fas fa-code-branch"></i></i> <span
-                class="ms-4">Branches</span></a>
+        <a href="{{ route('profile.show') }}" class="icon-text ms-3"><i class="fas fa-user"></i></i><span class="ms-4">Profile</span></a>
+        <a href="{{ route('calender') }}" class="icon-text ms-3"><i class="fas fa-calendar"></i></i><span class="ms-4">Calendar</span></a>
+        <a href="{{ route('branch.index') }}" class="icon-text ms-3"><i class="fas fa-code-branch"></i></i><span class="ms-4">Branches</span></a>
         <a class="icon-text text-white ms-1">
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit" class="btn"> <i class="fas fa-sign-out-alt"></i> <span
-                        class="ms-3">Logout</span></button>
+                <button type="submit" class="btn"><i class="fas fa-sign-out-alt"></i><span class="ms-4">Logout</span></button>
             </form>
         </a>
         <hr class="mt-4">
@@ -154,8 +148,7 @@
             <a href="https://www.youtube.com/user/GazaSkyGeeks" class="youtube"><i class="bi bi-youtube"></i></a>
             <a href="https://www.facebook.com/GazaSkyGeeks/" class="facebook"><i class="bi bi-facebook"></i></a>
             <a href="https://www.instagram.com/gazaskygeeks/" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="https://www.linkedin.com/company/gaza-sky-geeks/" class="linkedin"><i
-                    class="bi bi-linkedin"></i></a>
+            <a href="https://www.linkedin.com/company/gaza-sky-geeks/" class="linkedin"><i class="bi bi-linkedin"></i></a>
         </div>
     </div>
 
@@ -163,10 +156,8 @@
         <nav class="navbar navbar-light bg-light d-flex justify-content-between ps-3 ">
             {{--
             <form action="{{ URL::current() }}" method="get" class="d-flex me-3">
-                <input type="text" placeholder="{{ __('Search') }}" name="search"
-                    style="border-radius: 20px; border:none" class="form-control ps-4 me-1">
-                <button class="btn" style="background-color: #e06436; border-radius: 20px" type="submit"><i
-                        class="fas fa-search text-white"></i></button>
+            <input type="text" placeholder="{{ __('Search') }}" name="search" style="border-radius: 20px; border:none" class="form-control ps-4 me-1">
+            <button class="btn" style="background-color: #e06436; border-radius: 20px" type="submit"><i class="fas fa-search text-white"></i></button>
 
             </form> --}}
         </nav>

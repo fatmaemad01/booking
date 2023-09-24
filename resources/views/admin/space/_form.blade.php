@@ -55,14 +55,14 @@
         <div class="row">
             <div class="col-6">
                 <x-form.form-outline>
-                    <label class="form-label" for="availablity">Available From:</label>
-                    <x-form.input name="available_from" id="available_from" type="time"  value="{{ old('available_from', $space->availabilities->first()?->start_time) }}"  />
+                    <label class="form-label" for="start_time">Available From:</label>
+                    <x-form.input name="start_time" id="start_time" type="time"  value="{{ old('start_time', $space->start_time) }}"  />
                 </x-form.form-outline>
             </div>
             <div class="col-6">
                 <x-form.form-outline>
-                    <label class="form-label" for="availablity">To: </label>
-                    <x-form.input name="available_to" id="available_to" type="time"  value="{{ old('available_to ', $space->availabilities->first()?->end_time ) }}"  />
+                    <label class="form-label" for="end_time">To: </label>
+                    <x-form.input name="end_time" id="end_time" type="time"  value="{{ old('end_time ', $space->end_time ) }}"  />
                 </x-form.form-outline>
             </div>
         </div>

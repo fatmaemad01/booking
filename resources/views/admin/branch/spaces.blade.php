@@ -31,76 +31,76 @@
         @endif
     </div>
 
-
-    <div class="row mb-4">
+    @push('styles')
+        <style>
+            .btn-book {
+                position: relative;
+                bottom: 40px;
+                left: 45px;
+            }
+        </style>
+    @endpush
+    <div class="row">
         @foreach ($spaces as $space)
             <div class="col-md-3">
-                <div class="card mb-4 border-0 shadow-lg" style="max-width: 20rem;">
-                    <img class="card-img-top" src="{{ asset('storage/' . $space->image) }}" alt="" height="150">
-                    <div class="card-body py-4 px-4">
-                        <h4 class="card-title mb-4" style="font-weight: bold">{{ $space->name }}</h4>
-                        @if (Auth::user()->role == 'member')
-                            <x-bg-modal btn="Booking Now"
-                                class="modal-dialog-centered modal-dialog-scrollable modal-dialog modal-xl"
-                                id="create{{ $space->id }}">
+                <div class="card  border-0 shadow-lg" style="max-width: 25rem; border-radius:15px">
+                    <img class="card" src="{{ asset('storage/' . $space->image) }}" alt="" height="150"
+                        style="margin: 0px; border-radius:15px">
+                    <div class="card-body">
+                        <x-bg-modal btn="Booking Now" btnClass="btn-primary btn-book"
+                            class="modal-dialog-centered modal-dialog-scrollable modal-dialog modal-xl"
+                            id="create{{ $space->id }}">
+                            @include('member.request._form', [
+                                'btn' => 'Book',
+                            ])
+                            </form>
+                    </div>
+                    </x-bg-modal>
+                    <h4 class="card-title text-center" style="font-weight: bold">{{ $space->name }}</h4>
+                    @if (Auth::user()->role == 'admin')
+                        <div class="d-flex justify-content-center mb-3">
+                            <x-bg-modal icon="fa-edit text-muted mx-2" class="modal-dialog-centered modal-xl"
+                                id="edit{{ $space->id }}">
                                 <div class="modal-body p-4">
-                                    {{-- <form action="{{ route('request.store') }}" method="POST" enctype="multipart/form-data"> --}}
-                                    {{-- @csrf --}}
-                                    @include('member.request._form', [
-                                        'btn' => 'Book',
-                                    ])
+                                    <h4 class="text-center my-3 fw-bold">Update Space Info</h4>
+                                    <form action="{{ route('branch.space.update', [$branch->id, $space->id]) }}"
+                                        method="POST" enctype="multipart/form-data">
+                                        @method('put')
+                                        @include('admin.space._form', [
+                                            'btn' => 'Update Space',
+                                        ])
                                     </form>
                                 </div>
                             </x-bg-modal>
-                        @endif
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        @if (Auth::user()->role == 'admin')
-                            <div class="">
-                                <x-bg-modal btn="Edit " class="modal-dialog-centered modal-xl"
-                                    id="edit{{ $space->id }}">
-                                    <div class="modal-body p-4">
-                                        <h4 class="text-center my-3 fw-bold">Update Space Info</h4>
-                                        <form action="{{ route('branch.space.update',  [$branch->id,$space->id]) }}" method="POST"
-                                            enctype="multipart/form-data">
-                                            @method('put')
-                                            @include('admin.space._form', [
-                                                'btn' => 'Update Space',
-                                            ])
-                                        </form>
-                                    </div>
-                                </x-bg-modal>
-                                <x-bg-modal btn="Delete" class="modal-dialog-centered "
-                                    id="delete{{ $space->id }}">
-                                    <div class="modal-body p-5 text-center">
-                                        <form action="{{ route('branch.space.destroy', [$branch->id,$space->id]) }}" method="POST">
-                                            @method('delete')
-                                            @csrf
-                                            <h4 class="mb-2">Are You Sure ?</h4>
-                                            <h5 class="text-secondary mb-3">You Will Delete {{ $space->name }}
-                                                {{ $space->type }} Forever.</h5>
+                            <x-bg-modal icon="fa-trash text-muted mx-2" class="modal-dialog-centered "
+                                id="delete{{ $space->id }}">
+                                <div class="modal-body p-5 text-center">
+                                    <form action="{{ route('branch.space.destroy', [$branch->id, $space->id]) }}"
+                                        method="POST">
+                                        @method('delete')
+                                        @csrf
+                                        <h4 class="mb-2">Are You Sure ?</h4>
+                                        <h5 class="text-secondary mb-3">You Will Delete {{ $space->name }}
+                                            {{ $space->type }} Forever.</h5>
 
-                                            <div class="d-flex justify-content-center">
-                                                <button type="submit" class="btn btn-success me-4 ">
-                                                    <i class="fas fa-check fs-4"></i>
-                                                </button>
+                                        <div class="d-flex justify-content-center">
+                                            <button type="submit" class="btn btn-success me-4 ">
+                                                <i class="fas fa-check fs-4"></i>
+                                            </button>
 
-                                                <button type="button" class="btn btn-danger " data-dismiss="modal"><i
-                                                        class="fas fa-times fs-4"></i>
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </x-bg-modal>
-                            </div>
-                        {{-- @elseif(Auth::user()->role == 'member')
-                            <a href="{{ route('space.show', $space->id) }}">Show details</a> --}}
-                        @endif
-
-                    </div>
+                                            <button type="button" class="btn btn-danger " data-dismiss="modal"><i
+                                                    class="fas fa-times fs-4"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </x-bg-modal>
+                        </div>
+                    @endif
                 </div>
             </div>
-        @endforeach
+    </div>
+    @endforeach
     </div>
 
 </x-main-layout>

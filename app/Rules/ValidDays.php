@@ -12,13 +12,9 @@ class ValidDays implements Rule
     public function passes($attribute, $value)
     {
 
-        // dd(request('start_date'));
-        // dd(request('end_date'));
-        // dd(request('days'));
         $start = Carbon::parse(request('start_date'));
         $end = Carbon::parse(request('end_date'));
 
-        // Get all the days within the specified date range
         $validDays = collect([]);
 
         while ($start <= $end) {
@@ -26,7 +22,6 @@ class ValidDays implements Rule
             $start->addDay();
         }
 
-        // Check if all  days are within the validDays array
         $selectedDays = collect($value);
 
         return $selectedDays->diff($validDays)->isEmpty();

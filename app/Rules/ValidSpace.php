@@ -2,7 +2,7 @@
 
 namespace App\Rules;
 
-use App\Space;
+use App\Models\Space;
 use App\Models\Availability;
 use Illuminate\Contracts\Validation\Rule;
 
@@ -14,7 +14,7 @@ class ValidSpace implements Rule
         $start_time = request('start_time');
         $end_time = request('end_time');
 
-        $conflictingAvailabilities = Availability::where('space_id', $spaceId)
+        $conflictingAvailabilities = Space::where('id', $spaceId)
             ->where(function ($query) use ($start_time, $end_time) {
                 $query->where(function ($query) use ($start_time, $end_time) {
                     $query->where('start_time', '<=', $start_time)
