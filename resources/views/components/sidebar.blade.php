@@ -49,7 +49,8 @@
 
         .sidebar a:hover {
             background-color: #c05934;
-            font-weight: bold
+            font-weight: bold;
+            color: #fff;
         }
 
         .sidebar-heading {
@@ -124,18 +125,19 @@
         <hr>
 
         @if (Auth::user()->role == 'admin')
-            <a href="{{ route('admin.dashboard') }}" class="icon-text ms-3"><i class="fas fa-eye"></i><span
+            <a href="{{ route('admin.dashboard') }}" class="icon-text ms-3"><i class="fas fa-tachometer-alt"></i><span
                     class="ms-4">Dashboard</span></a>
 
             <a href="{{ route('users.index') }}" class="icon-text ms-3"><i class="fas fa-users"></i> <span
                     class="ms-3">Members</span></a>
         @elseif (Auth::user()->role == 'member')
-        <a href="{{ route('member.dashboard') }}" class="icon-text ms-3"><i class="fas fa-eye"></i><span
+        <a href="{{ route('member.dashboard') }}" class="icon-text ms-3"><i class="fas fa-tachometer-alt"></i><span
             class="ms-4">Dashboard</span></a>
-            <a href="{{ route('request.index') }}" class="icon-text ms-3"><i class="fas fa-eye"></i><span
+            <a href="{{ route('request.index') }}" class="icon-text ms-3"><i class="fas fa-clipboard-list"></i><span
                     class="ms-4">Your Request</span></a>
         @endif
-        
+        <a href="{{ route('profile.show') }}" class="icon-text ms-3"><i class="fas fa-user"></i></i><span
+                class="ms-4">Profile</span></a>
         <a href="{{ route('calender') }}" class="icon-text ms-3"><i class="fas fa-calendar"></i></i><span
                 class="ms-4">Calendar</span></a>
         <a href="{{ route('branch.index') }}" class="icon-text ms-3"><i class="fas fa-code-branch"></i></i> <span

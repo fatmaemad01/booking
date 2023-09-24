@@ -1,6 +1,4 @@
 <x-main-layout title="Profile">
-
-<x-secondary-nav heading="{{ auth()->user()->first_name }} Profile" />
     
     <div class="container w-75 mt-4 shadow-lg rounded-4 p-4">
 
