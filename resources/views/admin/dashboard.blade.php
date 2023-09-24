@@ -1,10 +1,13 @@
 <x-main-layout title="Dashboard">
-        <h2 class="text-muted  mb-4">Incoming Requests</h2>
+    <x-secondary-nav heading="Incoming Request" />
 
-        <x-alert class="alert alert-danger" name="error" />
-        <x-alert class="alert alert-success" name="success" />
 
-        <table class="table table-borderless table-hover shadow-lg rounded">
+    <x-alert class="alert alert-danger" name="error" />
+    <x-alert class="alert alert-success" name="success" />
+
+    <div class="row mb-4 m-0"
+        style="border-radius: 20px; background: #fff; padding: 20px; box-shadow: 2px 3px 7px 0px #d2d2d2;">
+        <table class="table table-borderless">
             <thead>
                 <tr class="border-bottom">
                     <th scope="col">User Name</th>
@@ -26,16 +29,16 @@
                         <td class=" py-4">{{ $request->space?->name }}</td>
                         <td class=" py-4">{{ $request->space?->type }}</td>
                         <td class=" py-4"> {{ $request?->start_date }}</td>
-                        <td class=" py-4">{{ $request?->end_date}}</td>
+                        <td class=" py-4">{{ $request?->end_date }}</td>
                         <td class=" py-4">{{ $request?->start_time }}</td>
                         <td class=" py-4">{{ $request?->end_time }}</td>
                         <td class=" py-4">
-                            {{-- @foreach ($request->days as $day)
+                            @foreach ($request->days as $day)
                                 {{ $day }}
                                 @if (!$loop->last)
                                     ,
                                 @endif
-                            @endforeach --}}
+                            @endforeach
                         </td>
                         <td class="d-flex align-items-center py-4">
                             <x-bg-modal btn="accept" class="modal-dialog-centered " id="accept{{ $request->id }}">
@@ -82,4 +85,9 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="d-flex justify-content-end">
+            {{ $requests->links() }}
+        </div>
+    </div>
+
 </x-main-layout>

@@ -1,40 +1,50 @@
 <x-main-layout title="Profile">
+    
+    <div class="container w-75 mt-4 shadow-lg rounded-4 p-4">
 
-    <div class="container pt-1 shadow-lg">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
 
-        <div class="content w-75 m-auto rounded text-center p-2 d-flex justify-content-between">
+        <div class="row align-items-center">
+            <div class="col-3">
+                <div class="text-center">
 
-            <div class="m-auto h-50 w-50">
-                @if($user->personal_image ?? '')
-                <img class="rounded-circle m-auto" height="240" width="240" src="{{asset('storage/'. $user->personal_image)}}">
-                @else
-                <img src="https://ui-avatars.com/api/?name={{auth()->user()->first_name}}&size=200" class="rounded-circle mb-2" alt="">
-                @endif
-                <h4 class="mt-1">{{$user->first_name}}</h4>
+                    @if($user->personal_image ?? '')
+                    <img class="rounded-circle m-auto shadow-sm" height="200" width="200" src="{{asset('storage/'. $user->personal_image)}}">
+                    @else
+                    <img src="https://ui-avatars.com/api/?name={{auth()->user()->first_name}}&size=150" class="rounded-circle shadow-lg" alt="">
+                    @endif
+
+                </div>
             </div>
-
-            <div class="rounded text-start w-50 m-auto p-3">
-                <h3 class="mb-4">Personal Detail</h3>
-                <h6 class="mb-4">Email : {{$user->email}}</h6>
-                <h6 class="mb-4">Phone : {{$user->phone}}</h6>
-                <h6 class="mb-4">Your Role is : {{$user->role}}</h6>
-                <x-bg-modal btn="Edit your profile" class="modal-dialog-centered modal-dialog-scrollable" id="update{{$user->id}}">
-                    <div class="modal-body p-4">
-                        <h4>Update Your Info</h4>
-                        <form action="{{ route('profile.useredit', $user->id) }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            @method('put')
-                            @include('admin.member.profile._form' , [
-                            'button_lable' => 'Update Info'
-                            ])
-                        </form>
-                    </div>
-                </x-bg-modal>
+            <div class="col-9">
+                <h6 class="mb-2 fs-4 text-dark">{{$user->first_name}} {{$user->last_name}}</h6>
+                <h6 class="mb-2 text-dark">Email : {{$user->email}}</h6>
+                <h6 class="mb-2 text-dark">Phone : {{$user->phone}}</h6>
+                <h6 class="mb-2 text-dark">Your Role is : {{$user->role}}</h6>
             </div>
-
         </div>
 
 
-    </div>
+        <div class="row details mt-4">
+            <h4 class="mt-3 mb-3">Edit Your Information</h4>
+            <form action="{{ route('profile.useredit', $user->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('put')
+                @include('admin.member.profile._form')
+                <div class="d-flex justify-content-center my-3">
+                    <button type="submit" class="btn btn-primary" style="width: 20%">
+                        Update
+                    </button>
+                </div>
+            </form>
+        </div>
 
 </x-main-layout>

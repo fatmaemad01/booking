@@ -17,6 +17,7 @@
                         <li  class="{{ Route::currentRouteName() === 'request.index' ? 'active' : '' }}"><a href="{{ route('request.index') }}">Your Requests</a></li>
                         @endif
                         <li class="{{ Route::currentRouteName() === 'branch.index' ? 'active' : '' }}"><a href="{{ route('branch.index') }}">Branches</a></li>
+                        <li class="{{ Route::currentRouteName() === 'calender' ? 'active' : '' }}"><a href="{{ route('calender') }}">Calender</a></li>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link fs-6 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"

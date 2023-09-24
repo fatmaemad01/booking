@@ -1,5 +1,7 @@
 <x-main-layout title="Space">
 
+<x-secondary-nav heading="Space" />
+
     <x-alert name="success" class="alert alert-success" />
     @if ($errors->any())
         <div class="alert alert-danger">

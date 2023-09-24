@@ -1,6 +1,9 @@
 <x-main-layout title="Members">
+
+<x-secondary-nav heading="Members" />
+
         <div class="d-flex justify-content-between mb-4">
-            <h2 class="text-muted">Members</h2>
+            <h2 class="text-muted"></h2>
             <x-bg-modal btn="New Member"  icon="fa-plus" btnClass="btn-primary" class="modal-dialog-centered modal-xl" id="create">
                 <div class="modal-body p-4">
                     <h4 class="text-center fw-bold mb-3 mt-3">{{ __('Add New Member ') }}</h4>

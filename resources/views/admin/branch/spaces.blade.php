@@ -1,4 +1,7 @@
 <x-main-layout title="Spaces">
+
+<x-secondary-nav heading="{{ $branch->name }} Spaces" />
+
     <x-alert name="success" class="alert alert-success my-3" />
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -11,7 +14,7 @@
     @endif
 
     <div class="d-flex justify-content-between">
-        <h1 class="d-flex">{{ $branch->name }} Spaces</h1>
+        <h1 class="d-flex"></h1>
         @if (Auth::user()->role == 'admin')
             <x-bg-modal btn="New Space" icon="fa-plus" btnClass="btn-primary" class="modal-dialog modal-xl" id="create">
                 <div class="modal-body p-4">
