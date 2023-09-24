@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('assets/css/main.css')}}"> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css">
 
     {{-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> --}}
@@ -29,7 +29,7 @@
             position: relative;
             overflow: hidden;
             width: 90%;
-            text-align: center;
+            /* text-align: center; */
             height: 368px;
             border: 1px solid #eee;
             box-shadow: 4px 4px 4px #eee;
@@ -116,8 +116,8 @@
             <div class="btn">
                 <a href="{{ route('branch.space.index' , $branchId)}}" class="button">show spaces</a>
             </div>
-            <div class="card-content">
-                <h2>{{$branch}}</h3>
+            <div class="card-content ">
+                <h2 class="text-center">{{$branch}}</h3>
                     {{$slot}}
             </div>
         </div>

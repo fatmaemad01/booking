@@ -1,5 +1,5 @@
 <div class="modal-body p-4">
-    <h4>Make A Request</h4>
+    <h4 class="text-center fw-bold">Make A Request</h4>
     <form action="{{ route('request.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <input type="number" style="display:none" name="user_id" value="{{ Auth::id() }}">
@@ -60,5 +60,10 @@
                 </div>
             </x-form.form-outline>
         </div>
-        <button type="submit" class="btn bg-secondary-color my-3 text-secondary">create</button>
+        <div class="d-flex justify-content-center my-3">
+            <button type="submit" class="btn btn-primary" style="width: 20%">
+                Create
+            </button>
+            <button type="button" class="btn btn-get-started  mx-3" data-dismiss="modal">Cancel</button>
+        </div>
     </form>

@@ -13,8 +13,8 @@ class ValidBranch implements Rule
     public function passes($attribute, $value)
     {
         $branchId = request('branch_id');
-        $start_time = request('available_from');
-        $end_time = request('available_to');
+        $start_time = request('start_time');
+        $end_time = request('end_time');
 
         $conflicting = Branch::where('id', $branchId)
             ->where(function ($query) use ($start_time, $end_time) {
