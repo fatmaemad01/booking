@@ -1,50 +1,18 @@
 <x-main-layout title="Branch">
 
-@push('styles')
-<style>
-            /* .card i {
-            display: inline-block;
-            font-size: 16px;
-            color: #232323;
-            text-align: center;
-            border: 1px solid #232323;
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
-            border-radius: 50%;
-            margin: 0 5px;
-        }
-
-        .card .icon-block {
-            float: left;
-            width: 100%;
-            margin-top: 15px;
-        }
-
-        .card .icon-block a {
-            text-decoration: none;
-        }
-
-        .card i:hover {
-            background-color: #232323;
-            color: #fff;
-            text-decoration: none;
-        } */
-</style>
-@endpush
     <x-alert name="success" class="alert-success mt-4" />
     <x-alert name="error" class="alert-danger" />
 
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        @if (Auth::user()->role == 'admin')
-            <h1 class="my-4">Branches Of Company</h1>
-        @elseif(Auth::user()->role == 'member')
+    <div class="d-flex justify-content-between ">
+        {{-- @if (Auth::user()->role == 'admin') --}}
+        {{-- @elseif(Auth::user()->role == 'member')
             <h1 class="my-4">Select The Branch</h1>
-        @endif
+        @endif --}}
+        <h1 class="d-flex">Branches Of Company</h1>
 
         @if (Auth::user()->role == 'admin')
-            <x-bg-modal btn="New Branch" class="modal-dialog modal-dialog-centered modal-xl" id="create">
+            <x-bg-modal btn="New Branch" icon="fa-plus" btnClass="btn-primary"  class="modal-dialog modal-dialog-centered modal-xl" id="create">
                 <div class="modal-body p-4">
                     <form action="{{ route('branch.store') }}" method="POST">
                         <h4 class="text-center my-3 fw-bold">Create A New Branch</h4>

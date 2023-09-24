@@ -10,10 +10,10 @@
         </div>
     @endif
 
-    <div class="row d-flex justify-content-center align-items-center">
-        <h1 class="mb-5">{{ $branch->name }} Spaces</h1>
+    <div class="d-flex justify-content-between">
+        <h1 class="d-flex">{{ $branch->name }} Spaces</h1>
         @if (Auth::user()->role == 'admin')
-            <x-bg-modal btn="New Space" class="modal-dialog modal-xl" id="create">
+            <x-bg-modal btn="New Space" icon="fa-plus" btnClass="btn-primary" class="modal-dialog modal-xl" id="create">
                 <div class="modal-body p-4">
                     <h2 class="text-center my-3 fw-bold">Create New Space</h2>
                     <form action="{{ route('branch.space.store', $branch->id) }}" method="POST"
@@ -33,7 +33,7 @@
         @foreach ($spaces as $space)
             <div class="col-md-3">
                 <div class="card mb-4 border-0 shadow-lg" style="max-width: 20rem;">
-                    <img class="card-img-top" src="{{ asset('storage/app/public/'.$space->image) }}" alt="" height="150">
+                    <img class="card-img-top" src="{{ asset('storage/' . $space->image) }}" alt="" height="150">
                     <div class="card-body py-4 px-4">
                         <h4 class="card-title mb-4" style="font-weight: bold">{{ $space->name }}</h4>
                         @if (Auth::user()->role == 'member')

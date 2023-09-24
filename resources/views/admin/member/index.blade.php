@@ -1,7 +1,7 @@
 <x-main-layout title="Members">
         <div class="d-flex justify-content-between mb-4">
             <h2 class="text-muted">Members</h2>
-            <x-bg-modal btn="New Member" class="modal-dialog-centered modal-xl" id="create">
+            <x-bg-modal btn="New Member"  icon="fa-plus" btnClass="btn-primary" class="modal-dialog-centered modal-xl" id="create">
                 <div class="modal-body p-4">
                     <h4 class="text-center fw-bold mb-3 mt-3">{{ __('Add New Member ') }}</h4>
                     <form action="{{ route('users.store') }}" method="POST">
@@ -29,7 +29,7 @@
                         </div>
                     </form>
                 </div>
-            </x-bg-modal>
+         </x-bg-modal>
         </div>
 
         @if ($errors->any())
@@ -56,13 +56,13 @@
             <tbody>
                 @foreach ($users as $user)
                 <tr class="border-bottom">
-                    <td class="py-4">{{ $user->first_name }} {{ $user->last_name }}</td>
-                    <td class="py-4">{{ $user->phone }}</td>
-                    <td class="py-4"> {{ $user->email }}</td>
-                    <td class="py-4">{{ $user->role }}</td>
-                    <td class="py-4">
+                    <td class="py-2">{{ $user->first_name }} {{ $user->last_name }}</td>
+                    <td class="py-2">{{ $user->phone }}</td>
+                    <td class="py-2"> {{ $user->email }}</td>
+                    <td class="py-2">{{ $user->role }}</td>
+                    <td class="py-2">
                         <div class="">
-                            <x-bg-modal btn="Edit" class="modal-dialog-centered modal-xl"
+                            <x-bg-modal icon="fa-edit text-muted" class="me-5 modal-dialog-centered modal-xl"
                             id="update{{ $user->id }}">
                             <div class="modal-body p-4">
                                 <h4 class="text-center my-3 fw-bold">Update Member Info</h4>
@@ -80,7 +80,7 @@
                                 </form>
                             </div>
                         </x-bg-modal>
-                        <x-bg-modal btn="Delete" class="modal-dialog-centered"
+                        <x-bg-modal icon="fa-trash text-muted" class="modal-dialog-centered"
                             id="delete{{ $user->id }}">
                             <div class="modal-body p-4">
                                 <form action="{{ route('users.destroy', $user->id) }}" method="POST">
