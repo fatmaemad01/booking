@@ -1,5 +1,7 @@
 <x-main-layout title="Profile">
 
+<x-secondary-nav heading="{{ auth()->user()->first_name }} Profile" />
+    
     <div class="container pt-1 shadow-lg">
 
         <div class="content w-75 m-auto rounded text-center p-2 d-flex justify-content-between">

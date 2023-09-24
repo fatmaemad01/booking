@@ -15,7 +15,7 @@ class AdminController extends Controller
     // Dashboard => show all member booking requests
     public function adminDashboard()
     {
-        $requests = BookingRequest::all();
+        $requests = BookingRequest::simplePaginate(3);
 
         return view('admin.dashboard', compact('requests'));
     }

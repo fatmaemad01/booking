@@ -44,6 +44,7 @@
 
         .sidebar .btn:hover {
             font-weight: bold;
+            color: #fff;
         }
 
         .sidebar a:hover {
@@ -111,7 +112,6 @@
             border: #fff 1px solid;
             margin-bottom: 0px;
         }
-
     </style>
 </head>
 
@@ -122,22 +122,24 @@
         <h6 class="fw-bold  ">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h6>
         <h6 style="font-size: 14px">GSG {{ Auth::user()->role }}</h6>
         <hr>
-        <a href="{{ route('calender') }}" class="icon-text ms-3"><i class="fas fa-calendar"></i></i><span
-                class="ms-4">Calendar</span></a>
-        <a href="" class="icon-text ms-3"><i class="fas fa-map"></i> <span class="ms-3">Spaces</span></a>
-        <a href="{{ route('branch.index') }}" class="icon-text ms-3"><i class="fas fa-code-branch"></i></i> <span
-                class="ms-4">Branches</span></a>
+
         @if (Auth::user()->role == 'admin')
             <a href="{{ route('admin.dashboard') }}" class="icon-text ms-3"><i class="fas fa-eye"></i><span
-                    class="ms-4">Requests</span></a>
+                    class="ms-4">Dashboard</span></a>
 
             <a href="{{ route('users.index') }}" class="icon-text ms-3"><i class="fas fa-users"></i> <span
                     class="ms-3">Members</span></a>
         @elseif (Auth::user()->role == 'member')
-            <a href="{{ route('admin.dashboard') }}" class="icon-text ms-3"><i class="fas fa-eye"></i><span
+        <a href="{{ route('member.dashboard') }}" class="icon-text ms-3"><i class="fas fa-eye"></i><span
+            class="ms-4">Dashboard</span></a>
+            <a href="{{ route('request.index') }}" class="icon-text ms-3"><i class="fas fa-eye"></i><span
                     class="ms-4">Your Request</span></a>
         @endif
-        {{-- <x-user-notifications-menu /> --}}
+        
+        <a href="{{ route('calender') }}" class="icon-text ms-3"><i class="fas fa-calendar"></i></i><span
+                class="ms-4">Calendar</span></a>
+        <a href="{{ route('branch.index') }}" class="icon-text ms-3"><i class="fas fa-code-branch"></i></i> <span
+                class="ms-4">Branches</span></a>
         <a class="icon-text text-white ms-1">
             <form method="POST" action="{{ route('logout') }}">
                 @csrf

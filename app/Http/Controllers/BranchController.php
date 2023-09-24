@@ -50,6 +50,13 @@ class BranchController extends Controller
     }
 
 
+    public function show(Branch $branch)
+    {
+        $days = $branch->workDays();
+
+        return view('admin.branch.show' ,compact('branch' , 'days'));
+    }
+
     public function update(BranchRequest $request, Branch $branch)
     {
 

@@ -1,4 +1,5 @@
 <x-main-layout title="Calender">
+    <x-secondary-nav heading="Calender" />
 
 
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css" rel="stylesheet" />
@@ -29,7 +30,6 @@
         });
     </script>
     
-        <h1>Calender</h1>
         <div id='calendar' class='calendar-container p-4'></div>
       
     </x-main-layout>

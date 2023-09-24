@@ -27,7 +27,7 @@ class BookingRequestController extends Controller
 
     public function index()
     {
-        $requests = BookingRequest::where('user_id', '=', Auth::id())->get();
+        $requests = BookingRequest::where('user_id', '=', Auth::id())->simplePaginate(3);
         
         $days = Day::all();
 

@@ -1,6 +1,6 @@
 @props([
-'branch' , 'branchId'
-])
+    'space' , 'spaceId' , 'spaceImg' , 'spaceStartTime' , 'spaceEndTime'
+    ])
 
 
 <!DOCTYPE html>
@@ -10,8 +10,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css">
 
     {{-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> --}}
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -24,11 +22,52 @@
         @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
         @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700');
 
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        *:hover {
+            -webkit-transition: all 1s ease;
+            transition: all 1s ease;
+        }
+
+        section {
+            float: left;
+            width: 100%;
+            background: #fff;
+            padding: 30px 0;
+        }
+
+        h1 {
+            float: left;
+            width: 100%;
+            color: #232323;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        h1 span {
+            font-family: 'Libre Baskerville', serif;
+            display: block;
+            font-size: 45px;
+            text-transform: none;
+            margin-bottom: 20px;
+            margin-top: 30px;
+            font-weight: 700
+        }
+
+        h1 a {
+            color: #131313;
+            font-weight: bold;
+        }
+
+
         .card {
-            border-radius: 20px;
+            font-family: 'Open Sans', Arial, sans-serif;
             position: relative;
+            float: left;
             overflow: hidden;
-            width: 90%;
+            width: 100%;
             text-align: center;
             height: 368px;
             border: 1px solid #eee;
@@ -36,21 +75,46 @@
             padding-bottom: 10px;
         }
 
+        .card .background-block {
+            float: left;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
         .card .background-block .background {
             width: 100%;
-            height: 150px;
             vertical-align: top;
             opacity: 0.9;
-            filter: blur(0.2px);
-            transform: scale(2);
+            -webkit-filter: blur(0.3px);
+            filter: blur(0.3px);
+            -webkit-transform: scale(1.8);
+            transform: scale(1.8);
         }
 
         .card .card-content {
+            text-align: center;
             width: 100%;
-            margin-top: 60px;
             padding: 15px 25px;
+            color: #232323;
+            float: left;
+            background: #fff;
+            height: 50%;
             border-radius: 0 0 5px 5px;
             position: relative;
+            z-index: 9999;
+        }
+
+        .card .card-content::before {
+            content: '';
+            background: #fff;
+            width: 120%;
+            height: 100%;
+            left: 11px;
+            bottom: 51px;
+            position: absolute;
+            z-index: -1;
+            transform: rotate(-13deg);
         }
 
         .card .button {
@@ -61,17 +125,25 @@
             color: #fff;
             border: none;
             position: absolute;
-            bottom: 28%;
+            bottom: 45%;
             left: 50%;
             max-width: 50%;
             opacity: 1;
+            /* box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5); */
+            -webkit-transform: translate(-50%, 0%);
             transform: translate(-50%, 0%);
+            z-index: 99999;
         }
 
         .card h2 {
             margin: 0 0 5px;
             font-weight: 600;
             font-size: 25px;
+        }
+
+        .card p {
+            font-size: 16px;
+            text-align: center;
         }
 
 
@@ -89,8 +161,9 @@
         }
 
         .card .icon-block {
+            float: left;
             width: 100%;
-            margin-top: 13px;
+            margin-top: 15px;
         }
 
         .card .icon-block a {
@@ -111,19 +184,18 @@
     <div class="col-md-4">
         <div class="card">
             <div class="background-block">
-                <img src="{{ asset('assets/img/gsg2.jpg')}}" alt="" class="background" />
+                <img src="{{ asset('storage/app/public/'.$spaceImg) }}" alt="" class="background" />
             </div>
             <div class="btn">
-                <a href="{{ route('branch.space.index' , $branchId)}}" class="button">show spaces</a>
+                <a href="#" class="button">Book Now</a>
             </div>
             <div class="card-content">
-                <h2>{{$branch}}</h3>
-                    {{$slot}}
+                <h2>{{$space}}</h2>
+                <small>{{$spaceStartTime}}</small> - <small>{{$spaceEndTime}}</small>
+                <div class="icon-block"><a href="#"><i class="fas fa-pen"></i></a><a href="#"> <i class="fa fa-trash"></i></a></div>
             </div>
         </div>
     </div>
-
-
 </body>
 
 </html>

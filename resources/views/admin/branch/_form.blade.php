@@ -3,13 +3,13 @@
     <div class="col-md-6">
         <x-form.form-outline>
             <label class="form-label" for="name">Branch Name</label>
-            <x-form.input name="name" id="name" :value="$branch->name" />
+            <x-form.input name="name" id="name" :value="old('name',$branch->name)" />
         </x-form.form-outline>
     </div>
     <div class="col-md-6">
         <x-form.form-outline>
             <label class="form-label" for="location">Location</label>
-            <x-form.input name="location" id="location" :value="$branch->location" />
+            <x-form.input name="location" id="location" :value="old('location',$branch->location)" />
         </x-form.form-outline>
     </div>
 </div>
@@ -20,13 +20,13 @@
     <div class="col-6">
         <x-form.form-outline>
             <label class="form-label" for="start_time">Open At</label>
-            <x-form.input type="time" name="start_time" id="start_time" :value="$branch->start_time" />
+            <x-form.input type="time" name="start_time" id="start_time" :value="old('start_time',$branch->start_time)" />
         </x-form.form-outline>
     </div>
     <div class="col-6">
         <x-form.form-outline>
             <label class="form-label" for="end_time">Close At</label>
-            <x-form.input type="time" name="end_time" id="end_time" :value="$branch->end_time" />
+            <x-form.input type="time" name="end_time" id="end_time" :value="old('end_time',$branch->end_time)" />
         </x-form.form-outline>
     </div>
 </div>

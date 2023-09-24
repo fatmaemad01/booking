@@ -1,4 +1,6 @@
+
 <x-main-layout title="member dashboard">
+<x-secondary-nav heading="All Spaces" />
 
     <x-alert name="success" class="alert alert-success my-4" />
 
@@ -73,5 +75,6 @@
             </div>
         </div>
     </div>
+
 
 </x-main-layout>

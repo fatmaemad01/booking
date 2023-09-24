@@ -41,13 +41,9 @@
 </head>
 
 <body>
-
-
      <x-sidebar>
     <div class="container my-3">
         <main id="main">
-            <x-secondary-nav />
-
             {{ $slot }}
         </main>
     </div>
