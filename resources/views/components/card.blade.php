@@ -10,6 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css">
 
     {{-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> --}}
@@ -22,46 +23,6 @@
         @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
         @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
         @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700');
-
-        /* body {
-            font-family: 'Open Sans', sans-serif;
-        }
-
-        *:hover {
-            -webkit-transition: all 1s ease;
-            transition: all 1s ease;
-        } */
-/*
-        section {
-            float: left;
-            width: 100%;
-            background: #fff;
-            padding: 30px 0;
-        }
-
-        h1 {
-            float: left;
-            width: 100%;
-            color: #232323;
-            margin-bottom: 30px;
-            font-size: 14px;
-        } */
-
-        h1 span {
-            font-family: 'Libre Baskerville', serif;
-            display: block;
-            font-size: 45px;
-            text-transform: none;
-            margin-bottom: 20px;
-            margin-top: 30px;
-            font-weight: 700
-        }
-
-        h1 a {
-            color: #131313;
-            font-weight: bold;
-        }
-
 
         .card {
             border-radius: 20px;
