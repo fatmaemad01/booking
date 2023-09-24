@@ -51,6 +51,13 @@
                     <li><a href="#contact">Contact</a></li>
                     @if(!Auth::user())
                     <a href="{{ route('login') }}"> <button class="btn btn-get-started ms-2">Login</button></a>
+                    @else
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="btn btn-get-started">Logout</button>
+                        </form>
+                    </li>
                 @endif
             </ul>
         </nav><!-- .navbar -->
