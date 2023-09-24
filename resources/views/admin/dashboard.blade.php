@@ -30,12 +30,12 @@
                         <td class=" py-4">{{ $request?->start_time }}</td>
                         <td class=" py-4">{{ $request?->end_time }}</td>
                         <td class=" py-4">
-                            @foreach ($request->days as $day)
+                            {{-- @foreach ($request->days as $day)
                                 {{ $day }}
                                 @if (!$loop->last)
                                     ,
                                 @endif
-                            @endforeach
+                            @endforeach --}}
                         </td>
                         <td class="d-flex align-items-center py-4">
                             <x-bg-modal btn="accept" class="modal-dialog-centered " id="accept{{ $request->id }}">

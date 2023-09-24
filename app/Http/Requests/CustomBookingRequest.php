@@ -27,7 +27,7 @@ class CustomBookingRequest extends FormRequest
     {
         return [
             // 'user_id' => ['required', 'exists:users,id' , new OneUserRequest()],
-            'start_date' => 'required|date',
+            'start_date' => 'required|date|after:today',
             'end_date' => 'required|date|after_or_equal:start_date',
             'start_time' => 'required',
             'end_time' => 'required|after:start_time',

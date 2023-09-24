@@ -40,17 +40,18 @@
 </head>
 
 <body>
-    <x-nav />
-    <div class="container my-5">
+    <x-sidebar>
+    <div class="container my-3">
         <main id="main">
+          
             @include('booking-instructions')
             {{ $slot }}
         </main>
     </div>
-
+</x-sidebar>
 
     {{-- <x-page-footer /> --}}
-    
+
     {{--<footer id="footer" class="footer mt-5">
         <div class="container">
             <div class="row gy-4">
@@ -121,7 +122,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     @stack('scripts')
-    
+
 </body>
 
 </html>
