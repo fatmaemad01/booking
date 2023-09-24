@@ -1,6 +1,6 @@
 <x-main-layout title="Spaces">
 
-<x-secondary-nav heading="{{ $branch->name }} Spaces" />
+    <x-secondary-nav heading="{{ $branch->name }} Spaces" />
 
     <x-alert name="success" class="alert alert-success my-3" />
     @if ($errors->any())
@@ -15,7 +15,7 @@
 
     <div class="d-flex justify-content-between">
         <h1 class="d-flex"></h1>
-        @if (Auth::user()->role == 'admin')
+        @can('create' , ['App\Models\Branch' , $branch])
             <x-bg-modal btn="New Space" icon="fa-plus" btnClass="btn-primary" class="modal-dialog modal-xl" id="create">
                 <div class="modal-body p-4">
                     <h2 class="text-center my-3 fw-bold">Create New Space</h2>
@@ -28,7 +28,7 @@
                 </div>
 
             </x-bg-modal>
-        @endif
+        @endcan
     </div>
 
     @push('styles')
@@ -57,46 +57,51 @@
                     </div>
                     </x-bg-modal>
                     <h4 class="card-title text-center" style="font-weight: bold">{{ $space->name }}</h4>
-                    @if (Auth::user()->role == 'admin')
-                        <div class="d-flex justify-content-center mb-3">
-                            <x-bg-modal icon="fa-edit text-muted mx-2" class="modal-dialog-centered modal-xl"
-                                id="edit{{ $space->id }}">
-                                <div class="modal-body p-4">
-                                    <h4 class="text-center my-3 fw-bold">Update Space Info</h4>
-                                    <form action="{{ route('branch.space.update', [$branch->id, $space->id]) }}"
-                                        method="POST" enctype="multipart/form-data">
-                                        @method('put')
-                                        @include('admin.space._form', [
-                                            'btn' => 'Update Space',
-                                        ])
-                                    </form>
-                                </div>
-                            </x-bg-modal>
-                            <x-bg-modal icon="fa-trash text-muted mx-2" class="modal-dialog-centered "
-                                id="delete{{ $space->id }}">
-                                <div class="modal-body p-5 text-center">
-                                    <form action="{{ route('branch.space.destroy', [$branch->id, $space->id]) }}"
-                                        method="POST">
-                                        @method('delete')
-                                        @csrf
-                                        <h4 class="mb-2">Are You Sure ?</h4>
-                                        <h5 class="text-secondary mb-3">You Will Delete {{ $space->name }}
-                                            {{ $space->type }} Forever.</h5>
+                    <div class="d-flex justify-content-center mb-3">
+                        @can('update', ['App/Models/Space', $space])
+                            <div class="d-flex justify-content-center mb-3">
+                                <x-bg-modal icon="fa-edit text-muted mx-2" class="modal-dialog-centered modal-xl"
+                                    id="edit{{ $space->id }}">
+                                    <div class="modal-body p-4">
+                                        <h4 class="text-center my-3 fw-bold">Update Space Info</h4>
+                                        <form action="{{ route('branch.space.update', [$branch->id, $space->id]) }}"
+                                            method="POST" enctype="multipart/form-data">
+                                            @method('put')
+                                            @include('admin.space._form', [
+                                                'btn' => 'Update Space',
+                                            ])
+                                        </form>
+                                    </div>
+                                </x-bg-modal>
+                            @endcan
+                            @can('delete', ['App/Models/Space', $space])
+                                <x-bg-modal icon="fa-trash text-muted mx-2" class="modal-dialog-centered "
+                                    id="delete{{ $space->id }}">
+                                    <div class="modal-body p-5 text-center">
+                                        <form action="{{ route('branch.space.destroy', [$branch->id, $space->id]) }}"
+                                            method="POST">
+                                            @method('delete')
+                                            @csrf
+                                            <h4 class="mb-2">Are You Sure ?</h4>
+                                            <h5 class="text-secondary mb-3">You Will Delete {{ $space->name }}
+                                                {{ $space->type }} Forever.</h5>
 
-                                        <div class="d-flex justify-content-center">
-                                            <button type="submit" class="btn btn-success me-4 ">
-                                                <i class="fas fa-check fs-4"></i>
-                                            </button>
+                                            <div class="d-flex justify-content-center">
+                                                <button type="submit" class="btn btn-success me-4 ">
+                                                    <i class="fas fa-check fs-4"></i>
+                                                </button>
 
-                                            <button type="button" class="btn btn-danger " data-dismiss="modal"><i
-                                                    class="fas fa-times fs-4"></i>
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </x-bg-modal>
-                        </div>
-                    @endif
+                                                <button type="button" class="btn btn-danger " data-dismiss="modal"><i
+                                                        class="fas fa-times fs-4"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </x-bg-modal>
+                            </div>
+                        @endcan
+
+                    </div>
                 </div>
             </div>
     </div>

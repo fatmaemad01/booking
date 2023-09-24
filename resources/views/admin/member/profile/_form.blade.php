@@ -11,7 +11,7 @@
         <x-form.form-outline>
         <label class="form-label" for="locale">Change Your Language</label>
         <select name="locale" id="locale" class="form-control">
-            <option value="">Select A Language</option>
+            <option value="{{ $user->locale }}">Select A Language</option>
             <option value="en">En</option>
             <option value="ar">Ar</option>
         </select>    

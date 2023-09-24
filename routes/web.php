@@ -37,12 +37,17 @@ Route::get('/calender',[CalenderController::class , 'index'])->name('calender');
 require __DIR__ . '/auth.php';
 
 Route::middleware(['auth'])->group(function () {
-    Route::resource('branch' , BranchController::class);
-    Route::resource('branch.space' , SpaceController::class);
+    Route::resource('branch' , BranchController::class)->except([
+        'create','edit',
+    ]);
+    Route::resource('branch.space' , SpaceController::class)->except([
+        'show','create','edit'
+    ]);
     Route::get('/profile', [UserController::class, 'show'])->name('profile.show');
     Route::put('/profile/{user}', [UserController::class, 'useredit'])->name('profile.useredit');
     Route::get('/change-language/{locale}', [UserController::class, 'changeLanguage'])->name('change.language');
     Route::get('/calender' , [CalenderController::class , 'index'])->name('calender');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {

@@ -15,9 +15,9 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('model:prune')->daily();
 
-        $schedule->job(new ComingRequestNotifications)->daily();
+        $schedule->job(new ComingRequestNotifications)->dailyAt('12:19');
 
-        $schedule->command('queue:work')->daily();
+        $schedule->command('queue:work')->dailyAt('12:19');
     }
 
     /**

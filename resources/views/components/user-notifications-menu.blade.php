@@ -1,6 +1,6 @@
     <a class="icon-text fs-6 " role="button" data-bs-toggle="dropdown" aria-expanded="false">
         @if ($unreadCount)
-            {{-- <span class="badge bg-dark me-1">{{ $unreadCount }}</span> --}}
+            <span class="badge me-1">{{ $unreadCount }}</span>
         @endif
         <div class="icon-text ms-3"><i class="fas fa-bell"></i></i><span
             class=""></span></div>
@@ -8,7 +8,7 @@
     <ul class="dropdown-menu p-2">
         @foreach ($notifications as $notification)
             <li>
-                <a  class="dropdown text-black" 
+                <a class="dropdown text-black" 
                     href="{{ isset($notification->data['link']) ? $notification->data['link'] . '?nid=' . $notification->id : '#' }}">
                     @if ($notification->unread())
                         <b>*</b>

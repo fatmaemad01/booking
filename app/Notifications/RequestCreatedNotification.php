@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\DatabaseMessage;
+use Illuminate\Support\Facades\Auth;
 
 class RequestCreatedNotification extends Notification
 {
@@ -37,7 +38,7 @@ class RequestCreatedNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line(__('A new request is created by :name') , ['name' => request('first_name')])
+                    ->line(__('A new request is created by :name') , ['name' => Auth::user()->first_name.' '.Auth::user()->last_name])
                     ->action('Check it', route('admin.dashboard'))
                     ->line('Thank you for using our application!');
     }
@@ -50,11 +51,11 @@ class RequestCreatedNotification extends Notification
     protected function createMessage(): array
     {
         return [
-            'title' => __('a new request is created'),
+            'title' => __('A new request is created by :name' , ['name' => Auth::user()->first_name.' '.Auth::user()->last_name]),
             'link' => route('admin.dashboard'),
         ];
     }
-    
+
     /**
      * Get the array representation of the notification.
      *

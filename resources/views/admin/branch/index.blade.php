@@ -28,6 +28,7 @@
         @foreach ($branches as $branch)
             <x-card :branch="$branch->name" :branchId="$branch->id">
                 <div class="d-flex justify-content-center">
+                    @can('update' , ['\App\Models\Branch' , $branch])
                     <x-bg-modal icon="fa-pen" class="modal-dialog modal-dialog-centered modal-xl"
                         id="edit{{ $branch->id }}">
                         <div class="modal-body p-4">
@@ -42,6 +43,8 @@
                             </form>
                         </div>
                     </x-bg-modal>
+                    @endcan
+                    @can('delete' , ['\App\Models\Branch' , $branch])
                     <x-bg-modal icon="fa-trash" class="modal-dialog-centered " id="delete{{ $branch->id }}">
                         <div class="modal-body p-4 text-center">
 
@@ -63,6 +66,7 @@
                             </form>
                         </div>
                     </x-bg-modal>
+                    @endcan
                 </div>
             </x-card>
         @endforeach

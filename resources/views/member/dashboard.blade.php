@@ -9,12 +9,6 @@
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h5 class="">Filter</h5>
                 <div class="d-flex">
-                    <select class="form-control text-white" id="nameFilter" style="background-color:#6ca9be">
-                        <option value="">Name</option>
-                        @foreach ($spaces as $space)
-                            <option value="{{ $space->name }}">{{ $space->name }}</option>
-                        @endforeach
-                    </select>
                     <select class="form-control text-white ms-2" id="branchFilter" style="background-color:#6ca9be">
                         <option value="">Branch</option>
                         @foreach ($branches as $branch)
@@ -30,8 +24,8 @@
                     
                 </div>
             </div>
+            <div class="table-responsive">
             <table class="table table-borderless" id="requestTable">
-
                 <thead>
                     <tr class="border-bottom">
                         <th scope="col">#</th>
@@ -45,7 +39,6 @@
                 <tbody>
                     @foreach ($spaces as $space)
                         <tr class="border-bottom"
-                            data-name="{{ $space->name }}"
                             data-branch="{{ $space->branch->name }}"
                             data-type="{{ $space->type }}">
                             <th scope="row">{{ $space->id }}</th>
@@ -71,6 +64,7 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
             
             <div class="d-flex justify-content-end">
                 {{ $spaces->links() }}
@@ -79,33 +73,28 @@
     </div>
 
     <script>
-        const nameFilter = document.getElementById('nameFilter');
         const branchFilter = document.getElementById('branchFilter');
         const typeFilter = document.getElementById('typeFilter');
         const requestTable = document.getElementById('requestTable');
     
         // Add event listeners to the filters
-        nameFilter.addEventListener('change', filterTable);
         branchFilter.addEventListener('change', filterTable);
         typeFilter.addEventListener('change', filterTable);
     
         function filterTable() {
-            const selectedName = nameFilter.value;
             const selectedBranch = branchFilter.value;
             const selectedType = typeFilter.value;
     
             const rows = requestTable.querySelectorAll('tbody tr');
     
             rows.forEach(row => {
-                const rowName = row.getAttribute('data-name');
                 const rowBranch = row.getAttribute('data-branch');
                 const rowType = row.getAttribute('data-type');
     
-                const nameMatch = !selectedName || rowName === selectedName;
                 const branchMatch = !selectedBranch || rowBranch === selectedBranch;
                 const typeMatch = !selectedType || rowType === selectedType;
     
-                if (nameMatch && branchMatch && typeMatch) {
+                if (branchMatch && typeMatch) {
                     row.style.display = '';
                 } else {
                     row.style.display = 'none';

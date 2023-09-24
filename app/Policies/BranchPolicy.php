@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Branch;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class BranchPolicy
 {
@@ -26,24 +27,36 @@ class BranchPolicy
 
     public function create(User $user): bool
     {
-        return $user->where('role' , 'admin')
-        ->exists();
+        if(Auth::user()->role == 'admin'){
+            $result = true;
+        }else{
+            $result= false;
+        }
+          return $result;
     }
 
     
 
     public function update(User $user, Branch $branch): bool
     {
-        return $user->where('role' , 'admin')
-        ->exists();
+        if(Auth::user()->role == 'admin'){
+            $result = true;
+        }else{
+            $result= false;
+        }
+          return $result;
     }
 
     
 
     public function delete(User $user, Branch $branch): bool
     {
-        return $user->where('role' , 'admin')
-        ->exists();
+        if(Auth::user()->role == 'admin'){
+            $result = true;
+        }else{
+            $result= false;
+        }
+          return $result;
     }
    
 

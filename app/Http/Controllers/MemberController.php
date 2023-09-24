@@ -12,7 +12,7 @@ class MemberController extends Controller
     public function index()
     {
 
-        $spaces = Space::simplePaginate(3);
+        $spaces = Space::simplePaginate(6);
         $uniqueTypes = DB::table('spaces')->select('type')->distinct()->pluck('type');
 
 

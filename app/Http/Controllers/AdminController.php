@@ -18,7 +18,7 @@ class AdminController extends Controller
     public function adminDashboard(Request $request)
     {
     
-        $requests = BookingRequest::simplePaginate(3);
+        $requests = BookingRequest::where('status' , 'pending')->simplePaginate(5);
 
         $uniqueTypes = DB::table('spaces')->select('type')->distinct()->pluck('type');
 

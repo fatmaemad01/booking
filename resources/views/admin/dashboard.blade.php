@@ -43,14 +43,14 @@
                     <tr class="border-bottom" 
                         data-name="{{ $request->space?->name }}"
                         data-type="{{ $request->space?->type }}">
-                        <td class=" py-4">{{ $request->user?->first_name }}</td>
-                        <td class=" py-4">{{ $request->space?->name }}</td>
-                        <td class=" py-4">{{ $request->space?->type }}</td>
-                        <td class=" py-4"> {{ $request?->start_date }}</td>
-                        <td class=" py-4">{{ $request?->end_date }}</td>
-                        <td class=" py-4">{{ $request?->start_time }}</td>
-                        <td class=" py-4">{{ $request?->end_time }}</td>
-                        <td class=" py-4">
+                        <td class=" py-3">{{ $request->user?->first_name }}</td>
+                        <td class=" py-3">{{ $request->space?->name }}</td>
+                        <td class=" py-3">{{ $request->space?->type }}</td>
+                        <td class=" py-3"> {{ $request?->start_date }}</td>
+                        <td class=" py-3">{{ $request?->end_date }}</td>
+                        <td class=" py-3">{{ $request?->start_time }}</td>
+                        <td class=" py-3">{{ $request?->end_time }}</td>
+                        <td class=" py-3">
                             @foreach ($request->days as $day)
                                 {{ $day }}
                                 @if (!$loop->last)
@@ -58,8 +58,8 @@
                                 @endif
                             @endforeach
                         </td>
-                        <td class="d-flex align-items-center py-4">
-                            <x-bg-modal btn="accept" class="modal-dialog-centered " id="accept{{ $request->id }}">
+                        <td class="d-flex align-items-center py-3">
+                            <x-bg-modal icon="fa-solid fa-check"  class="modal-dialog-centered " id="accept{{ $request->id }}">
                                 <div class="modal-body p-4">
                                     <form action="{{ route('request.accept', $request->id) }}" method="post">
                                         @csrf
@@ -79,7 +79,7 @@
                                     </form>
                                 </div>
                             </x-bg-modal>
-                            <x-bg-modal btn="deny" class="modal-dialog-centered " id="deny{{ $request->id }}">
+                            <x-bg-modal icon="fa-times  text-danger" class="modal-dialog-centered" id="deny{{ $request->id }}">
                                 <div class="modal-body p-4">
                                     <form action="{{ route('request.reject', $request->id) }}" method="post">
                                         @csrf

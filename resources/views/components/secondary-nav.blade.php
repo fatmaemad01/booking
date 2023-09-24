@@ -4,7 +4,7 @@
 </div>
 <div class="d-flex align-items-center">
     <x-user-notifications-menu />
-    <img src="{{asset('assets/img/gsg.jpg')}}" width="30" height="30" class="rounded-circle" alt="">
+    <img src="{{asset('storage/'. Auth::user()->personal_image)}}" width="30" height="30" class="rounded-circle" alt="">
     
 </div>
     

@@ -47,59 +47,9 @@
             {{ $slot }}
         </main>
     </div>
+    
      </x-sidebar>
 
-    {{-- <x-page-footer /> --}}
-
-    {{--<footer id="footer" class="footer mt-5">
-        <div class="container">
-            <div class="row gy-4">
-                <div class="col-lg-4  col-md-12 footer-info" style="margin-top: 5px">
-                    <img src="{{ asset('assets/logo.png') }}" alt="" height="100px" width="100px"
-                        style="border-radius: 50%" class="ms-5 mt-4">
-                    <div class="social-links d-flex mt-4 ms-4">
-                        <a href="https://www.youtube.com/user/GazaSkyGeeks" class="youtube"><i
-                                class="bi bi-youtube"></i></a>
-                        <a href="https://www.facebook.com/GazaSkyGeeks/" class="facebook"><i
-                                class="bi bi-facebook"></i></a>
-                        <a href="https://www.instagram.com/gazaskygeeks/" class="instagram"><i
-                                class="bi bi-instagram"></i></a>
-                        <a href="https://www.linkedin.com/company/gaza-sky-geeks/" class="linkedin"><i
-                                class="bi bi-linkedin"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-6 footer-links">
-                    <h4>Our Services</h4>
-                    <ul>
-                        <li><a href="#">Web Design</a></li>
-                        <li><a href="#">Web Development</a></li>
-                        <li><a href="#">Marketing</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-                    <h4>Contact Us</h4>
-                    <p>
-                        <strong>Email:</strong> info@gazaskygeeks.com<br>
-                        <strong>Email:</strong> press@gazaskygeeks.com<br>
-                    </p>
-                </div>
-                <div class="col-lg-2 col-6 footer-links">
-                    <h4>Location</h4>
-                    <p>
-                        UNWRA HQ Square <br> Almotaz 3 Building <br> Mezzanine level <br>
-                        Gaza city, Gaza Strip <br>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="container mt-4">
-            <div class="copyright">
-                &copy; {{ now()->year }} Copyright <strong><span>MercyCorps</span></strong> &
-                <strong><span>GazaSkyGeeks</span></strong>
-            </div>
-        </div>
-    </footer>--}}
 
     <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>

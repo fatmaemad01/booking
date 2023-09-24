@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Space;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class SpacePolicy
 {
@@ -31,8 +32,10 @@ class SpacePolicy
      */
     public function create(User $user): bool
     {
-        return $user->where('role' , 'admin')
-        ->exists();
+        if (Auth::user()->role == 'admin') {
+            return true;
+        } else
+        return false;
     }
 
     /**
@@ -40,8 +43,10 @@ class SpacePolicy
      */
     public function update(User $user, Space $space): bool
     {
-        return $user->where('role' , 'admin')
-        ->exists();
+        if (Auth::user()->role == 'admin') {
+            return true;
+        } else
+        return false;
     }
 
     /**
@@ -49,8 +54,10 @@ class SpacePolicy
      */
     public function delete(User $user, Space $space): bool
     {
-        return $user->where('role' , 'admin')
-        ->exists();
+        if (Auth::user()->role == 'admin') {
+            return true;
+        } else
+            return false;
     }
 
 }
