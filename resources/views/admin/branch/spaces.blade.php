@@ -23,7 +23,7 @@
                         ])
                     </form>
                 </div>
-                
+
             </x-bg-modal>
         @endif
     </div>
@@ -33,7 +33,7 @@
         @foreach ($spaces as $space)
             <div class="col-md-3">
                 <div class="card mb-4 border-0 shadow-lg" style="max-width: 20rem;">
-                    <img class="card-img-top" src="{{ asset('assets/img/gsg2.jpg') }}" alt="" height="150">
+                    <img class="card-img-top" src="{{ asset('storage/app/public/'.$space->image) }}" alt="" height="150">
                     <div class="card-body py-4 px-4">
                         <h4 class="card-title mb-4" style="font-weight: bold">{{ $space->name }}</h4>
                         @if (Auth::user()->role == 'member')
