@@ -14,12 +14,22 @@
         </div>
     @endif
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class=""></h1>
-    </div>
+   
     <div class="row mb-4 m-0"
         style="border-radius: 20px; background: #fff; padding: 20px; box-shadow: 2px 3px 7px 0px #d2d2d2;">
-        <table class="table table-borderless">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h5 class="">Filter</h5>
+            <div class="row">
+                <select class="form-control text-white" id="statusFilter" style="background-color:#6ca9be">
+                    <option value="">All</option>
+                    @foreach ($status as $statusType)
+                    <option value="{{$statusType}}">{{$statusType}}</option> 
+                    @endforeach
+                </select> 
+            </div>
+        </div>
+        <table class="table table-borderless" id="requestTable">
+
             <thead>
                 <tr class="border-bottom">
                     <th scope="col">#</th>
@@ -35,7 +45,7 @@
             </thead>
             <tbody>
                 @foreach ($requests as $request)
-                <tr class="border-bottom">
+                <tr class="border-bottom" data-status="{{ $request->status }}">
                     <td class="py-4">{{ $request->id }}</td>
                     <td class="py-4">{{ $request->space->name }}</td>
                     <td class="py-4"> {{ $request->start_date }}</td>
@@ -63,5 +73,25 @@
         </div>
     </div>
 
+    <script>
+        const statusFilter = document.getElementById('statusFilter');
+        const requestTable = document.getElementById('requestTable');
+      
+        statusFilter.addEventListener('change', function () {
+            const selectedStatus = statusFilter.value;
+            const rows = requestTable.querySelectorAll('tbody tr');
+      
+            rows.forEach(row => {
+                const rowStatus = row.getAttribute('data-status');
+                if (!selectedStatus || rowStatus === selectedStatus) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+      </script>
+      
 
 </x-main-layout>
+

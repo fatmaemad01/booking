@@ -123,8 +123,8 @@
         <h6 class="fw-bold  ">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h6>
         <h6 style="font-size: 14px">GSG {{ Auth::user()->role }}</h6>
         <hr>
-
-        <a href="{{ route('home') }}" class="icon-text ms-3"><i class="fas fa-home"></i></i><span class="ms-4">Home</span></a>
+        <a href="{{ route('home') }}" class="icon-text ms-3"><i class="fas fa-home"></i><span
+            class="ms-4">Home</span></a>
         @if (Auth::user()->role == 'admin')
         <a href="{{ route('admin.dashboard') }}" class="icon-text ms-3"><i class="fas fa-tachometer-alt"></i><span class="ms-4">Dashboard</span></a>
 
