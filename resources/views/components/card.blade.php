@@ -30,41 +30,8 @@
             transition: all 1s ease;
         }
 
-        section {
-            float: left;
-            width: 100%;
-            background: #fff;
-            padding: 30px 0;
-        }
-
-        h1 {
-            float: left;
-            width: 100%;
-            color: #232323;
-            margin-bottom: 30px;
-            font-size: 14px;
-        }
-
-        h1 span {
-            font-family: 'Libre Baskerville', serif;
-            display: block;
-            font-size: 45px;
-            text-transform: none;
-            margin-bottom: 20px;
-            margin-top: 30px;
-            font-weight: 700
-        }
-
-        h1 a {
-            color: #131313;
-            font-weight: bold;
-        }
-
-
         .card {
-            font-family: 'Open Sans', Arial, sans-serif;
             position: relative;
-            float: left;
             overflow: hidden;
             width: 100%;
             text-align: center;
@@ -85,9 +52,7 @@
             width: 100%;
             vertical-align: top;
             opacity: 0.9;
-            -webkit-filter: blur(0.3px);
             filter: blur(0.3px);
-            -webkit-transform: scale(1.8);
             transform: scale(1.8);
         }
 
@@ -100,7 +65,7 @@
             height: 50%;
             border-radius: 0 0 5px 5px;
             position: relative;
-            z-index: 9999;
+            z-index: 0;
         }
 
         .card .card-content::before {
@@ -127,10 +92,8 @@
             left: 50%;
             max-width: 50%;
             opacity: 1;
-            /* box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5); */
-            -webkit-transform: translate(-50%, 0%);
             transform: translate(-50%, 0%);
-            z-index: 99999;
+            z-index: 0;
         }
 
         .card h2 {
