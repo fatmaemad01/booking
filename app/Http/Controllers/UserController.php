@@ -89,7 +89,7 @@ class UserController extends Controller
     public function index()
     {
         $this->authorize('viewAny' , [User::class]);
-        $users = User::all();
+        $users = User::where('role' , 'member')->get();
         return view('admin.member.index', [
             'users' => $users,
             'user' => new User()

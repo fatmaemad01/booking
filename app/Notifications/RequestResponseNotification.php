@@ -37,8 +37,8 @@ class RequestResponseNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('check your request response')
-                    ->action('check it', route('member.dashboard'))
+                    ->line(__('check your request response'))
+                    ->action('check it', route('request.index'))
                     ->line('Thank you for using our application!');
     }
 
@@ -50,8 +50,8 @@ class RequestResponseNotification extends Notification
     protected function createMessage(): array
     {
         return [
-            'title' => 'check your request response',
-            'link' => route('member.dashboard'),
+            'title' => __('check your request response'),
+            'link' => route('request.index'),
         ];
     }
 
