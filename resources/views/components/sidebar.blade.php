@@ -44,6 +44,7 @@
 
         .sidebar .btn:hover {
             font-weight: bold;
+            color: #fff;
         }
 
         .sidebar a:hover {

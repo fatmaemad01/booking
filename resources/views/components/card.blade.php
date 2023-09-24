@@ -1,6 +1,6 @@
 @props([
-    'branch' , 'branchId'
-    ])
+'branch' , 'branchId'
+])
 
 
 <!DOCTYPE html>
@@ -24,19 +24,11 @@
         @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
         @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700');
 
-        body {
-            font-family: 'Open Sans', sans-serif;
-        }
-
-        *:hover {
-            -webkit-transition: all 1s ease;
-            transition: all 1s ease;
-        }
-
         .card {
+            border-radius: 20px;
             position: relative;
             overflow: hidden;
-            width: 100%;
+            width: 90%;
             text-align: center;
             height: 368px;
             border: 1px solid #eee;
@@ -44,43 +36,21 @@
             padding-bottom: 10px;
         }
 
-        .card .background-block {
-            float: left;
-            width: 100%;
-            height: 300px;
-            overflow: hidden;
-        }
-
         .card .background-block .background {
             width: 100%;
+            height: 150px;
             vertical-align: top;
             opacity: 0.9;
-            filter: blur(0.3px);
-            transform: scale(1.8);
+            filter: blur(0.2px);
+            transform: scale(2);
         }
 
         .card .card-content {
             width: 100%;
+            margin-top: 60px;
             padding: 15px 25px;
-            color: #232323;
-            float: left;
-            background: #fff;
-            height: 50%;
             border-radius: 0 0 5px 5px;
             position: relative;
-            z-index: 0;
-        }
-
-        .card .card-content::before {
-            content: '';
-            background: #fff;
-            width: 120%;
-            height: 100%;
-            left: 11px;
-            bottom: 51px;
-            position: absolute;
-            z-index: -1;
-            transform: rotate(-13deg);
         }
 
         .card .button {
@@ -91,12 +61,11 @@
             color: #fff;
             border: none;
             position: absolute;
-            bottom: 45%;
+            bottom: 28%;
             left: 50%;
             max-width: 50%;
             opacity: 1;
             transform: translate(-50%, 0%);
-            z-index: 0;
         }
 
         .card h2 {
@@ -120,9 +89,8 @@
         }
 
         .card .icon-block {
-            float: left;
             width: 100%;
-            margin-top: 15px;
+            margin-top: 13px;
         }
 
         .card .icon-block a {
