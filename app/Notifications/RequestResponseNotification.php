@@ -38,7 +38,7 @@ class RequestResponseNotification extends Notification
     {
         return (new MailMessage)
                     ->line(__('your Request is :status' , [
-                        'status' => $notifiable->books->status
+                        'status' => request('status')
                     ]))
                     ->action('check it', route('request.index'))
                     ->line('Thank you for using our application!');
@@ -53,7 +53,7 @@ class RequestResponseNotification extends Notification
     {
         return [
             'title' => __('your Request is :status' , [
-                'status' => $notifiable->books->status
+                'status' => request('status')
             ]),
             'link' => route('request.index'),
         ];
