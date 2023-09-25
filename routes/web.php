@@ -48,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/change-language/{locale}', [UserController::class, 'changeLanguage'])->name('change.language');
     Route::get('/calender' , [CalenderController::class , 'index'])->name('calender');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/request', [BookingRequestController::class, 'store'])->name('request.store');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -65,7 +66,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:member'])->group(function () {
     Route::get('member/dashboard', [MemberController::class, 'index'])->name('member.dashboard');
     Route::get('/member/request', [BookingRequestController::class, 'index'])->name('request.index');
-    Route::post('/request', [BookingRequestController::class, 'store'])->name('request.store');
 });
 
 

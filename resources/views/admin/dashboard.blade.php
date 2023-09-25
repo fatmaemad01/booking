@@ -68,7 +68,7 @@
                                         <input type="hidden" name="space_id" value="{{ $request->space_id }}">
                                         <x-form.form-outline>
                                             <label class="form-label" for="message">Message</label>
-                                            <textarea rows="5" name="message" id="message" class="form-control">{{ old('message', $request->message) }}</textarea>
+                                            <textarea rows="2" name="message" id="message" class="form-control">{{ old('message', $request->message) }}</textarea>
                                             <x-error-message name="message" />
                                         </x-form.form-outline>
                                         <div class="d-flex justify-content-center">
@@ -87,7 +87,7 @@
                                         <h4 class="mb-4 text-center">Deny a request</h4>
                                         <x-form.form-outline>
                                             <label class="form-label" for="message">Message</label>
-                                            <textarea rows="5" name="message" id="message" class="form-control">{{ old('message', $request->message) }}</textarea>
+                                            <textarea rows="2" name="message" id="message" class="form-control">{{ old('message', $request->message) }}</textarea>
                                             <x-error-message name="message" />
                                         </x-form.form-outline>
                                         <div class="d-flex justify-content-center">

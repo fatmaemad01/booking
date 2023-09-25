@@ -78,7 +78,10 @@ class BookingRequestController extends Controller
                 }
             }
             DB::commit();
+        
+
              event(new RequestCreated($bookingRequest));
+            //  dd($bookingRequest);
             return back()->with('success', __('Request Created Successfully!'));
         } catch (Exception $e) {
             return $e->getMessage();

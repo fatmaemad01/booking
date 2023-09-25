@@ -7,7 +7,7 @@
     <x-alert name="error" class="alert-danger" />
 
 
-    <div class="d-flex justify-content-between ">
+    <div class="d-flex justify-content-between " style="margin-bottom: 24px !important;">
         <h1></h1>
         @if (Auth::user()->role == 'admin')
             <x-bg-modal btn="New Branch" icon="fa-plus" btnClass="btn-primary"  class="modal-dialog modal-dialog-centered modal-xl" id="create">

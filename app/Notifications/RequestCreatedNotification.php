@@ -19,7 +19,6 @@ class RequestCreatedNotification extends Notification
      */
     public function __construct(protected BookingRequest $bookingRequest)
     {
-        
     }
 
     /**
@@ -29,7 +28,7 @@ class RequestCreatedNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['database' , 'mail'];
+        return ['database', 'mail'];
     }
 
     /**
@@ -37,10 +36,11 @@ class RequestCreatedNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
+        $content = __('A new request is created by :name', ['name' => Auth::user()->first_name . ' ' . Auth::user()->last_name]);
         return (new MailMessage)
-                    ->line(__('A new request is created by :name') , ['name' => Auth::user()->first_name.' '.Auth::user()->last_name])
-                    ->action('Check it', route('admin.dashboard'))
-                    ->line('Thank you for using our application!');
+            ->line($content)
+            ->action('Check it', route('admin.dashboard'))
+            ->line('Thank you for using our application!');
     }
 
     public function toDatabase(object $notifiable): DatabaseMessage  //|array
@@ -51,7 +51,7 @@ class RequestCreatedNotification extends Notification
     protected function createMessage(): array
     {
         return [
-            'title' => __('A new request is created by :name' , ['name' => Auth::user()->first_name.' '.Auth::user()->last_name]),
+            'title' => __('A new request is created by :name', ['name' => Auth::user()->first_name . ' ' . Auth::user()->last_name]),
             'link' => route('admin.dashboard'),
         ];
     }

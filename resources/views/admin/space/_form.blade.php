@@ -77,7 +77,7 @@
         <button type="submit" class="btn btn-primary" style="width: 20%">
             {{ $btn }}
         </button>
-        <button type="button" class="btn btn-get-started  mx-3" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-secondary-color  mx-3" data-dismiss="modal">Cancel</button>
 
     </div>
 </div>

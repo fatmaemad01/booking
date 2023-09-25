@@ -21,51 +21,49 @@
                             <option value="{{ $type }}">{{ $type }}</option>
                         @endforeach
                     </select>
-                    
+
                 </div>
             </div>
             <div class="table-responsive">
-            <table class="table table-borderless" id="requestTable">
-                <thead>
-                    <tr class="border-bottom">
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Branch</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Capacity</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($spaces as $space)
-                        <tr class="border-bottom"
-                            data-branch="{{ $space->branch->name }}"
-                            data-type="{{ $space->type }}">
-                            <th scope="row">{{ $space->id }}</th>
-                            <td>{{ $space->name }}</td>
-                            <td>{{ $space->branch->name }}</td>
-                            <td>{{ $space->type }}</td>
-                            <td>{{ $space->capacity }}</td>
-                            <td>
-                                @if (Auth::user()->role == 'member')
-                                    <x-bg-modal btn="Book"
-                                        class="modal-dialog-centered modal-dialog-scrollable modal-dialog modal-xl"
-                                        btnClass="btn-secondary-color"
-                                        id="create{{ $space->id }}">
-                                        <div class="modal-body p-4">
-                                            @include('member.request._form', [
-                                                'btn' => 'Book',
-                                            ])
-                                        </div>
-                                    </x-bg-modal>
-                                @endif
-                            </td>
+                <table class="table table-borderless" id="requestTable">
+                    <thead>
+                        <tr class="border-bottom">
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Branch</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Capacity</th>
+                            <th></th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-            
+                    </thead>
+                    <tbody>
+                        @foreach ($spaces as $space)
+                            <tr class="border-bottom" data-branch="{{ $space->branch->name }}"
+                                data-type="{{ $space->type }}">
+                                <th scope="row">{{ $space->id }}</th>
+                                <td>{{ $space->name }}</td>
+                                <td>{{ $space->branch->name }}</td>
+                                <td>{{ $space->type }}</td>
+                                <td>{{ $space->capacity }}</td>
+                                <td>
+                                    @if (Auth::user()->role == 'member')
+                                        <x-bg-modal btn="Book"
+                                            class="modal-dialog-centered modal-dialog-scrollable modal-dialog modal-xl"
+                                            btnClass="btn-secondary-color" id="create{{ $space->id }}">
+                                            <div class="modal-body p-4">
+                                                @include('member.request._form', [
+                                                    'btn' => 'Book',
+                                                ])
+                                            </div>
+                                        </x-bg-modal>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
             <div class="d-flex justify-content-end">
                 {{ $spaces->links() }}
             </div>
@@ -76,24 +74,24 @@
         const branchFilter = document.getElementById('branchFilter');
         const typeFilter = document.getElementById('typeFilter');
         const requestTable = document.getElementById('requestTable');
-    
+
         // Add event listeners to the filters
         branchFilter.addEventListener('change', filterTable);
         typeFilter.addEventListener('change', filterTable);
-    
+
         function filterTable() {
             const selectedBranch = branchFilter.value;
             const selectedType = typeFilter.value;
-    
+
             const rows = requestTable.querySelectorAll('tbody tr');
-    
+
             rows.forEach(row => {
                 const rowBranch = row.getAttribute('data-branch');
                 const rowType = row.getAttribute('data-type');
-    
+
                 const branchMatch = !selectedBranch || rowBranch === selectedBranch;
                 const typeMatch = !selectedType || rowType === selectedType;
-    
+
                 if (branchMatch && typeMatch) {
                     row.style.display = '';
                 } else {
@@ -102,6 +100,6 @@
             });
         }
     </script>
-    
-    
+
+
 </x-main-layout>

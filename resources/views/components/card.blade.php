@@ -54,7 +54,7 @@
         }
 
         .card .button {
-            border-radius: 15px;
+            border-radius: 9px;
             padding: 10px 20px;
             background: #5aafccf1;
             font-weight: bold;
@@ -98,7 +98,7 @@
         }
 
         .card i:hover {
-            background-color: #232323;
+            background-color: #929191;
             color: #fff;
             text-decoration: none;
         }

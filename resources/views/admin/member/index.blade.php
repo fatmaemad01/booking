@@ -27,7 +27,7 @@
                         <button type="submit" class="btn btn-primary" style="width: 20%">
                             Create
                         </button>
-                        <button type="button" class="btn btn-get-started  mx-3" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-secondary-color mx-3" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -49,7 +49,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h5 class="">Search by Name or Email</h5>
             <div class="form-group">
-                <input type="text" class="form-control" id="searchInput" placeholder="Search..">
+                <input type="text" class="form-control" id="searchInput" placeholder="Search.." >
             </div>
         </div>
         <table class="table table-borderless" id="requestTable">
@@ -71,7 +71,7 @@
                         <td class="py-2">{{ $user->role }}</td>
                         <td class="py-2">
                             <div class="">
-                                <x-bg-modal icon="fa-edit text-muted" class="me-5 modal-dialog-centered modal-xl"
+                                <x-bg-modal icon="fa-pen text-main" class=" modal-dialog-centered modal-xl"
                                     id="update{{ $user->id }}">
                                     <div class="modal-body p-4">
                                         <h4 class="text-center my-3 fw-bold">Update Member Info</h4>
@@ -83,13 +83,13 @@
                                                 <button type="submit" class="btn btn-primary" style="width: 20%">
                                                     Update
                                                 </button>
-                                                <button type="button" class="btn btn-get-started  mx-3"
+                                                <button type="button" class="btn btn-secondary-color mx-3"
                                                     data-dismiss="modal">Cancel</button>
                                             </div>
                                         </form>
                                     </div>
                                 </x-bg-modal>
-                                <x-bg-modal icon="fa-trash text-muted" class="modal-dialog-centered"
+                                <x-bg-modal icon="fa-trash text-danger" class="modal-dialog-centered"
                                     id="delete{{ $user->id }}">
                                     <div class="modal-body p-4">
                                         <form action="{{ route('users.destroy', $user->id) }}" method="POST">
@@ -104,7 +104,7 @@
                                                     <i class="fas fa-check fs-4"></i>
                                                 </button>
 
-                                                <button type="button" class="btn btn-danger " data-dismiss="modal"><i
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal"><i
                                                         class="fas fa-times fs-4"></i>
                                                 </button>
                                             </div>

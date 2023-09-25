@@ -47,10 +47,11 @@
             color: #fff;
         }
 
-        .sidebar a:hover {
+        .sidebar a.icon-text:hover {
             background-color: #c05934;
             font-weight: bold;
             color: #fff;
+            border-radius: 10px;
         }
 
         .sidebar-heading {
@@ -119,12 +120,10 @@
 <body>
 
     <div class="sidebar">
-        <img src="{{ asset('assets/logo.png') }}" alt="" height="70px" width="70px">
+      <a href="{{ route('home')}}" class="home"><img src="{{ asset('assets/logo.png') }}" alt="" height="70px" width="70px"></a>
         <h6 class="fw-bold  ">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h6>
         <h6 style="font-size: 14px">GSG {{ Auth::user()->role }}</h6>
         <hr>
-        <a href="{{ route('home') }}" class="icon-text ms-3"><i class="fas fa-home"></i><span
-            class="ms-4">Home</span></a>
         @if (Auth::user()->role == 'admin')
         <a href="{{ route('admin.dashboard') }}" class="icon-text ms-3"><i class="fas fa-tachometer-alt"></i><span class="ms-4">Dashboard</span></a>
 
@@ -133,9 +132,9 @@
         <a href="{{ route('member.dashboard') }}" class="icon-text ms-3"><i class="fas fa-tachometer-alt"></i><span class="ms-4">Dashboard</span></a>
         <a href="{{ route('request.index') }}" class="icon-text ms-3"><i class="fas fa-clipboard-list"></i><span class="ms-4">Your Request</span></a>
         @endif
-        <a href="{{ route('profile.show') }}" class="icon-text ms-3"><i class="fas fa-user"></i></i><span class="ms-4">Profile</span></a>
         <a href="{{ route('calender') }}" class="icon-text ms-3"><i class="fas fa-calendar"></i></i><span class="ms-4">Calendar</span></a>
         <a href="{{ route('branch.index') }}" class="icon-text ms-3"><i class="fas fa-code-branch"></i></i><span class="ms-4">Branches</span></a>
+        <a href="{{ route('profile.show') }}" class="icon-text ms-3"><i class="fas fa-user"></i></i><span class="ms-4">Profile</span></a>
         <a class="icon-text text-white ms-1">
             <form method="POST" action="{{ route('logout') }}">
                 @csrf

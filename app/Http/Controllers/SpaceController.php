@@ -20,7 +20,7 @@ class SpaceController extends Controller
     {
         $this->authorize('viewAny', [Space::class]);
 
-        $spaces = $branch->spaces()->filter($request->query())->get();
+        $spaces = $branch->spaces()->filter($request->query())->paginate(6);
 
         $books = BookingRequest::all();
         $days = Day::all();

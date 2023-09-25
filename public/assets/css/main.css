@@ -43,8 +43,12 @@
 }
 
 .btn-secondary-color:hover{
-    border-color: #f85a40;
-    color: f85a40;
+    background-color: #f85940e4;
+    color: white;
+
+}
+.text-main{
+    color: #6ca9be;
 }
 
 /*--------------------------------------------------------------
@@ -1707,7 +1711,7 @@ section {
     font-size: 14px;
     letter-spacing: 1px;
     display: inline-block;
-    border-radius: 10px;
+    border-radius: 9px;
     transition: 0.3s;
     color: #fff;
     background: var(--color-secondary);
@@ -1732,7 +1736,7 @@ section {
     letter-spacing: 1px;
     display: inline-block;
     /* padding: ; */
-    border-radius: 15px;
+    border-radius: 9px;
     transition: 0.3s;
     color: #fff;
     background: var(--color-primary);
@@ -2512,3 +2516,53 @@ section {
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
 } */
 
+.icon-text {
+    position: relative;
+    text-decoration: none;
+}
+
+.badge {
+    background-color: #e74c3c;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 10px;
+    position: absolute;
+    top: -9px;
+    right: -15px;
+    z-index: 1;
+}
+
+.dropdown-menu {
+    width: 400px; /* Set the width of the dropdown */
+    max-height: 400px; /* Set a maximum height for the dropdown */
+    overflow-y: auto; /* Add vertical scroll if needed */
+    padding: 10px;
+    border: none;
+    box-shadow: 2px 3px 7px 0px #d2d2d2;
+}
+
+.dropdown-menu li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd; /* Add a horizontal line between items */
+}
+
+.dropdown-menu li:last-child {
+    border-bottom: none; /* Remove the line from the last item */
+}
+
+/* Style for unread notifications */
+.dropdown-menu li a b {
+    color: #e74c3c; /* Red color for unread notification */
+}
+
+/* Style for notification title */
+.dropdown-menu li a {
+    color: #333; /* Text color for notification title */
+    font-weight: bold; /* Make the title bold */
+}
+
+/* Style for notification timestamp */
+.dropdown-menu li a small {
+    color: #888; /* Text color for timestamp */
+    font-size: 12px; /* Adjust font size as needed */
+}
